@@ -32,12 +32,9 @@ const NewSeller = () => {
     }
 
 
-
-
     return ( 
         <>
          
-          
             {sellerId == 'new' ?
                 <form>
                     <label>First Name:</label>

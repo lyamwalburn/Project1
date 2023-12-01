@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import PropertyRow from "./PropertyRow";
 
 const Properties = () => {
 
@@ -49,38 +50,10 @@ const Properties = () => {
             </thead>
             <tbody>
         {sellerId != null ? properties.filter(p=> p.sellerId == sellerId).map(property=>(
-            <tr key={property.id}>
-                <td>{property.id}</td>
-                <td>{property.address}</td>
-                <td>{property.postcode}</td>
-                <td>{property.type}</td>
-                <td>{property.price}</td>
-                <td>{property.bedroom}</td>
-                <td>{property.bathroom}</td>
-                <td>{property.garden}</td>
-                <td>{property.sellerId}</td>
-                <td>{property.status}</td>
-                <td>{property.buyerId}</td>
-                
-                <td><input type="button" value='Delete' onClick={()=>{deleteProperty(property.id)}} /></td>
-            </tr>
+            <PropertyRow property={property} delete={deleteProperty}/>
         )) :
         properties.map(property=>(
-            <tr key={property.id}>
-                <td>{property.id}</td>
-                <td>{property.address}</td>
-                <td>{property.postcode}</td>
-                <td>{property.type}</td>
-                <td>{property.price}</td>
-                <td>{property.bedroom}</td>
-                <td>{property.bathroom}</td>
-                <td>{property.garden}</td>
-                <td>{property.sellerId}</td>
-                <td>{property.status}</td>
-                <td>{property.buyerId}</td>
-                
-                <td><input type="button" value='Delete' onClick={()=>{deleteProperty(property.id)}} /></td>
-            </tr>
+           <PropertyRow property={property} delete={deleteProperty}/>
         ))}
         </tbody>
         </table>

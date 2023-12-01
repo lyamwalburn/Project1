@@ -32,7 +32,7 @@ const Sellers = () => {
                     <th>Address</th>
                     <th>Postcode</th>
                     <th>Phone</th>
-                    <th>Properties</th>
+                    <th>Seller Properties</th>
                     <th>Edit</th>
                     <th>Delete</th>
                 </tr>
