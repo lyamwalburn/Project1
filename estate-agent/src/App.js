@@ -8,7 +8,6 @@ import Properties from './components/Properties';
 import Navbar from './components/Navbar';
 import Buyers from './components/Buyers';
 import NewBuyer from './components/NewBuyer'
-import PropertyCard from './components/PropertyCard';
 
 function App() {
   return (
@@ -18,8 +17,6 @@ function App() {
           <header>
               <h1>Estate Agency</h1>
           </header>
-
-        <PropertyCard />
         <Routes>
           <Route path='/'></Route>
           <Route path='/sellers' element={<Sellers/>}></Route>

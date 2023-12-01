@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import PropertyRow from "./PropertyRow";
+import PropertyCard from "./PropertyCard";
 
 const Properties = () => {
 
@@ -50,7 +51,8 @@ const Properties = () => {
             </thead>
             <tbody>
         {sellerId != null ? properties.filter(p=> p.sellerId == sellerId).map(property=>(
-            <PropertyRow property={property} delete={deleteProperty}/>
+            // <PropertyRow property={property} delete={deleteProperty}/>
+            <PropertyCard property={property}/>
         )) :
         properties.map(property=>(
            <PropertyRow property={property} delete={deleteProperty}/>

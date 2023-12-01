@@ -1,22 +1,29 @@
-const PropertyCard = () => {
+import { Link } from 'react-router-dom';
+
+const PropertyCard = (props) => {
+
+    const cardStyle = {
+        width: '18rem',
+    }
+
     return ( 
         
-        // <div class="card" style="width: 18rem;">
-        //     <img class="card-img-top" src="..." alt="Card image cap"/>
-        //     <div class="card-body">
-        //         <h5 class="card-title">Card title</h5>
-        //         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        //     </div>
-        //     <ul class="list-group list-group-flush">
-        //         <li class="list-group-item">Cras justo odio</li>
-        //         <li class="list-group-item">Dapibus ac facilisis in</li>
-        //         <li class="list-group-item">Vestibulum at eros</li>
-        //     </ul>
-        //     <div class="card-body">
-        //         <a href="#" class="card-link">Card link</a>
-        //         <a href="#" class="card-link">Another link</a>
-        //     </div>
-        // </div>
+        <div class="card" style={cardStyle}>
+            <img className="card-img-top" src={require('../img/img-missing.avif')} alt="Property Image"/>
+            <div className="card-body">
+                <h5 className="card-title">{props.property.address}</h5>
+                <p className="card-text">{props.property.type}.</p>
+            </div>
+            <ul className="list-group list-group-flush">
+                <li className="list-group-item">Cras justo odio</li>
+                <li className="list-group-item">Dapibus ac facilisis in</li>
+                <li className="list-group-item">Vestibulum at eros</li>
+            </ul>
+            <div className="card-body">
+                <Link to={`/sellers/${props.property.sellerId}`} className='card-link'>Seller</Link>
+                <Link to='/' className='card-link'>Manage Bookings</Link>
+            </div>
+        </div>
      );
 }
  
