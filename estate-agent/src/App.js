@@ -26,7 +26,7 @@ function App() {
           <Route path='/properties/:sellerId' element={<Properties />}></Route>
           <Route path='/properties/buyer/:buyerId' element={<Properties />}></Route>
           <Route path='/buyers' element={<Buyers />}></Route>
-          <Route path='/buyers/new' element={<NewBuyer />}></Route>
+          <Route path='/buyers/:buyerId' element={<NewBuyer />}></Route>
         </Routes>
         </BrowserRouter>
 

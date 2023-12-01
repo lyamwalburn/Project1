@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import PropertyRow from "./PropertyRow";
+
 import PropertyCard from "./PropertyCard";
 
 const Properties = () => {
@@ -26,10 +26,9 @@ const Properties = () => {
     }
 
     return ( 
-        <div>
-            <div className="container">
+            <div className="container text-center">
                 <div className="grid">
-                    <div className="row">
+                    <div className="row d-flex justify-content-center">
                         <Link to='/properties/new'><button>New Property</button></Link>
                         {sellerId != null ? properties.filter(p=> p.sellerId == sellerId).map(property=>(
                             <PropertyCard property={property}/>
@@ -40,7 +39,6 @@ const Properties = () => {
                     </div>
                 </div>
             </div>
-        </div>
     );
 }
  

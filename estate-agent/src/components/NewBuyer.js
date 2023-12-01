@@ -11,18 +11,18 @@ const NewBuyer = () => {
 
     useEffect(()=>{
         if(buyerId != 'new'){
+            console.log(buyerId)
             fetch(`${URL}/${buyerId}`).then(res=>res.json().then(setBuyer))
         }
     },[])
 
     const createBuyer = (newBuyer)=>{
         
-        // fetch(URL,{
-        //         method:"POST",
-        //         headers:{"Content-Type": "application/json"},
-        //         body:JSON.stringify(newBuyer)
-        //     })
-        alert('caleld create')
+        fetch(URL,{
+                method:"POST",
+                headers:{"Content-Type": "application/json"},
+                body:JSON.stringify(newBuyer)
+            })
 
     }
 
@@ -31,7 +31,7 @@ const NewBuyer = () => {
         <>
          
             {buyerId == 'new' ?
-                <NewUserForm create={createBuyer} user={{}} route='/buyers' id={buyerId} />
+                <NewUserForm create={createBuyer} user={buyer} route='/buyers' id={buyerId} />
             :
             <form>
                     <label>First Name:</label>

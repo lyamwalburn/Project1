@@ -1,36 +1,46 @@
-import { useState } from "react";
+import { useRef } from "react";
 import {Link} from 'react-router-dom'
 
 const NewUserForm = (props) => {
 
-    const [user,setUser] = useState({})
+    
+    const firstNameInput = useRef(null)
+    const surnameInput = useRef(null)
+    const addressInput = useRef(null)
+    const postcodeInput = useRef(null)
+    const phoneInput = useRef(null)
 
-    // let newBuyer = {
-    //     firstName: document.getElementById('fname').value,
-    //     surname: document.getElementById('sname').value,
-    //     address: document.getElementById('address').value,
-    //     postcode: document.getElementById('postcode').value,
-    //     phone: document.getElementById('phone').value,
-    // }
+    const saveUser = ()=>{
+        let user = {
+            firstName: firstNameInput.current.value,
+            surname: surnameInput.current.value,
+            address: addressInput.current.value,
+            postcode: postcodeInput.current.value,
+            phone: phoneInput.current.value
+        }
+
+        props.create(user)
+
+    }
 
     return (  
         <form>
             <label>First Name:</label>
-            <input type="text" id='fname'></input>
+            <input type="text" ref={firstNameInput}></input>
             <br/>
             <label>Surname:</label>
-            <input type="text" id='sname'></input>
+            <input type="text" ref={surnameInput}></input>
             <br/>
             <label>Address:</label>
-            <input type="text" id='address'></input>
+            <input type="text" ref={addressInput}></input>
             <br/>
             <label>Postcode:</label>
-            <input type="text" id='postcode'></input>
+            <input type="text" ref={postcodeInput}></input>
             <br/>
             <label>Phone:</label>
-            <input type="text" id='phone'></input>
+            <input type="text" ref={phoneInput}></input>
             <br/>
-            <Link to={props.route}><input type="button" value={props.id == 'new' ? 'Create Buyer' : 'Save Changes'} onClick={()=>props.createUser(user)} /></Link>
+            <Link to={props.route}><input type="button" value='Save' onClick={()=>saveUser()} /></Link>
         </form>
     );
 }

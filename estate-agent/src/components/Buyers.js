@@ -2,6 +2,11 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
+
+//import {useNavigate} from 'react-router-dom
+//let navigate=useNavigate()
+//navigate('/aboutus')
+
 const Buyers = () => {
 
     const [buyers,setBuyers] = useState([])
@@ -23,7 +28,7 @@ const Buyers = () => {
 
     return ( 
         <div>
-            <Link to='/buyers/new'><button>New Buyer</button></Link>
+            <Link to='/buyers/1'><button>New Buyer</button></Link>
             <table>
             <thead>
                 <tr>
