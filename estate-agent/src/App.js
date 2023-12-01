@@ -12,6 +12,7 @@ import NewBuyer from './components/NewBuyer'
 function App() {
   return (
     <div className="App">
+      
       <BrowserRouter>
         <Navbar />
           <header>

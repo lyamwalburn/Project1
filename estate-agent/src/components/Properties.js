@@ -17,11 +17,6 @@ const Properties = () => {
 
     const fetchProperties = ()=>{
         fetch(URL).then(res=>res.json().then(setProperties))
-        // if(sellerId != null){
-        //     setProperties(properties.filter(p=>p.sellerId == sellerId))
-        // } else {
-        //     console.log(sellerId)
-        // }
     }
 
     const deleteProperty = (id)=>{
@@ -32,33 +27,19 @@ const Properties = () => {
 
     return ( 
         <div>
-            <Link to='/properties/new'><button>New Property</button></Link>
-            <table>
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Address</th>
-                    <th>Postcode</th>
-                    <th>Type</th>
-                    <th>Price</th>
-                    <th>Bedroom</th>
-                    <th>Bathroom</th>
-                    <th>Garden</th>
-                    <th>SellerId</th>
-                    <th>Status</th>
-                    <th>BuyerId</th>
-                </tr>
-            </thead>
-            <tbody>
-        {sellerId != null ? properties.filter(p=> p.sellerId == sellerId).map(property=>(
-            // <PropertyRow property={property} delete={deleteProperty}/>
-            <PropertyCard property={property}/>
-        )) :
-        properties.map(property=>(
-           <PropertyRow property={property} delete={deleteProperty}/>
-        ))}
-        </tbody>
-        </table>
+            <div className="container">
+                <div className="grid">
+                    <div className="row">
+                        <Link to='/properties/new'><button>New Property</button></Link>
+                        {sellerId != null ? properties.filter(p=> p.sellerId == sellerId).map(property=>(
+                            <PropertyCard property={property}/>
+                        )) :
+                        properties.map(property=>(
+                            <PropertyCard property={property}/>
+                        ))} 
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }
