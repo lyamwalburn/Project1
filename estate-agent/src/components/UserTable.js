@@ -11,7 +11,7 @@ const UserTable = (props) => {
                 <th>Address</th>
                 <th>Postcode</th>
                 <th>Phone</th>
-                <th>Bought Properties</th>
+                <th>Properties</th>
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
