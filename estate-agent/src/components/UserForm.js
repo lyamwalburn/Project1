@@ -1,7 +1,7 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import {Link} from 'react-router-dom'
 
-const NewUserForm = (props) => {
+const UserForm = (props) => {
 
     
     const firstNameInput = useRef(null)
@@ -18,8 +18,28 @@ const NewUserForm = (props) => {
             postcode: postcodeInput.current.value,
             phone: phoneInput.current.value
         }
-
+        if(props.id != 'new'){
+            user.id = props.id
+        }
         props.create(user)
+    }
+
+    useEffect(()=>{
+        if(props.id != 'new'){
+            //get data to edit
+            fetchUser() 
+        }
+    },[])
+
+    async function fetchUser(){
+        const res = await fetch(`${props.url}/${props.id}`)
+        const data = await res.json()
+
+        firstNameInput.current.value = data.firstName
+        surnameInput.current.value = data.surname
+        addressInput.current.value = data.address
+        postcodeInput.current.value = data.postcode
+        phoneInput.current.value = data.phone
 
     }
 
@@ -45,4 +65,4 @@ const NewUserForm = (props) => {
     );
 }
  
-export default NewUserForm;
+export default UserForm;

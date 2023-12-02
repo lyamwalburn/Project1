@@ -3,11 +3,11 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
 import Sellers from './components/Sellers';
-import NewSeller from './components/NewSeller';
+import UpsertSeller from './components/UpsertSeller';
 import Properties from './components/Properties';
 import Navbar from './components/Navbar';
 import Buyers from './components/Buyers';
-import NewBuyer from './components/NewBuyer'
+import UpsertBuyer from './components/UpsertBuyer'
 
 function App() {
   return (
@@ -21,12 +21,12 @@ function App() {
         <Routes>
           <Route path='/'></Route>
           <Route path='/sellers' element={<Sellers/>}></Route>
-          <Route path='/sellers/:sellerId' element={<NewSeller />}></Route>
+          <Route path='/sellers/:sellerId' element={<UpsertSeller />}></Route>
           <Route path='/properties' element={<Properties />}></Route>
           <Route path='/properties/:sellerId' element={<Properties />}></Route>
           <Route path='/properties/buyer/:buyerId' element={<Properties />}></Route>
           <Route path='/buyers' element={<Buyers />}></Route>
-          <Route path='/buyers/:buyerId' element={<NewBuyer />}></Route>
+          <Route path='/buyers/:buyerId' element={<UpsertBuyer />}></Route>
         </Routes>
         </BrowserRouter>
 

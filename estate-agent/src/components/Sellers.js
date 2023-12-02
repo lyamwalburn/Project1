@@ -46,7 +46,7 @@ const Sellers = () => {
                 <td>{seller.postcode}</td>
                 <td>{seller.phone}</td>
                 <td><Link to={`/properties/${seller.id}`}>Properties</Link></td>
-                <td>EditBtn</td>
+                <td><Link to={`/sellers/${seller.id}`}>EditBtn</Link></td>
                 <td><input type="button" value='Delete' onClick={()=>{deleteSeller(seller.id)}} /></td>
             </tr>
         ))}

@@ -3,10 +3,6 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 
-//import {useNavigate} from 'react-router-dom
-//let navigate=useNavigate()
-//navigate('/aboutus')
-
 const Buyers = () => {
 
     const [buyers,setBuyers] = useState([])
@@ -28,7 +24,7 @@ const Buyers = () => {
 
     return ( 
         <div>
-            <Link to='/buyers/1'><button>New Buyer</button></Link>
+            <Link to='/buyers/new'><button>New Buyer</button></Link>
             <table>
             <thead>
                 <tr>
@@ -51,7 +47,7 @@ const Buyers = () => {
                 <td>{buyer.postcode}</td>
                 <td>{buyer.phone}</td>
                 <td><Link to={`/properties/buyer/${buyer.id}`}>Properties</Link></td>
-                <td>EditBtn</td>
+                <td><Link to={`/buyers/${buyer.id}`}>Edit</Link></td>
                 <td><input type="button" value='Delete' onClick={()=>{deleteBuyer(buyer.id)}} /></td>
             </tr>
         ))}
