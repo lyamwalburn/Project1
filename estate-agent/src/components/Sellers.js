@@ -22,9 +22,12 @@ const Sellers = () => {
     }
 
     return ( 
+        <>
+        <h2 className="mt-4">All Sellers</h2>
         <UserTable users={sellers} removeUser={deleteSeller} 
             propertiesLink='/properties/' editLink='/sellers/'
             createLink='/sellers/new'/>
+        </>
     );
 }
  

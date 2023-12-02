@@ -28,9 +28,15 @@ const UpsertSeller = () => {
         <>
          
             {sellerId == 'new' ?
+                <>
+                <h2 className="mt-4">Create a new Seller</h2>
                 <UserForm create={createSeller} type='seller' route='/sellers' id={sellerId}/>
+                </>
             :
+                <>
+                <h2 className="mt-4">Edit Seller</h2>
                 <UserForm create={EditSeller} type='seller' route='/sellers' id={sellerId} url={URL}/>
+                </>
             }
        
         </>  
