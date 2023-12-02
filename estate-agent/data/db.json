@@ -57,8 +57,16 @@
       "surname": "Green",
       "address": "Fairwater, Cardiff",
       "postcode": "CF1 1AA",
-      "phone": "1234234",
+      "phone": "1",
       "id": 10
+    },
+    {
+      "firstName": "timmy",
+      "surname": "thomson",
+      "address": "4 walk",
+      "postcode": "ff3",
+      "phone": "2334",
+      "id": 11
     }
   ],
   "property": [
@@ -115,12 +123,12 @@
   ],
   "buyer": [
     {
-      "id": 1,
       "firstName": "Cookie",
       "surname": "Cat",
       "address": "42 Pen-y-lan Road, Cardiff",
       "postcode": "CA1 8RR",
-      "phone": ""
+      "phone": "123",
+      "id": 1
     },
     {
       "id": 2,
@@ -141,9 +149,9 @@
     {
       "firstName": "lyam",
       "surname": "walburn",
-      "address": "332 lane",
+      "address": "5 lane",
       "postcode": "ab11",
-      "phone": "12345",
+      "phone": "234123",
       "id": 4
     }
   ],

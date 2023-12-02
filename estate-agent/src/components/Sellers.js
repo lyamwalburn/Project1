@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import UserTable from "./UserTable";
 
 const Sellers = () => {
 
@@ -22,37 +22,9 @@ const Sellers = () => {
     }
 
     return ( 
-        <div>
-            <Link to='/sellers/new'><button>New Seller</button></Link>
-            <table>
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Address</th>
-                    <th>Postcode</th>
-                    <th>Phone</th>
-                    <th>Seller Properties</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
-                </tr>
-            </thead>
-            <tbody>
-        {sellers.map(seller=>(
-            <tr key={seller.id}>
-                <td>{seller.id}</td>
-                <td>{`${seller.firstName} ${seller.surname}`}</td>
-                <td>{seller.address}</td>
-                <td>{seller.postcode}</td>
-                <td>{seller.phone}</td>
-                <td><Link to={`/properties/${seller.id}`}>Properties</Link></td>
-                <td><Link to={`/sellers/${seller.id}`}>EditBtn</Link></td>
-                <td><input type="button" value='Delete' onClick={()=>{deleteSeller(seller.id)}} /></td>
-            </tr>
-        ))}
-        </tbody>
-        </table>
-        </div>
+        <UserTable users={sellers} removeUser={deleteSeller} 
+            propertiesLink='/properties/' editLink='/sellers/'
+            createLink='/sellers/new'/>
     );
 }
  
