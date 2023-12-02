@@ -84,27 +84,26 @@
       "buyerId": 3
     },
     {
-      "id": 2,
       "address": "Somewhere House, Some Street, Some City",
       "postcode": "SO1 2ME",
       "type": "APARTMENT",
-      "price": 200000,
-      "bedroom": 1,
-      "bathroom": 1,
-      "garden": 0,
-      "sellerId": 1,
-      "status": "SOLD",
-      "buyerId": 3
+      "price": "200000",
+      "bedroom": "5",
+      "bathroom": "1",
+      "garden": "0",
+      "sellerId": "1",
+      "status": "FOR SALE",
+      "id": 2
     },
     {
       "address": "2 Welsh Street, Ebbw Vale",
       "postcode": "TR1 1GA",
       "type": "DETACHED",
-      "price": 125000,
-      "bedroom": 1,
-      "bathroom": 1,
-      "garden": 1,
-      "sellerId": 3,
+      "price": "120000",
+      "bedroom": "1",
+      "bathroom": "1",
+      "garden": "1",
+      "sellerId": "3",
       "status": "FOR SALE",
       "id": 3
     },
@@ -131,6 +130,18 @@
       "sellerId": "11",
       "status": "FOR SALE",
       "id": 5
+    },
+    {
+      "address": "22 riverview ellon",
+      "postcode": "ab42 8lp",
+      "type": "DETATCHED",
+      "price": "200000",
+      "bedroom": "4",
+      "bathroom": "2",
+      "garden": "2",
+      "sellerId": "10",
+      "status": "FOR SALE",
+      "id": 6
     }
   ],
   "buyer": [

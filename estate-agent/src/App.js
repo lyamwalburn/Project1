@@ -19,10 +19,11 @@ function App() {
               <h1>Estate Agency</h1>
           </header>
         <Routes>
-          <Route path='/' element={<UpsertProperty/>}></Route>
+          <Route path='/'></Route>
           <Route path='/sellers' element={<Sellers/>}></Route>
           <Route path='/sellers/:sellerId' element={<UpsertSeller />}></Route>
           <Route path='/properties' element={<Properties />}></Route>
+          <Route path='/properties/upsert/:propertyId' element={<UpsertProperty />}></Route>
           <Route path='/properties/:sellerId' element={<Properties />}></Route>
           <Route path='/properties/buyer/:buyerId' element={<Properties />}></Route>
           <Route path='/buyers' element={<Buyers />}></Route>

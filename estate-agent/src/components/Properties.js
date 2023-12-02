@@ -29,7 +29,7 @@ const Properties = () => {
             <div className="container text-center">
                 <div className="grid">
                     <div className="row d-flex justify-content-center">
-                        <Link to='/properties/new'><button>New Property</button></Link>
+                        <Link to='/properties/upsert/new'><button>New Property</button></Link>
                         {sellerId != null ? properties.filter(p=> p.sellerId == sellerId).map(property=>(
                             <PropertyCard property={property}/>
                         )) :
