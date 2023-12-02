@@ -42,36 +42,51 @@ const UpsertProperty = () => {
     }
 
     return ( 
-    <form>
-        <label>Address:</label>
-        <input type="text" placeholder="address..." ref={addressInput}/>
-        <label>Postcode:</label>
-        <input type="text" placeholder="postcode..." ref={postcodeInput}/>
-        <label>Value:</label>
-        <input type="text" placeholder="£10000..." ref={valueInput}/>
-        <label>Bedrooms:</label>
-        <input type="text" placeholder="bedrooms..." ref={bedroomsInput}/>
-        <label>Bathrooms:</label>
-        <input type="text" placeholder="bathrooms..." ref={bathroomsInput}/>
-        <label>garden:</label>
-        <input type="text" placeholder="garden..." ref={gardensInput}/>
-        <label>Type:</label>
-        
-        <select ref={typeInput}>
-            <option selected disabled>Property type...</option>
-            <option value={'DETATCHED'}>DETATCHED</option>
-            <option value={'SEMI-DETATCHED'}>SEMI-DETATCHED</option>
-            <option value={'TERRACED'}>TERRRACED</option>
-            <option value={'APARTMENT'}>APARTMENT</option>
-        </select>
-        <label>Seller</label>
-        <select ref={sellerInput}>
-            <option selected disabled>Seller...</option>
-            {sellers.map(seller=>(
-                <option value={seller.id} key={seller.id}>{`${seller.firstName} ${seller.surname}`}</option>
-            ))}
-        </select>
-        <button onClick={()=>{saveDetails()}}>Create Property</button>
+    <form className="col-md-10 m-auto mt-4 px-5">
+        <div className="row">
+            <div className="col-md-7 mt-2">
+                <input type="text" className="form-control" placeholder="Address" ref={addressInput}/>
+            </div>
+            <div className="col-md-5 mt-2">
+                <input type="text" className="form-control" placeholder="Postcode" ref={postcodeInput}/>
+            </div>
+        </div>
+        <div className="row justify-content-center">
+            <div className="col-md-4 mt-3">
+                <input type="text" className="form-control" placeholder="Bedrooms" ref={bedroomsInput}/>
+            </div>
+            <div className="col-md-4 mt-3">
+                <input type="text" className="form-control" placeholder="Bathrooms" ref={bathroomsInput}/>
+            </div>
+            <div className="col-md-4 mt-3">
+                <input type="text" className="form-control" placeholder="Gardens" ref={gardensInput}/>
+            </div>
+        </div>
+        <div className="row justify-content-center">
+            <div className="col-md-4 mt-3"> 
+                <input type="text" className="form-control" placeholder="Value" ref={valueInput}/>
+            </div>
+            <div className="form-group col-md-4 mt-3">
+                <select ref={typeInput} className="form-select">
+                    <option selected disabled>Property type...</option>
+                    <option value={'DETATCHED'}>DETATCHED</option>
+                    <option value={'SEMI-DETATCHED'}>SEMI-DETATCHED</option>
+                    <option value={'TERRACED'}>TERRRACED</option>
+                    <option value={'APARTMENT'}>APARTMENT</option>
+                </select>
+            </div>
+            <div className="form-group col-md-4 mt-3">
+                <select ref={sellerInput} className="form-select">
+                    <option selected disabled>Seller</option>
+                    {sellers.map(seller=>(
+                    <option value={seller.id} key={seller.id}>{`${seller.firstName} ${seller.surname}`}</option>
+                    ))}
+                </select>
+            </div>
+        </div>
+        <div className="row">
+            <button className="btn btn-primary mt-3 col-md-3 ms-auto me-2" onClick={()=>{saveDetails()}}>Create Property</button>
+        </div>
     </form> 
     );
 }
