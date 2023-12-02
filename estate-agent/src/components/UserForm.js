@@ -44,23 +44,29 @@ const UserForm = (props) => {
     }
 
     return (  
-        <form>
-            <label>First Name:</label>
-            <input type="text" ref={firstNameInput}></input>
-            <br/>
-            <label>Surname:</label>
-            <input type="text" ref={surnameInput}></input>
-            <br/>
-            <label>Address:</label>
-            <input type="text" ref={addressInput}></input>
-            <br/>
-            <label>Postcode:</label>
-            <input type="text" ref={postcodeInput}></input>
-            <br/>
-            <label>Phone:</label>
-            <input type="text" ref={phoneInput}></input>
-            <br/>
-            <Link to={props.route}><input type="button" value='Save' onClick={()=>saveUser()} /></Link>
+        <form className="col-md-10 m-auto mt-5">
+            <div className="row">
+                <div className="form-group col-md-6 mt-2">
+                    <input type="text" ref={firstNameInput} className="form-control" placeholder="Firstname:"></input>
+                </div>
+                <div className="form-group col-md-6 mt-2">
+                    <input type="text" className="form-control" placeholder="Surname:" ref={surnameInput}></input>
+                </div>
+            </div>
+            <div className="row">
+                <div className="form-group col-md-12 mt-2">
+                    <input type="text" className="form-control" placeholder="Address" ref={addressInput}/>
+                </div>
+            </div>
+            <div className="row">
+                 <div className="form-group col-md-6 mt-2">
+                    <input type="text" className="form-control" placeholder="Postcode" ref={postcodeInput}/>
+                </div>
+                <div className="form-group col-md-6 mt-2">
+                    <input type="text" ref={phoneInput} className="form-control" placeholder="Phone:"></input>
+                </div>
+            </div>
+                <Link className=''to={props.route}><input className="btn btn-primary mt-2" type="button" value='Save' onClick={()=>saveUser()} /></Link>
         </form>
     );
 }
