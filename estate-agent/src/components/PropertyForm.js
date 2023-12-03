@@ -97,7 +97,10 @@ const PropertyForm = (props) => {
             </div>
         </div>
         <div className="row">
-            <button className="btn btn-primary mt-3 col-md-3 ms-auto me-2" onClick={()=>{saveDetails()}}>Create Property</button>
+            {props.id == 'new' ? 
+                <button className="btn btn-primary mt-3 col-md-3 ms-auto me-2" onClick={()=>{saveDetails()}}>Create Property</button>
+                :
+                <button className="btn btn-primary mt-3 col-md-3 ms-auto me-2" onClick={()=>{saveDetails()}}>Save Changes</button>}
         </div>
     </form> 
      );

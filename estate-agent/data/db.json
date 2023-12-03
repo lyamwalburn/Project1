@@ -71,17 +71,16 @@
   ],
   "property": [
     {
-      "id": 1,
       "address": "34 OK Place, OK Town",
       "postcode": "OK1 1OK",
       "type": "DETACHED",
-      "price": 100000,
-      "bedroom": 3,
-      "bathroom": 1,
-      "garden": 0,
-      "sellerId": 1,
-      "status": "SOLD",
-      "buyerId": 3
+      "price": "90000",
+      "bedroom": "3",
+      "bathroom": "1",
+      "garden": "0",
+      "sellerId": "1",
+      "status": "FOR SALE",
+      "id": 1
     },
     {
       "address": "Somewhere House, Some Street, Some City",
