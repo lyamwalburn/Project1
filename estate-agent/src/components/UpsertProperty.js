@@ -1,10 +1,11 @@
 
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import PropertyForm from "./PropertyForm";
 
 const UpsertProperty = () => {
 
     const {propertyId} = useParams()
+    const navigate = useNavigate()
 
     const createProperty = (newProperty)=>{
         fetch('http://localhost:8081/property',{
@@ -12,6 +13,7 @@ const UpsertProperty = () => {
                 headers:{"Content-Type": "application/json"},
                 body:JSON.stringify(newProperty)
             })
+            navigate('/properties')
     }
 
     const EditProperty = (property)=>{
@@ -21,6 +23,7 @@ const UpsertProperty = () => {
             headers:{"Content-Type": "application/json"},
             body:JSON.stringify(property)
         })
+        navigate('/properties')
     }
 
     return ( <>
