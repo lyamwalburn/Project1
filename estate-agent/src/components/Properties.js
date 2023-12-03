@@ -26,10 +26,12 @@ const Properties = () => {
     }
 
     return ( 
-            <div className="container text-center">
+        <>
+        <h2 className="mt-4">All Properties</h2>
+            <div className="container mt-4">
                 <div className="grid">
-                    <div className="row d-flex justify-content-center">
-                        <Link to='/properties/upsert/new'><button>New Property</button></Link>
+                <Link to='/properties/upsert/new'><button className="btn btn-primary ms-3">Create Property</button></Link>
+                    <div className="row d-flex justify-content-center text-center">
                         {sellerId != null ? properties.filter(p=> p.sellerId == sellerId).map(property=>(
                             <PropertyCard property={property}/>
                         )) :
@@ -39,6 +41,7 @@ const Properties = () => {
                     </div>
                 </div>
             </div>
+        </>
     );
 }
  
