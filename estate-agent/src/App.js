@@ -9,6 +9,7 @@ import Navbar from './components/Navbar';
 import Buyers from './components/Buyers';
 import UpsertBuyer from './components/UpsertBuyer'
 import UpsertProperty from './components/UpsertProperty';
+import QuickLinks from './components/QuickLinks';
 function App() {
   return (
     <div className="App">
@@ -19,7 +20,7 @@ function App() {
               <h1>Estate Agency</h1>
           </header>
         <Routes>
-          <Route path='/'></Route>
+          <Route path='/' element={<QuickLinks/>}></Route>
           <Route path='/sellers' element={<Sellers/>}></Route>
           <Route path='/sellers/:sellerId' element={<UpsertSeller />}></Route>
           <Route path='/properties' element={<Properties />}></Route>
