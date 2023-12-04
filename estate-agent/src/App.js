@@ -11,6 +11,7 @@ import UpsertBuyer from './components/UpsertBuyer'
 import UpsertProperty from './components/UpsertProperty';
 import QuickLinks from './components/QuickLinks';
 import ManageProperty from './components/ManageProperty';
+import PropertySearch from './components/PropertySearch';
 function App() {
 
   return (
@@ -22,7 +23,7 @@ function App() {
               <h1>Estate Agency</h1>
           </header>
         <Routes>
-          <Route path='/' element={<QuickLinks/>}></Route>
+          <Route path='/' element={<PropertySearch/>}></Route>
           <Route path='/sellers' element={<Sellers/>}></Route>
           <Route path='/sellers/:sellerId' element={<UpsertSeller />}></Route>
           <Route path='/properties' element={<Properties />}></Route>

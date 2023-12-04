@@ -25,7 +25,7 @@ const ManageProperty = (props) => {
     },[])
 
     const fetchProperty = ()=>{
-        fetch(`${URLPATHS.PROPERTY}${propertyId}`).then(res=>res.json().then(setProperty))
+        fetch(`${URLPATHS.PROPERTY}/${propertyId}`).then(res=>res.json().then(setProperty))
     }
 
     const fetchBuyers = () =>{
@@ -91,10 +91,10 @@ const ManageProperty = (props) => {
                                 <option value={buyer.id} key={buyer.id}>{`${buyer.firstName} ${buyer.surname}`}</option>
                                 ))}
                             </select>
-                            <button onClick={()=>saveProperty()}>Purchase</button>
+                            <button className="mt-2 btn btn-primary" onClick={()=>saveProperty()}>Purchase</button>
                             </>
                             :
-                                <button onClick={()=>saveProperty()}>Re-list</button>
+                                <button className="mt-2 btn btn-primary" onClick={()=>saveProperty()}>Re-list</button>
                             }
                         </div>
                         </div>
