@@ -28,7 +28,7 @@ const PropertyCard = (props) => {
             </ul>
             <div className="card-body">
                 <Link to={`/sellers/${props.property.sellerId}`} className='card-link'>Seller</Link>
-                <Link to='/' className='card-link'>Manage Property</Link>
+                <Link to={`/properties/manage/${props.property.id}`} className='card-link'>Manage Property</Link>
                 <Link to={`/properties/upsert/${props.property.id}`} className='card-link'>Edit Details</Link>
             </div>
         </div>

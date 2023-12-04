@@ -80,7 +80,8 @@
       "garden": "0",
       "sellerId": "1",
       "status": "FOR SALE",
-      "id": 1
+      "id": 1,
+      "buyerId": null
     },
     {
       "address": "Somewhere House, Some Street, Some City",

@@ -10,6 +10,7 @@ import Buyers from './components/Buyers';
 import UpsertBuyer from './components/UpsertBuyer'
 import UpsertProperty from './components/UpsertProperty';
 import QuickLinks from './components/QuickLinks';
+import ManageProperty from './components/ManageProperty';
 function App() {
   return (
     <div className="App">
@@ -25,6 +26,7 @@ function App() {
           <Route path='/sellers/:sellerId' element={<UpsertSeller />}></Route>
           <Route path='/properties' element={<Properties />}></Route>
           <Route path='/properties/upsert/:propertyId' element={<UpsertProperty />}></Route>
+          <Route path='/properties/manage/:propertyId' element={<ManageProperty />}></Route>
           <Route path='/properties/:sellerId' element={<Properties />}></Route>
           <Route path='/properties/buyer/:buyerId' element={<Properties />}></Route>
           <Route path='/buyers' element={<Buyers />}></Route>
