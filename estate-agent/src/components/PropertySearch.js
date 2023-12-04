@@ -119,7 +119,7 @@ const PropertySearch = () => {
                             <div>
                                 <label>Property Type</label>
                                 <select ref={typeInput} className="form-select">
-                                    <option selected value ={PROPERTY_TYPES.ALL}>All</option>
+                                    <option defaultValue value ={PROPERTY_TYPES.ALL}>All</option>
                                     <option value={PROPERTY_TYPES.DETACHED}>Detached</option>
                                     <option value={PROPERTY_TYPES.SEMI_DETACHED}>Semi-Detached</option>
                                     <option value={PROPERTY_TYPES.APARTMENT}>Apartment</option>
@@ -162,7 +162,7 @@ const PropertySearch = () => {
                 <div className="grid">
                     <div className="row d-flex justify-content-center text-center">
                 { filteredProperties.map(property=>(
-                        <PropertyCard property={property}/>
+                        <PropertyCard property={property} key={property.id}/>
                     ))} 
                     </div>
                 </div>

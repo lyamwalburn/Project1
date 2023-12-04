@@ -17,14 +17,15 @@ const PropertyCard = (props) => {
                 <h5 className="card-title">{props.property.address}</h5>
                 <p className="card-text">{props.property.type}.</p>
             </div>
+            
             <ul className="list-group list-group-flush">
-                <li className="list-group-item d-flex justify-content-center">
-                    <span className='p-1 mx-2'><FontAwesomeIcon icon={faBed} className='me-2'/>{props.property.bedroom}</span>
-                    <span className='p-1 mx-2'><FontAwesomeIcon icon={faBath} className='me-2'/>{props.property.bathroom}</span>
-                    <span className='p-1 mx-2'><FontAwesomeIcon icon={faTree} className='me-2'/>{props.property.garden}</span>
+                <li className="list-group-item d-flex justify-content-center" key={9345}>
+                    <span className='p-1 mx-2'><FontAwesomeIcon icon={faBath} className='me-2'/>{props.property.bedroom}</span>
+                    {/* <span className='p-1 mx-2'><FontAwesomeIcon icon={faBath} className='me-2'/>{props.property.bathroom}</span>
+                    <span className='p-1 mx-2'><FontAwesomeIcon icon={faTree} className='me-2'/>{props.property.garden}</span> */}
                 </li>
-                <li className="list-group-item">{props.property.price}</li>
-                <li className="list-group-item">{props.property.status}</li>
+                <li className="list-group-item" key={83453}>{props.property.price}</li>
+                <li className="list-group-item" key={72342}>{props.property.status}</li>
             </ul>
             <div className="card-body">
                 <Link to={`/sellers/${props.property.sellerId}`} className='card-link'>Seller</Link>

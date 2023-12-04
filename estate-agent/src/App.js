@@ -5,20 +5,20 @@ import 'bootstrap/dist/js/bootstrap.min.js'
 import Sellers from './components/Sellers';
 import UpsertSeller from './components/UpsertSeller';
 import Properties from './components/Properties';
-import Navbar from './components/Navbar';
 import Buyers from './components/Buyers';
 import UpsertBuyer from './components/UpsertBuyer'
 import UpsertProperty from './components/UpsertProperty';
 import QuickLinks from './components/QuickLinks';
 import ManageProperty from './components/ManageProperty';
 import PropertySearch from './components/PropertySearch';
+import NavBar from './components/NavBar';
 function App() {
 
   return (
     <div className="App">
       
       <BrowserRouter>
-        <Navbar />
+        <NavBar/>
           <header>
               <h1>Estate Agency</h1>
           </header>
