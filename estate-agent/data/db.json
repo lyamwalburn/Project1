@@ -82,9 +82,9 @@
       "bathroom": "1",
       "garden": "0",
       "sellerId": "1",
-      "status": "FOR SALE",
+      "status": "SOLD",
       "id": 1,
-      "buyerId": null
+      "buyerId": "4"
     },
     {
       "address": "Somewhere House, Some Street, Some City",

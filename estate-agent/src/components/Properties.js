@@ -9,10 +9,12 @@ const Properties = () => {
     const [properties,setProperties] = useState([])
     const URL = 'http://localhost:8081/property'
 
-    const {sellerId} = useParams()
+    const {sellerId,buyerId} = useParams()
 
     useEffect(()=>{
         fetchProperties()
+        console.log(`seller id = ${sellerId}`)
+        console.log(`buyer id = ${buyerId}`)
     },[])
 
     const fetchProperties = ()=>{
@@ -35,9 +37,12 @@ const Properties = () => {
                         {sellerId != null ? properties.filter(p=> p.sellerId == sellerId).map(property=>(
                             <PropertyCard property={property}/>
                         )) :
-                        properties.map(property=>(
+                        buyerId != null ? properties.filter(p=>p.buyerId == buyerId).map(property=>(
                             <PropertyCard property={property}/>
-                        ))} 
+                        )):
+                        properties.map(property=>(
+                            <PropertyCard property={property}/>))
+                        } 
                     </div>
                 </div>
             </div>
