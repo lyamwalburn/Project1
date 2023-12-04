@@ -1,16 +1,19 @@
 import { useState, useEffect, useRef } from "react";
 import PropertyCard from "./PropertyCard";
 import { useParams, useNavigate } from "react-router-dom";
+import {URLPATHS} from './utils'
 
 const ManageProperty = (props) => {
 
-    const URL = 'http://localhost:8081'
+    const SALESTATUS = {
+        FORSALE: 'FOR SALE',
+        SOLD: 'SOLD'
+    }
 
     const {propertyId} = useParams()
 
     const [property,setProperty]=useState([])
     const [buyers,setBuyers]=useState([])
-    const [sellers,setSellers]=useState([])
 
     const navigate = useNavigate()
 
@@ -22,25 +25,25 @@ const ManageProperty = (props) => {
     },[])
 
     const fetchProperty = ()=>{
-        fetch(`${URL}/property/${propertyId}`).then(res=>res.json().then(setProperty))
+        fetch(`${URLPATHS.PROPERTY}${propertyId}`).then(res=>res.json().then(setProperty))
     }
 
     const fetchBuyers = () =>{
-        fetch(`${URL}/buyer`).then(res=>res.json().then(setBuyers))
+        fetch(`${URLPATHS.BUYERS}`).then(res=>res.json().then(setBuyers))
     }
 
     const saveProperty = ()=>{
         let newProp = {}
-        property.status == 'FOR SALE' ?
+        property.status == SALESTATUS.FORSALE ?
         newProp = {...property,
             buyerId: buyerInput.current.value,
-            status: 'SOLD'}
+            status: SALESTATUS.SOLD}
         :
         newProp = {...property,
             buyerId: null,
-            status: 'FOR SALE'}
+            status: SALESTATUS.FORSALE}
         
-        fetch(`http://localhost:8081/property/${property.id}`,{
+        fetch(`${URLPATHS.PROPERTY}/${property.id}`,{
             method:"PUT",
             headers:{"Content-Type": "application/json"},
             body:JSON.stringify(newProp)
@@ -57,7 +60,7 @@ const ManageProperty = (props) => {
                     <div className="accordion-item">
                         <h2 className="accordion-header" id="headingOne">
                         <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            Accordion Item #1
+                            Bookings
                         </button>
                         </h2>
                         <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
@@ -68,12 +71,20 @@ const ManageProperty = (props) => {
                     </div>
                     <div className="accordion-item">
                         <h2 className="accordion-header" id="headingTwo">
-                        <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            Purchase
-                        </button>
+                        {property.status == SALESTATUS.FORSALE ? 
+                            <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Purchase
+                            </button>
+                        :
+                            <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Re-list
+                            </button>
+                        }
                         </h2>
                         <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                         <div className="accordion-body">
+                        {property.status == SALESTATUS.FORSALE ? 
+                            <>
                             <select ref={buyerInput} className="form-select">
                                 <option selected disabled>Buyer</option>
                                 {buyers.map(buyer=>(
@@ -81,6 +92,10 @@ const ManageProperty = (props) => {
                                 ))}
                             </select>
                             <button onClick={()=>saveProperty()}>Purchase</button>
+                            </>
+                            :
+                                <button onClick={()=>saveProperty()}>Re-list</button>
+                            }
                         </div>
                         </div>
                     </div>
