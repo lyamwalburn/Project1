@@ -23,7 +23,9 @@ const PropertySearch = () => {
 
     const getdata = (data) =>{
         setProperties(data)
-        setFilteredProperties(data)
+        
+        //only show properties that are for sale
+        setFilteredProperties(data.filter(property=>property.status == SALESTATUS.FORSALE))
     }
 
     const updateValue = (valueRef,targetRef)=>{
@@ -71,76 +73,83 @@ const PropertySearch = () => {
 
     return ( 
         <>
-            <div className='col-4 '>
-                <div className="form-group">
-                <div className="btn-group" role="group" aria-label="Basic radio toggle button group">
-                    <input type="radio" className="btn-check" name="btnPrice" id="raidoAllPrices" autoComplete="off" defaultChecked/>
-                    <label className="btn btn-outline-primary" htmlFor="raidoAllPrices">All Prices</label>
+            <div className='container mt-5 p-3'>
+                <div className='grid border-bottom pb-4'>
+                    <div className='row'>
+                        <div className="form-group col-md-6 border-start border-end border-bottom border-top rounded pe-3 pb-3">
+                            <div className="btn-group mb-3" role="group" aria-label="Price filters button toggle group">
+                                <input type="radio" className="btn-check" name="btnPrice" id="raidoAllPrices" autoComplete="off" defaultChecked/>
+                                <label className="btn btn-outline-primary" htmlFor="raidoAllPrices">All Prices</label>
 
-                    <input type="radio" className="btn-check" name="btnPrice" id="radioUnder" autoComplete="off"/>
-                    <label className="btn btn-outline-primary" htmlFor="radioUnder">Prices Under</label>
+                                <input type="radio" className="btn-check" name="btnPrice" id="radioUnder" autoComplete="off"/>
+                                <label className="btn btn-outline-primary" htmlFor="radioUnder">Prices Under</label>
 
-                    <input type="radio" className="btn-check" name="btnPrice" id="radioOver" autoComplete="off"/>
-                    <label className="btn btn-outline-primary" htmlFor="radioOver">Prices Over</label>                    
+                                <input type="radio" className="btn-check" name="btnPrice" id="radioOver" autoComplete="off"/>
+                                <label className="btn btn-outline-primary" htmlFor="radioOver">Prices Over</label>                    
+                            </div>
+                            <input type='text' ref={priceRef} className='form-control'
+                            onChange={()=>{updateValue(priceRef,priceSlider)}}/>
+                            <input type="range" className="form-range" min="10000" max="500000" id="customRange2" step='5000' ref={priceSlider}
+                            onChange={()=>{updateValue(priceSlider,priceRef)}}/>
+                        </div>
+
+                        <div className="form-group col-md-6">
+                        <div className="btn-group mb-3" role="group" aria-label="Garden preference toggle group">
+                            <input type="radio" className="btn-check" name="btnGarden" id="radioGardenAny" autoComplete="off" defaultChecked/>
+                            <label className="btn btn-outline-primary" htmlFor="radioGardenAny">Any Garden</label>
+
+                            <input type="radio" className="btn-check" name="btnGarden" id="radioGardenTrue" autoComplete="off"/>
+                            <label className="btn btn-outline-primary" htmlFor="radioGardenTrue">Has Garden</label>
+
+                            <input type="radio" className="btn-check" name="btnGarden" id="radioGardenFalse" autoComplete="off"/>
+                            <label className="btn btn-outline-primary" htmlFor="radioGardenFalse">No Garden</label> 
+                        </div>
+                            <div>
+                                <label>Property Type</label>
+                                <select ref={typeInput} className="form-select">
+                                    <option selected value ={PROPERTY_TYPES.ALL}>All</option>
+                                    <option value={PROPERTY_TYPES.DETACHED}>Detached</option>
+                                    <option value={PROPERTY_TYPES.SEMI_DETACHED}>Semi-Detached</option>
+                                    <option value={PROPERTY_TYPES.APARTMENT}>Apartment</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                <div className='row mt-3'>
+                    <div className="form-group col-md-6">
+                        <label>Min Bedrooms</label>
+                        <select ref={bedroomInput} className="form-select">
+                            <option value={1}>1</option>
+                            <option value={2}>2</option>
+                            <option value={3}>3</option>
+                            <option value={4}>4</option>
+                            <option value={5}>5+</option>
+                        </select>
+                    </div>
+
+                    <div className="form-group col-md-6">
+                        <label>Min Bathrooms</label>
+                        <select ref={bathroomInput} className="form-select">
+                            <option value={1}>1</option>
+                            <option value={2}>2</option>
+                            <option value={3}>3</option>
+                            <option value={4}>4</option>
+                            <option value={5}>5+</option>
+                        </select>
+                    </div>
+
                 </div>
-                     <input type='text' ref={priceRef}
-                    onChange={()=>{updateValue(priceRef,priceSlider)}}/>
-                    <input type="range" className="form-range" min="10000" max="500000" id="customRange2" step='5000' ref={priceSlider}
-                     onChange={()=>{updateValue(priceSlider,priceRef)}}/>
-                </div>
 
-                <div className="form-group col-md-4 mt-3">
-                    <label>Min Bedrooms</label>
-                    <select ref={bedroomInput} className="form-select">
-                        <option value={1}>1</option>
-                        <option value={2}>2</option>
-                        <option value={3}>3</option>
-                        <option value={4}>4</option>
-                        <option value={5}>5+</option>
-                    </select>
-                </div>
-
-                <div className="form-group col-md-4 mt-3">
-                    <label>Min Bathrooms</label>
-                    <select ref={bathroomInput} className="form-select">
-                        <option value={1}>1</option>
-                        <option value={2}>2</option>
-                        <option value={3}>3</option>
-                        <option value={4}>4</option>
-                        <option value={5}>5+</option>
-                    </select>
-                </div>
-
-                <div className="form-group">
-                    <input type="radio" className="btn-check" name="btnGarden" id="radioGardenAny" autoComplete="off" defaultChecked/>
-                    <label className="btn btn-outline-primary" htmlFor="radioGardenAny">Any Garden</label>
-
-                    <input type="radio" className="btn-check" name="btnGarden" id="radioGardenTrue" autoComplete="off"/>
-                    <label className="btn btn-outline-primary" htmlFor="radioGardenTrue">Has Garden</label>
-
-                    <input type="radio" className="btn-check" name="btnGarden" id="radioGardenFalse" autoComplete="off"/>
-                    <label className="btn btn-outline-primary" htmlFor="radioGardenFalse">No Garden</label>                
-                </div>
-
-                <div>
-                    <select ref={typeInput} className="form-select">
-                        <option selected value ={PROPERTY_TYPES.ALL}>All</option>
-                        <option value={PROPERTY_TYPES.DETACHED}>Detached</option>
-                        <option value={PROPERTY_TYPES.SEMI_DETACHED}>Semi-Detached</option>
-                        <option value={PROPERTY_TYPES.APARTMENT}>Apartment</option>
-                    </select>
-                </div>
-
-
-                
+            <button onClick={()=>{filteredSearch()}} className='btn btn-primary mt-3'>Search</button>
             </div>
-            <button onClick={()=>{filteredSearch()}} className='btn btn-primary'>Search</button>
+            </div>
 
             <div className='d-flex'>
                 { filteredProperties.map(property=>(
                         <PropertyCard property={property}/>
                     ))} 
             </div>
+            
         </>
      );
 }
