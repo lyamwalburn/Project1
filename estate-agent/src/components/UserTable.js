@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 const UserTable = (props) => {
     return ( 
-    <div>
+    <div className="container">
         <Link to={props.createLink}><button className="btn btn-primary m-3">Create New</button></Link>
         <table className="table table-hover">
         <thead className="thead-light">
