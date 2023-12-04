@@ -71,8 +71,20 @@ const PropertySearch = () => {
         setFilteredProperties(searchResults)
     }
 
+    const clearFilters = ()=>{
+        setFilteredProperties(properties)
+        priceRef.current.value = 100000
+        priceSlider.current.value = 100000
+        typeInput.current.value = PROPERTY_TYPES.ALL
+        bathroomInput.current.value = 1
+        bedroomInput.current.value = 1
+        document.getElementById('raidoAllPrices').checked = true
+        document.getElementById('radioGardenAny').checked = true
+    }
+
     return ( 
         <>
+            <h2 className='mt-4'>Search Avaliable Properties</h2>
             <div className='container mt-5 p-3'>
                 <div className='grid border-bottom pb-4'>
                     <div className='row'>
@@ -139,15 +151,21 @@ const PropertySearch = () => {
                     </div>
 
                 </div>
-
-            <button onClick={()=>{filteredSearch()}} className='btn btn-primary mt-3'>Search</button>
+                <div className='row d-flex justify-content-between'>
+                    <button onClick={()=>{clearFilters()}} className='btn btn-danger mt-3 col-md-3 px-5'>Clear Filters</button>
+                    <button onClick={()=>{filteredSearch()}} className='btn btn-primary mt-3 col-md-3 px-5'>Search</button>       
+                </div>
             </div>
             </div>
 
-            <div className='d-flex'>
+            <div className="container mt-4">
+                <div className="grid">
+                    <div className="row d-flex justify-content-center text-center">
                 { filteredProperties.map(property=>(
                         <PropertyCard property={property}/>
                     ))} 
+                    </div>
+                </div>
             </div>
             
         </>
