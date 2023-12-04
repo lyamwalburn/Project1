@@ -10,7 +10,7 @@ const PropertyCard = (props) => {
     }
 
     return ( 
-        
+        <>
         <div className="card m-2 text-center" style={cardStyle}>
             <img className="card-img-top" src={require('../img/img-missing.avif')} alt="Property Image"/>
             <div className="card-body">
@@ -32,6 +32,7 @@ const PropertyCard = (props) => {
                 <Link to={`/properties/upsert/${props.property.id}`} className='card-link'>Edit Details</Link>
             </div>
         </div>
+        </>
      );
 }
  

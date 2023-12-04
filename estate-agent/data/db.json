@@ -1,9 +1,12 @@
 {
   "seller": [
     {
-      "id": 1,
       "firstName": "John",
-      "surname": "Doe"
+      "surname": "Doe",
+      "address": "123 main street",
+      "postcode": "undefined",
+      "phone": "undefined",
+      "id": 1
     },
     {
       "id": 2,
@@ -116,13 +119,14 @@
       "bathroom": 3,
       "garden": 1,
       "sellerId": 4,
-      "status": "SOLD",
-      "id": 4
+      "status": "FOR SALE",
+      "id": 4,
+      "buyerId": null
     },
     {
       "address": "5 polwarth road",
       "postcode": "ab118by",
-      "type": "SEMI-DETATCHED",
+      "type": "SEMI-DETACHED",
       "price": "180000",
       "bedroom": "3",
       "bathroom": "3",
@@ -134,7 +138,7 @@
     {
       "address": "22 riverview ellon",
       "postcode": "ab42 8lp",
-      "type": "DETATCHED",
+      "type": "DETACHED",
       "price": "200000",
       "bedroom": "4",
       "bathroom": "2",
