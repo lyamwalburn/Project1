@@ -90,9 +90,9 @@
       "bathroom": "1",
       "garden": "0",
       "sellerId": "1",
-      "status": "SOLD",
+      "status": "FOR SALE",
       "id": 1,
-      "buyerId": "4"
+      "buyerId": null
     },
     {
       "address": "Somewhere House, Some Street, Some City",
@@ -104,7 +104,8 @@
       "garden": "0",
       "sellerId": "1",
       "status": "FOR SALE",
-      "id": 2
+      "id": 2,
+      "buyerId": null
     },
     {
       "address": "2 Welsh Street, Ebbw Vale",
@@ -159,7 +160,7 @@
       "address": "99 perth streety",
       "postcode": "ph45",
       "type": "TERRACED",
-      "price": "20000",
+      "price": "200000",
       "bedroom": "9",
       "bathroom": "1",
       "garden": "5",

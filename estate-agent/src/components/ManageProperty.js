@@ -18,6 +18,7 @@ const ManageProperty = (props) => {
     const navigate = useNavigate()
 
     const buyerInput = useRef(null)
+    const buyerErr = useRef(null)
 
     useEffect(()=>{
         fetchProperty()
@@ -32,7 +33,8 @@ const ManageProperty = (props) => {
         fetch(`${URLPATHS.BUYERS}`).then(res=>res.json().then(setBuyers))
     }
 
-    const saveProperty = ()=>{
+    const saveProperty = (e)=>{
+        e.preventDefault()
         let newProp = {}
         property.status == SALESTATUS.FORSALE ?
         newProp = {...property,
@@ -42,13 +44,30 @@ const ManageProperty = (props) => {
         newProp = {...property,
             buyerId: null,
             status: SALESTATUS.FORSALE}
+
+        if(property.status == SALESTATUS.SOLD || validateBuyer()){
         
-        fetch(`${URLPATHS.PROPERTY}/${property.id}`,{
-            method:"PUT",
-            headers:{"Content-Type": "application/json"},
-            body:JSON.stringify(newProp)
-        })
-        navigate('/properties')
+            fetch(`${URLPATHS.PROPERTY}/${property.id}`,{
+                method:"PUT",
+                headers:{"Content-Type": "application/json"},
+                body:JSON.stringify(newProp)
+            })
+            navigate('/properties')
+        }
+    }
+
+    const validateBuyer = ()=>{
+        if(buyerInput.current.value == 'not-selected'){
+            buyerInput.current.className = 'form-select is-invalid'
+            buyerErr.current.className = 'invalid-feedback'
+            buyerErr.current.innerHTML = 'Please Select a Seller from the list'
+            return false
+        } else {
+            buyerInput.current.className = 'form-select is-valid'
+            buyerErr.current.className = ''
+            buyerErr.current.innerHTML = ''
+        }
+        return true
     }
 
     return ( 
@@ -86,15 +105,16 @@ const ManageProperty = (props) => {
                         {property.status == SALESTATUS.FORSALE ? 
                             <>
                             <select ref={buyerInput} className="form-select">
-                                <option selected disabled>Buyer</option>
+                                <option defaultValue value='not-selected'>Buyer</option>
                                 {buyers.map(buyer=>(
                                 <option value={buyer.id} key={buyer.id}>{`${buyer.firstName} ${buyer.surname}`}</option>
                                 ))}
                             </select>
-                            <button className="mt-2 btn btn-primary" onClick={()=>saveProperty()}>Purchase</button>
+                            <span ref={buyerErr}></span>
+                            <button className="mt-2 btn btn-primary" onClick={(e)=>saveProperty(e)}>Purchase</button>
                             </>
                             :
-                                <button className="mt-2 btn btn-primary" onClick={()=>saveProperty()}>Re-list</button>
+                                <button className="mt-2 btn btn-primary" onClick={(e)=>saveProperty(e)}>Re-list</button>
                             }
                         </div>
                         </div>
