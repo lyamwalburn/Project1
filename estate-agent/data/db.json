@@ -199,13 +199,37 @@
     {
       "buyerId": 1,
       "propertyId": 2,
-      "time": "2023-02-28T08:00:00.038Z",
+      "date": "2023-12-06",
+      "timeslot": "1",
       "id": 2
     },
     {
+      "buyerId": 3,
       "propertyId": 1,
-      "time": "2023-03-02T08:00:00.000Z",
+      "date": "2023-12-06",
+      "timeslot": "2",
       "id": 3
+    },
+    {
+      "buyerId": "1",
+      "propertyId": 1,
+      "timeslot": "3",
+      "date": "2023-12-06",
+      "id": 4
+    },
+    {
+      "buyerId": "2",
+      "propertyId": 1,
+      "timeslot": "1",
+      "date": "2023-12-06",
+      "id": 5
+    },
+    {
+      "buyerId": "1",
+      "propertyId": 1,
+      "timeslot": "4",
+      "date": "2023-12-06",
+      "id": 6
     }
   ]
 }
