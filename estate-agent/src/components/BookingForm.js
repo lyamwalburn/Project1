@@ -49,7 +49,8 @@ const BookingForm = (props) => {
         console.log(canBookProperty(newBooking))
 
             if(canBookProperty(newBooking)){
-
+                //can i just chain the filters and if the array is 0 at the end i cant book?
+                //test this!
                 //buyer booking checks
                 getBuyerByIdJSON(buyerInput.current.value).then(buyer=>{
                     console.log(buyer)

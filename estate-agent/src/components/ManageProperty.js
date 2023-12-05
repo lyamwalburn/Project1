@@ -42,8 +42,6 @@ const ManageProperty = (props) => {
     }
 
     const deleteBooking = (id) =>{
-
-        
         fetch(`${URLPATHS.BOOKING}/${id}`,{
             method:"delete"
         }).then(fetchBookings)

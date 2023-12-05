@@ -13,6 +13,7 @@ import ManageProperty from './components/ManageProperty';
 import PropertySearch from './components/PropertySearch';
 import NavBar from './components/NavBar';
 import NotFound from './components/NotFound';
+import Footer from './components/Footer';
 function App() {
 
   return (
@@ -38,9 +39,7 @@ function App() {
         </Routes>
         </BrowserRouter>
 
-      <footer>
-        <p>footer goes here</p>
-      </footer>
+      <Footer />
     </div>
   );
 }
