@@ -62,6 +62,14 @@
       "postcode": "CF1 1AA",
       "phone": "1",
       "id": 10
+    },
+    {
+      "firstName": "Max",
+      "surname": "Taylor",
+      "address": "5 streety streeet",
+      "postcode": "ab43",
+      "phone": "324132",
+      "id": 11
     }
   ],
   "property": [
@@ -185,14 +193,6 @@
       "postcode": "ab11",
       "phone": "234123",
       "id": 4
-    },
-    {
-      "firstName": "Toby",
-      "surname": "Kman",
-      "address": "perth",
-      "postcode": "ph234",
-      "phone": "23145531",
-      "id": 5
     }
   ],
   "booking": [
