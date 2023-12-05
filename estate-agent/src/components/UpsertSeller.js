@@ -1,5 +1,7 @@
 import { useParams } from "react-router-dom"
 import UserForm from "./UserForm"
+import { validName } from "./utils"
+
 const UpsertSeller = () => {
 
     const URL = 'http://localhost:8081/seller'
@@ -7,6 +9,7 @@ const UpsertSeller = () => {
     const {sellerId} = useParams()
 
     const createSeller = (newSeller)=>{
+
         fetch(URL,{
                 method:"POST",
                 headers:{"Content-Type": "application/json"},
