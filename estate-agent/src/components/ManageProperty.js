@@ -41,6 +41,14 @@ const ManageProperty = (props) => {
         await fetch(`${URLPATHS.BUYERS}`).then(res=>res.json().then(setBuyers))
     }
 
+    const deleteBooking = (id) =>{
+
+        
+        fetch(`${URLPATHS.BOOKING}/${id}`,{
+            method:"delete"
+        }).then(fetchBookings)
+    }
+
     const saveProperty = (e)=>{
         e.preventDefault()
         let newProp = {}
@@ -92,26 +100,26 @@ const ManageProperty = (props) => {
                         </h2>
                         <div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                         <div className="accordion-body">
-                            <BookingForm buyers={buyers} property={property}/>
+                            <BookingForm buyers={buyers} property={property} />
                         </div>
                         </div>
                     </div>
-                    <div className="accordion-item">
-                        <h2 className="accordion-header" id="headingTwo">
-                        <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    <div class="accordion-item">
+                     <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                             Bookings
                         </button>
-                        </h2>
-                        <div id="collapseTwo" className="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                        <div className="accordion-body">
-                            <BookingsTable buyers={buyers} property={property} bookings={bookings}/>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                            <BookingsTable buyers={buyers} property={property} bookings={bookings} deleteBooking={deleteBooking}/>
                         </div>
                         </div>
                     </div>
                     <div className="accordion-item">
                         <h2 className="accordion-header" id="headingThree">
                         {property.status == SALESTATUS.FORSALE ? 
-                            <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                                 Purchase
                             </button>
                         :
@@ -120,7 +128,7 @@ const ManageProperty = (props) => {
                             </button>
                         }
                         </h2>
-                        <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                        <div id="collapseThree" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                         <div className="accordion-body">
                         {property.status == SALESTATUS.FORSALE ? 
                             <>

@@ -12,6 +12,7 @@ import QuickLinks from './components/QuickLinks';
 import ManageProperty from './components/ManageProperty';
 import PropertySearch from './components/PropertySearch';
 import NavBar from './components/NavBar';
+import NotFound from './components/NotFound';
 function App() {
 
   return (
@@ -33,6 +34,7 @@ function App() {
           <Route path='/properties/buyer/:buyerId' element={<Properties />}></Route>
           <Route path='/buyers' element={<Buyers />}></Route>
           <Route path='/buyers/:buyerId' element={<UpsertBuyer />}></Route>
+          <Route path='*' element={<NotFound/>}/>
         </Routes>
         </BrowserRouter>
 
