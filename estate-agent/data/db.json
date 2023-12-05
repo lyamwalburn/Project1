@@ -108,8 +108,9 @@
       "bathroom": "1",
       "garden": "1",
       "sellerId": "3",
-      "status": "FOR SALE",
-      "id": 3
+      "status": "SOLD",
+      "id": 3,
+      "buyerId": "1"
     },
     {
       "address": "8 Hilltop, Ebbw Vale",
@@ -196,13 +197,6 @@
     }
   ],
   "booking": [
-    {
-      "buyerId": 1,
-      "propertyId": 2,
-      "date": "2023-12-06",
-      "timeslot": "1",
-      "id": 2
-    },
     {
       "buyerId": 3,
       "propertyId": 1,

@@ -59,6 +59,9 @@ const ManageProperty = (props) => {
             buyerId: null,
             status: SALESTATUS.FORSALE}
 
+        if(newProp.status == SALESTATUS.SOLD){
+            removeBookings(newProp.id)
+        }
         if(property.status == SALESTATUS.SOLD || validateBuyer()){
         
             fetch(`${URLPATHS.PROPERTY}/${property.id}`,{
@@ -68,6 +71,16 @@ const ManageProperty = (props) => {
             })
             navigate('/properties')
         }
+    }
+
+    const removeBookings = (id)=>{
+        let toCancel = bookings.filter(p=> p.propertyId == id)
+        toCancel.forEach(booking =>{
+            fetch(`${URLPATHS.BOOKING}/${booking.id}`,{
+                method:"delete"
+            }).then()
+        })
+        navigate('/')
     }
 
     const validateBuyer = ()=>{
