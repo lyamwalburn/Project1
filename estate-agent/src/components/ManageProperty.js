@@ -111,7 +111,7 @@ const ManageProperty = (props) => {
                         </h2>
                         <div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                         <div className="accordion-body">
-                            <BookingForm buyers={buyers} property={property} />
+                            <BookingForm buyers={buyers} property={property} refreshBookings={fetchBookings}/>
                         </div>
                         </div>
                     </div>

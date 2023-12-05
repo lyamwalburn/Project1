@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { URLPATHS, timeSlots } from "./utils";
+import { useNavigate } from "react-router-dom";
 
 const BookingForm = (props) => {
 
@@ -27,6 +28,7 @@ const BookingForm = (props) => {
             headers:{"Content-Type": "application/json"},
             body:JSON.stringify(booking)
         })
+        props.refreshBookings()
     }
 
     const tryCreateBooking = ()=>{
