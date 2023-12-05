@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import {Link, useNavigate} from 'react-router-dom'
-import { validName, validPhone } from "./utils";
+import { validName, validNumbers } from "./utils";
 
 const UserForm = (props) => {
 
@@ -84,7 +84,7 @@ const UserForm = (props) => {
             postcodeErr.current.className = ''
             postcodeErr.current.innerHTML = ''
         }
-        if(!validPhone.test(user.phone)){
+        if(!validNumbers.test(user.phone)){
             phoneInput.current.className = 'form-control is-invalid'
             phoneErr.current.className = 'invalid-feedback'
             phoneErr.current.innerHTML = 'Phone numbers can only be numbers 0-9'

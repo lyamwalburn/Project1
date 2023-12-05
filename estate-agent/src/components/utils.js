@@ -21,4 +21,4 @@ export const PROPERTY_TYPES = {
 
 export const validName = new RegExp('^[A-Z][A-Za-z]+')
 
-export const validPhone = new RegExp('[0-9]+')
+export const validNumbers = new RegExp('[0-9]+')

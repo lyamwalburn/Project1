@@ -154,6 +154,18 @@
       "sellerId": "10",
       "status": "FOR SALE",
       "id": 6
+    },
+    {
+      "address": "99 perth streety",
+      "postcode": "ph45",
+      "type": "TERRACED",
+      "price": "20000",
+      "bedroom": "9",
+      "bathroom": "1",
+      "garden": "5",
+      "sellerId": "12",
+      "status": "FOR SALE",
+      "id": 7
     }
   ],
   "buyer": [
