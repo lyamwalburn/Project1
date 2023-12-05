@@ -62,22 +62,6 @@
       "postcode": "CF1 1AA",
       "phone": "1",
       "id": 10
-    },
-    {
-      "firstName": "timmy",
-      "surname": "thomson",
-      "address": "4 walk",
-      "postcode": "ff3",
-      "phone": "2334",
-      "id": 11
-    },
-    {
-      "firstName": "Lyam",
-      "surname": "Smith",
-      "address": "5 aberdeen lane",
-      "postcode": "ab76 3tg",
-      "phone": "01224",
-      "id": 12
     }
   ],
   "property": [

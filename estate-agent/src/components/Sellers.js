@@ -1,11 +1,14 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import UserTable from "./UserTable";
+import { useNavigate } from "react-router-dom";
 
 const Sellers = () => {
 
     const [sellers,setSellers] = useState([])
     const URL = 'http://localhost:8081/seller'
+
+    const navigate = useNavigate()
 
     useEffect(()=>{
         fetchSellers()
