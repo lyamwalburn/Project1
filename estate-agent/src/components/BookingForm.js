@@ -120,21 +120,21 @@ const BookingForm = (props) => {
     }
 
     return (
-        <div>
-            <select ref={buyerInput}>
+        <div className="container">
+            <select ref={buyerInput} className="form-select mb-2">
                 <option defaultValue value='not-selected'>Buyer....</option>
                 {props.buyers.map(buyer => (
                     <option value={buyer.id} key={buyer.id}>{`${buyer.firstName} ${buyer.surname}`}</option>
                 ))}
             </select>
-            <select ref={timeslotInput}>
+            <select ref={timeslotInput} className="form-select mb-2">
                 <option defaultValue value='not-selected'>Timeslot....</option>
                 {timeSlots.map((slot)=>(
                     <option value={slot.id} key={slot.id*4}>{slot.time}</option>
                 ))}
             </select>
-            <input type="date" ref={dateInput}/>
-            <button onClick={()=>{ tryCreateBooking()}}>Make Booking</button>
+            <input className="mb-2 form-control" type="date" ref={dateInput}/>
+            <button className="btn btn-primary col-12" onClick={()=>{ tryCreateBooking()}}>Make Booking</button>
         </div>
 
      );
