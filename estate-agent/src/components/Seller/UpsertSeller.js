@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom"
 import UserForm from "../User/UserForm"
-import { validName } from "../utils"
+import { PATH_IDS, ROUTES, URLPATHS, USER_TYPE, validName } from "../utils"
 
 const UpsertSeller = () => {
 
@@ -10,7 +10,7 @@ const UpsertSeller = () => {
 
     const createSeller = (newSeller)=>{
 
-        fetch(URL,{
+        fetch(URLPATHS.SELLERS,{
                 method:"POST",
                 headers:{"Content-Type": "application/json"},
                 body:JSON.stringify(newSeller)
@@ -19,7 +19,7 @@ const UpsertSeller = () => {
 
     const EditSeller = (buyer)=>{
         console.log(buyer)
-        fetch(`${URL}/${buyer.id}`,{
+        fetch(`${URLPATHS.SELLERS}/${buyer.id}`,{
             method:"PUT",
             headers:{"Content-Type": "application/json"},
             body:JSON.stringify(buyer)
@@ -30,13 +30,13 @@ const UpsertSeller = () => {
     return ( 
         <>
          
-            {sellerId == 'new' ?
+            {sellerId == PATH_IDS.NEW ?
                 <>
-                <UserForm create={createSeller} type='seller' route='/sellers' id={sellerId} title='Create Seller' />
+                <UserForm create={createSeller} type={USER_TYPE.SELLER} route={ROUTES.SELLERS} id={sellerId} title='Create Seller' />
                 </>
             :
                 <>
-                <UserForm create={EditSeller} type='seller' route='/sellers' id={sellerId} url={URL} title='Edit Seller'/>
+                <UserForm create={EditSeller} type={USER_TYPE.SELLER} route={ROUTES.SELLERS} id={sellerId} url={URLPATHS.SELLERS} title='Edit Seller'/>
                 </>
             }
        
