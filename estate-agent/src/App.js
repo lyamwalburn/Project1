@@ -13,6 +13,7 @@ import PropertySearch from './components/Property/PropertySearch';
 import NavBar from './components/General/NavBar';
 import NotFound from './components/General/NotFound';
 import Footer from './components/General/Footer';
+import QuickLinks from './components/General/QuickLinks';
 function App() {
 
   return (
@@ -23,6 +24,7 @@ function App() {
           <header>
               <h1>Estate Agency</h1>
           </header>
+          <QuickLinks/>
         <Routes>
           <Route path='/' element={<PropertySearch/>}></Route>
           <Route path='/sellers' element={<Sellers/>}></Route>

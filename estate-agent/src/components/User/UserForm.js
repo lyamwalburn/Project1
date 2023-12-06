@@ -118,7 +118,8 @@ const UserForm = (props) => {
     }
 
     return (  
-        <>
+        <div className="container mt-4">
+        <h2 className="ms-4">{props.title}</h2>
         <form className="col-md-10 m-auto mt-5 needs-validated" noValidate id='userForm'>
             <div className="row">
                 <div className="form-group col-md-6 mt-2">
@@ -148,7 +149,7 @@ const UserForm = (props) => {
             </div>
                 <Link className=''to={props.route}><input className="btn btn-primary mt-2" type="button" value='Save' onClick={e=>saveUser(e)} /></Link>
         </form>
-        </>
+        </div>
     );
 }
  

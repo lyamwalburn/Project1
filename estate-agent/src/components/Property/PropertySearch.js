@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import {SALESTATUS, URLPATHS, PROPERTY_TYPES} from '../utils'
 import PropertyCard from './PropertyCard';
 
+
 const PropertySearch = () => {
 
 
@@ -23,13 +24,13 @@ const PropertySearch = () => {
 
     const getdata = (data) =>{
         setProperties(data)
-        
+        setFilteredProperties(data)
         //only show properties that are for sale
-        setFilteredProperties(data.filter(property=>property.status == SALESTATUS.FORSALE))
+        //setFilteredProperties(data.filter(property=>property.status == SALESTATUS.FORSALE))
     }
 
     const updateValue = (valueRef,targetRef)=>{
-        targetRef.current.value = valueRef.current.value
+        targetRef.current.value = `£${Number(valueRef.current.value).toLocaleString('en')}`
     }
 
     const filteredSearch = ()=>{
@@ -84,8 +85,9 @@ const PropertySearch = () => {
 
     return ( 
         <>
-            <h2 className='mt-4'>Search Avaliable Properties</h2>
+            
             <div className='container mt-5 p-3'>
+            <h2 className='mb-3'>Search Properties</h2>
                 <div className='grid border-bottom pb-4'>
                     <div className='row'>
                         <div className="form-group col-md-6 border-start border-end border-bottom border-top rounded pe-3 pb-3">

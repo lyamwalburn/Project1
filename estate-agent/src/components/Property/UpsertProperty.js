@@ -13,7 +13,7 @@ const UpsertProperty = () => {
                 headers:{"Content-Type": "application/json"},
                 body:JSON.stringify(newProperty)
             })
-            navigate('/properties')
+            navigate('/')
     }
 
     const EditProperty = (property)=>{
@@ -23,7 +23,7 @@ const UpsertProperty = () => {
             headers:{"Content-Type": "application/json"},
             body:JSON.stringify(property)
         })
-        navigate('/properties')
+        navigate('/')
     }
 
     return ( <>

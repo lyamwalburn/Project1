@@ -8,7 +8,10 @@ const UserTable = (props) => {
 
     return ( 
     <div className="container">
-        <Link to={props.createLink}><button className="btn btn-primary m-3">Create New</button></Link>
+        {props.type == 'seller' ?
+        <h2 className="mb-2">All Sellers</h2> :
+        <h2 className="mb-2">All Buyers</h2>
+        }
         <table className="table table-hover">
         <thead className="thead-light">
             <tr className="table-dark text-center">

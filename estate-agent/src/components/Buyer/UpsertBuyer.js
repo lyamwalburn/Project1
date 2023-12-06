@@ -29,13 +29,11 @@ const UpsertBuyer = () => {
          
             {buyerId == 'new' ?
                 <>
-                <h2 className="mt-4">Create a new Buyer</h2>
-                <UserForm create={createBuyer} type='buyer' route='/buyers' id={buyerId}/>
+                <UserForm create={createBuyer} type='buyer' route='/buyers' id={buyerId} title='Create Buyer'/>
                 </>
             :
             <>
-                <h2 className="mt-4">Edit</h2>
-                <UserForm create={EditBuyer} type='buyer' route='/buyers' id={buyerId} url={URL}/>
+                <UserForm create={EditBuyer} type='buyer' route='/buyers' id={buyerId} url={URL} title='Edit Buyer'/>
                 </>
             }
        

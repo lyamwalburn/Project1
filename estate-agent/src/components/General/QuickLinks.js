@@ -10,7 +10,7 @@ const QuickLinks = () => {
                 <div className="row d-flex justify-content-center">
                     <button className='btn btn-primary col-sm-3 mx-2' onClick={()=>{navigate('/sellers/new')}}>Create Seller</button>
                     <button className='btn btn-success col-sm-3 mx-2' onClick={()=>{navigate('/buyers/new')}}>Create Buyer</button>
-                    <button className='btn btn-warning col-sm-3 mx-2' onClick={()=>{navigate('/properties/upsert/new')}}>Create Property</button>
+                    <button className='btn btn-warning col-sm-3 mx-2 text-light' onClick={()=>{navigate('/properties/upsert/new')}}>Create Property</button>
                 </div>    
             </div>     
         </div>

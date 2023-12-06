@@ -46,10 +46,8 @@ const Buyers = () => {
 
     return ( 
         <>
-        <h2 className="mt-4">All Buyers</h2>
         <UserTable users={buyers} removeUser={deleteBuyer}
-        createLink='/buyers/new'
-         propertiesLink='/properties/buyer/' editLink='/buyers/'/>
+         propertiesLink='/properties/buyer/' editLink='/buyers/' type='buyer'/>
          </>
     );
 }
