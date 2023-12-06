@@ -30,7 +30,7 @@ const PropertySearch = () => {
     }
 
     const updateValue = (valueRef,targetRef)=>{
-        targetRef.current.value = `£${Number(valueRef.current.value).toLocaleString('en')}`
+        targetRef.current.value = valueRef.current.value
     }
 
     const filteredSearch = ()=>{

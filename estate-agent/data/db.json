@@ -90,9 +90,9 @@
       "bathroom": "1",
       "garden": "0",
       "sellerId": "1",
-      "status": "SOLD",
+      "status": "FOR SALE",
       "id": 1,
-      "buyerId": "2",
+      "buyerId": null,
       "image": "property1.jpeg"
     },
     {
@@ -232,6 +232,13 @@
       "timeslot": "6",
       "date": "2023-12-09",
       "id": 2
+    },
+    {
+      "buyerId": "3",
+      "propertyId": 3,
+      "timeslot": "4",
+      "date": "2023-12-07",
+      "id": 3
     }
   ]
 }
