@@ -17,8 +17,8 @@ import QuickLinks from './components/General/QuickLinks';
 function App() {
 
   return (
-    <div className="App bg-white">
-      
+    <div className="App bg-dark">
+      <div className='bg-light pb-0 mb-0'>
       <BrowserRouter>
         <NavBar/>
           <header>
@@ -39,8 +39,9 @@ function App() {
           <Route path='*' element={<NotFound/>}/>
         </Routes>
         </BrowserRouter>
-
+      </div>
       <Footer />
+      
     </div>
   );
 }

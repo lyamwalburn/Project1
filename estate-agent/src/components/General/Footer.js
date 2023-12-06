@@ -1,8 +1,8 @@
 const Footer = () => {
     return ( 
-        <div className="mt-5 mx-0">
+        <div className="mx-0 pb-5">
           <footer
-                  className="text-center text-lg-start text-white bg-dark"
+                  className="text-center text-lg-start text-white bg-dark pb-5 pt-3"
                   
                   >
             <section className="d-flex justify-content-between p-2">
