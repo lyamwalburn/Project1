@@ -82,9 +82,9 @@
       "bathroom": "1",
       "garden": "0",
       "sellerId": "1",
-      "status": "SOLD",
+      "status": "FOR SALE",
       "id": 1,
-      "buyerId": "3"
+      "buyerId": null
     },
     {
       "address": "Somewhere House, Some Street, Some City",
@@ -188,5 +188,13 @@
       "id": 3
     }
   ],
-  "booking": []
+  "booking": [
+    {
+      "buyerId": "1",
+      "propertyId": 1,
+      "timeslot": "3",
+      "date": "2023-12-06",
+      "id": 1
+    }
+  ]
 }
