@@ -35,6 +35,7 @@ export const PROPERTY_TYPES = {
 
 export const USER_TYPE = {
     SELLER : 'seller',
+    BUYER: 'buyer',
 }
 
 // export const validEmail = new RegExp('^[a-zA-z0-9._.:$!-]+@+[a-zA-Z0-9.-]+.[a-zA-z]$')

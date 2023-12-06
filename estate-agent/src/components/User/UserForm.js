@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import {Link, useNavigate} from 'react-router-dom'
-import { validName, validNumbers } from "../utils";
+import { PATH_IDS, validName, validNumbers } from "../utils";
 
 const UserForm = (props) => {
 
@@ -30,7 +30,7 @@ const UserForm = (props) => {
             postcode: postcodeInput.current.value,
             phone: phoneInput.current.value
         }
-        if(props.id != 'new'){
+        if(props.id != PATH_IDS.NEW){
             user.id = props.id
         }
 
@@ -99,7 +99,7 @@ const UserForm = (props) => {
 
 
     useEffect(()=>{
-        if(props.id != 'new'){
+        if(props.id != PATH_IDS.NEW){
             //get data to edit
             fetchUser() 
         }
