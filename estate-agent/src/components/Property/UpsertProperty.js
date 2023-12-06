@@ -1,6 +1,7 @@
 
 import { useParams, useNavigate } from "react-router-dom";
 import PropertyForm from "./PropertyForm";
+import { PATH_IDS, URLPATHS } from "../utils";
 
 const UpsertProperty = () => {
 
@@ -8,7 +9,7 @@ const UpsertProperty = () => {
     const navigate = useNavigate()
 
     const createProperty = (newProperty)=>{
-        fetch('http://localhost:8081/property',{
+        fetch(URLPATHS.PROPERTY,{
                 method:"POST",
                 headers:{"Content-Type": "application/json"},
                 body:JSON.stringify(newProperty)
@@ -18,7 +19,7 @@ const UpsertProperty = () => {
 
     const EditProperty = (property)=>{
         console.log(property)
-        fetch(`http://localhost:8081/property/${property.id}`,{
+        fetch(`${URLPATHS.PROPERTY}/${property.id}`,{
             method:"PUT",
             headers:{"Content-Type": "application/json"},
             body:JSON.stringify(property)
@@ -27,7 +28,7 @@ const UpsertProperty = () => {
     }
 
     return ( <>
-        {propertyId == 'new' ?
+        {propertyId == PATH_IDS.NEW ?
             <PropertyForm saveProperty={createProperty} id={propertyId}/>
         :
             <PropertyForm saveProperty={EditProperty} id={propertyId}/>

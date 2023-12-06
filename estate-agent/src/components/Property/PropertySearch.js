@@ -34,7 +34,6 @@ const PropertySearch = () => {
     }
 
     const filteredSearch = ()=>{
-        console.log(properties)
         let searchResults = [...properties]
 
 
