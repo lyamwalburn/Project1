@@ -7,10 +7,10 @@ const UserTable = (props) => {
     let id = useId()
 
     return ( 
-    <div className="container">
+    <div className="container px-4 py-5 bg-light text-dark">
         {props.type == 'seller' ?
-        <h2 className="mb-2">All Sellers</h2> :
-        <h2 className="mb-2">All Buyers</h2>
+        <h2 className="mb-4">All Sellers</h2> :
+        <h2 className="mb-4">All Buyers</h2>
         }
         <table className="table table-hover">
         <thead className="thead-light">
@@ -20,9 +20,8 @@ const UserTable = (props) => {
                 <th scope="col">Address</th>
                 <th scope="col">Postcode</th>
                 <th scope="col">Phone</th>
-                <th scope="col">Properties</th>
-                <th scope="col">Edit</th>
-                <th scope="col">Delete</th>
+                <th scope="col">Operations</th>
+
             </tr>
         </thead>
         <tbody>
@@ -33,10 +32,15 @@ const UserTable = (props) => {
             <td key={id+3}>{user.address}</td>
             <td key={id+4}>{user.postcode}</td>
             <td key={id+5}>{user.phone}</td>
-            <td key={id+6}><Link to={`${props.propertiesLink}${user.id}`}>Properties</Link></td>
-            <td key={id+7}><Link to={`${props.editLink}${user.id}`}>Edit</Link></td>
+            <td key={id+6}><Link to={`${props.propertiesLink}${user.id}`}>
+                            <button className="btn btn-primary col-md-3 me-1 mb-1">Properties</button>
+                            </Link>
+                            <Link to={`${props.editLink}${user.id}`}>
+                                <button className="btn btn-warning text-light col-md-3 me-1 mb-1">Edit</button>
+                            </Link>
             {/* <td><input type="button" value='Delete' onClick={()=>{props.removeUser(user.id)}} /></td> */}
-            <td key={id+8}><button type="button" className="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" onClick={()=>setuserToDelete(user.id)}>Delete</button></td>
+                            <button type="button" className="btn btn-danger col-md-3" data-bs-toggle="modal" data-bs-target="#deleteModal" onClick={()=>setuserToDelete(user.id)}>Delete</button>
+            </td>
         </tr>
     ))}
     </tbody>

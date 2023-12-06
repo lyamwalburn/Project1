@@ -86,7 +86,7 @@ const PropertySearch = () => {
     return ( 
         <>
             
-            <div className='container mt-5 p-3'>
+            <div className='container p-3 bg-light text-dark rounded-bottom'>
             <h2 className='mb-3'>Search Properties</h2>
                 <div className='grid border-bottom pb-4'>
                     <div className='row'>
@@ -160,11 +160,11 @@ const PropertySearch = () => {
             </div>
             </div>
 
-            <div className="container mt-4">
+            <div className="container mt-0 bg-white p-5">
                 <div className="grid">
                     <div className="row d-flex justify-content-center text-center">
                 { filteredProperties.map(property=>(
-                        <PropertyCard property={property} key={property.id}/>
+                        <PropertyCard property={property} key={property.id} manage={false}/>
                     ))} 
                     </div>
                 </div>

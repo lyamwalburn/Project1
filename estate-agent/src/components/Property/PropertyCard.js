@@ -16,6 +16,10 @@ const PropertyCard = (props) => {
         height: '12rem',
     }
 
+    const linkStyle = {
+        textDecoration: 'none',
+    }
+
     let id = useId()
     return ( 
         <>
@@ -34,17 +38,22 @@ const PropertyCard = (props) => {
                 </li>
                 <li className="list-group-item" key={id+2}><b>{`£${Number(props.property.price).toLocaleString('en')}`}</b></li>
                 {props.property.status == SALESTATUS.FORSALE ? 
-                <li className="list-group-item bg-success text-light fw-bold rounded" key={id+3}>{props.property.status}</li>
+                <Link to={`/properties/manage/${props.property.id}`} className='card-link' style={linkStyle}>
+                    <li className="list-group-item bg-success text-light fw-bold rounded" key={id+3}>{props.property.status}</li>
+                </Link>
                 :
-                <li className="list-group-item bg-danger text-light fw-bold rounded" key={id+3}>{props.property.status}</li>
+                <Link to={`/properties/manage/${props.property.id}`} className='card-link' style={linkStyle}>
+                    <li className="list-group-item bg-danger text-light fw-bold rounded" key={id+3}>{props.property.status}</li>
+                </Link>
                 }
             </ul>
             <div className="card-body">
-                <Link to={`/sellers/${props.property.sellerId}`} className='card-link'>
-                    <button className='btn btn-primary'>Seller</button>
+                <Link to={`/sellers/${props.property.sellerId}`} className='card-link' >
+                    <button className='btn btn-primary col-md-4'>Seller</button>
                 </Link>
-                <Link to={`/properties/manage/${props.property.id}`} className='card-link'>Manage Property</Link>
-                <Link to={`/properties/upsert/${props.property.id}`} className='card-link'>Edit Details</Link>
+                <Link to={`/properties/upsert/${props.property.id}`} className='card-link'>
+                    <button className='btn btn-warning text-light col-md-4'>Edit</button>
+                </Link>
             </div>
         </div>
         </>

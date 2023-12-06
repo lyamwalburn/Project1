@@ -69,7 +69,7 @@ const ManageProperty = (props) => {
                 headers:{"Content-Type": "application/json"},
                 body:JSON.stringify(newProp)
             })
-            navigate('/properties')
+            navigate('/')
         }
     }
 
@@ -101,7 +101,7 @@ const ManageProperty = (props) => {
         <div className="container mt-4">
             <div className="grid">
                 <div className="row justify-content-center">
-                <PropertyCard className='col-md-4' property={property}/>
+                <PropertyCard className='col-md-4' property={property} manage={true}/>
                 <div className="accordion col-md-7" id="accordionExample">
                     <div className="accordion-item mt-2">
                         <h2 className="accordion-header" id="headingOne">

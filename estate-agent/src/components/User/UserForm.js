@@ -118,7 +118,7 @@ const UserForm = (props) => {
     }
 
     return (  
-        <div className="container mt-4">
+        <div className="container mt-0 bg-light px-4 py-5">
         <h2 className="ms-4">{props.title}</h2>
         <form className="col-md-10 m-auto mt-5 needs-validated" noValidate id='userForm'>
             <div className="row">

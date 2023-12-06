@@ -17,7 +17,7 @@ import QuickLinks from './components/General/QuickLinks';
 function App() {
 
   return (
-    <div className="App">
+    <div className="App bg-white">
       
       <BrowserRouter>
         <NavBar/>
