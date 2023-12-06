@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import {SALESTATUS, URLPATHS, PROPERTY_TYPES} from './utils'
+import {SALESTATUS, URLPATHS, PROPERTY_TYPES} from '../utils'
 import PropertyCard from './PropertyCard';
 
 const PropertySearch = () => {

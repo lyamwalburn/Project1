@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom"
-import UserForm from "./UserForm"
-import { validName } from "./utils"
+import UserForm from "../User/UserForm"
+import { validName } from "../utils"
 
 const UpsertSeller = () => {
 

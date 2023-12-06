@@ -82,9 +82,9 @@
       "bathroom": "1",
       "garden": "0",
       "sellerId": "1",
-      "status": "FOR SALE",
+      "status": "SOLD",
       "id": 1,
-      "buyerId": null
+      "buyerId": "3"
     },
     {
       "address": "Somewhere House, Some Street, Some City",
@@ -186,44 +186,7 @@
       "postcode": "W1",
       "phone": "",
       "id": 3
-    },
-    {
-      "firstName": "lyam",
-      "surname": "walburn",
-      "address": "5 lane",
-      "postcode": "ab11",
-      "phone": "234123",
-      "id": 4
     }
   ],
-  "booking": [
-    {
-      "buyerId": 3,
-      "propertyId": 1,
-      "date": "2023-12-06",
-      "timeslot": "2",
-      "id": 3
-    },
-    {
-      "buyerId": "1",
-      "propertyId": 1,
-      "timeslot": "3",
-      "date": "2023-12-06",
-      "id": 4
-    },
-    {
-      "buyerId": "2",
-      "propertyId": 1,
-      "timeslot": "1",
-      "date": "2023-12-06",
-      "id": 5
-    },
-    {
-      "buyerId": "4",
-      "propertyId": 1,
-      "timeslot": "3",
-      "date": "2023-12-18",
-      "id": 6
-    }
-  ]
+  "booking": []
 }

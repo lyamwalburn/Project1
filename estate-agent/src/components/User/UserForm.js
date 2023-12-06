@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import {Link, useNavigate} from 'react-router-dom'
-import { validName, validNumbers } from "./utils";
+import { validName, validNumbers } from "../utils";
 
 const UserForm = (props) => {
 
@@ -118,6 +118,7 @@ const UserForm = (props) => {
     }
 
     return (  
+        <>
         <form className="col-md-10 m-auto mt-5 needs-validated" noValidate id='userForm'>
             <div className="row">
                 <div className="form-group col-md-6 mt-2">
@@ -147,6 +148,7 @@ const UserForm = (props) => {
             </div>
                 <Link className=''to={props.route}><input className="btn btn-primary mt-2" type="button" value='Save' onClick={e=>saveUser(e)} /></Link>
         </form>
+        </>
     );
 }
  

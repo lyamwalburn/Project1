@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router-dom"
-import UserForm from "./UserForm"
+import UserForm from "../User/UserForm"
 const UpsertBuyer = () => {
 
     const URL = 'http://localhost:8081/buyer'
@@ -34,7 +34,7 @@ const UpsertBuyer = () => {
                 </>
             :
             <>
-                <h2 className="mt-4">Edit Buyer</h2>
+                <h2 className="mt-4">Edit</h2>
                 <UserForm create={EditBuyer} type='buyer' route='/buyers' id={buyerId} url={URL}/>
                 </>
             }

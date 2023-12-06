@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import UserTable from "./UserTable";
+import UserTable from "../User/UserTable";
 import { useNavigate } from "react-router-dom";
 
 const Sellers = () => {

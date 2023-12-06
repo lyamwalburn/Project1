@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { URLPATHS, timeSlots } from "./utils";
+import { URLPATHS, timeSlots } from "../utils";
 import { useNavigate } from "react-router-dom";
 
 const BookingForm = (props) => {
@@ -19,6 +19,20 @@ const BookingForm = (props) => {
         const res = await fetch(`${URLPATHS.BUYERS}/${id}`)
         const data = await res.json()
         return data
+    }
+
+    const validateBooking = (booking)=>{
+        let isValid = true
+
+        //buyerid != not-selected
+        //timeslot != not-selected
+
+        //date has value
+        //date value > todays date
+        
+
+
+        return isValid
     }
 
     const createBooking = (booking)=>{

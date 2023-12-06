@@ -2,18 +2,17 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
-import Sellers from './components/Sellers';
-import UpsertSeller from './components/UpsertSeller';
-import Properties from './components/Properties';
-import Buyers from './components/Buyers';
-import UpsertBuyer from './components/UpsertBuyer'
-import UpsertProperty from './components/UpsertProperty';
-import QuickLinks from './components/QuickLinks';
-import ManageProperty from './components/ManageProperty';
-import PropertySearch from './components/PropertySearch';
-import NavBar from './components/NavBar';
-import NotFound from './components/NotFound';
-import Footer from './components/Footer';
+import Sellers from './components/Seller/Sellers';
+import UpsertSeller from './components/Seller/UpsertSeller';
+import Properties from './components/Property/Properties';
+import Buyers from './components/Buyer/Buyers';
+import UpsertBuyer from './components/Buyer/UpsertBuyer'
+import UpsertProperty from './components/Property/UpsertProperty';
+import ManageProperty from './components/Property/ManageProperty';
+import PropertySearch from './components/Property/PropertySearch';
+import NavBar from './components/General/NavBar';
+import NotFound from './components/General/NotFound';
+import Footer from './components/General/Footer';
 function App() {
 
   return (

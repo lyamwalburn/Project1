@@ -1,4 +1,4 @@
-import { timeSlots } from "./utils"
+import { timeSlots } from "../utils"
 
 const BookingsTable = (props) => {
 

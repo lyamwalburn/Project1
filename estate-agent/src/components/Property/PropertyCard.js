@@ -14,7 +14,7 @@ const PropertyCard = (props) => {
     return ( 
         <>
         <div className="card m-2 text-center" style={cardStyle} key={id}>
-            <img className="card-img-top" src={require('../img/img-missing.avif')} alt="Property Image"/>
+            <img className="card-img-top" src={require('../../img/img-missing.avif')} alt="Property Image"/>
             <div className="card-body">
                 <h5 className="card-title">{props.property.address}</h5>
                 <p className="card-text">{props.property.type}.</p>

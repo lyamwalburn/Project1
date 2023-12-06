@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import PropertyCard from "./PropertyCard";
 import { useParams, useNavigate } from "react-router-dom";
-import {URLPATHS} from './utils'
-import BookingForm from "./BookingForm";
-import BookingsTable from "./BookingsTable";
+import {URLPATHS} from '../utils'
+import BookingForm from "../Booking/BookingForm";
+import BookingsTable from "../Booking/BookingsTable";
 
 const ManageProperty = (props) => {
 

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { validNumbers } from "./utils";
+import { validNumbers } from "../utils";
 
 const PropertyForm = (props) => {
 
