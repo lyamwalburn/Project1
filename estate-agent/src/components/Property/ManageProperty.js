@@ -111,7 +111,11 @@ const ManageProperty = (props) => {
                         </h2>
                         <div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                         <div className="accordion-body">
+                        {property.status == SALESTATUS.FORSALE ? 
                             <BookingForm buyers={buyers} property={property} refreshBookings={fetchBookings}/>
+                            :
+                            <p>Cannot make booking for sold property.</p>
+                        }
                         </div>
                         </div>
                     </div>
@@ -123,7 +127,11 @@ const ManageProperty = (props) => {
                     </h2>
                     <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
+                        {property.status == SALESTATUS.FORSALE ? 
                             <BookingsTable buyers={buyers} property={property} bookings={bookings} deleteBooking={deleteBooking}/>
+                        :
+                            <p>Sold properties cannot have bookings.</p>
+                        }
                         </div>
                         </div>
                     </div>

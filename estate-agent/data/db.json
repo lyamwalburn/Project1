@@ -95,9 +95,9 @@
       "bathroom": "1",
       "garden": "0",
       "sellerId": "1",
-      "status": "FOR SALE",
+      "status": "SOLD",
       "id": 2,
-      "buyerId": null
+      "buyerId": "2"
     },
     {
       "address": "2 Welsh Street, Ebbw Vale",
@@ -188,20 +188,5 @@
       "id": 3
     }
   ],
-  "booking": [
-    {
-      "buyerId": "1",
-      "propertyId": 2,
-      "timeslot": "3",
-      "date": "2023-12-23",
-      "id": 1
-    },
-    {
-      "buyerId": "2",
-      "propertyId": 2,
-      "timeslot": "4",
-      "date": "2023-12-23",
-      "id": 2
-    }
-  ]
+  "booking": []
 }
