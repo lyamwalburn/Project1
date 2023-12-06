@@ -3,13 +3,12 @@ import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
 import PropertyCard from "./PropertyCard";
-import { SALESTATUS } from "../utils";
+import { SALESTATUS, URLPATHS } from "../utils";
 
 const Properties = () => {
 
     let id = useId()
     const [properties,setProperties] = useState([])
-    const URL = 'http://localhost:8081/property'
 
     const {sellerId,buyerId} = useParams()
 
@@ -20,11 +19,11 @@ const Properties = () => {
     },[])
 
     const fetchProperties = ()=>{
-        fetch(URL).then(res=>res.json().then(setProperties))
+        fetch(URLPATHS.PROPERTY).then(res=>res.json().then(setProperties))
     }
 
     const deleteProperty = (id)=>{
-        fetch(`${URL}/${id}`,{
+        fetch(`${URLPATHS.PROPERTY}/${id}`,{
             method:"delete"
         }).then(fetchProperties)
     }
