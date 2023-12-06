@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { validNumbers } from "../utils";
+import { PATH_IDS, SALESTATUS, SELECTVALUE, URLPATHS, validNumbers } from "../utils";
 
 const PropertyForm = (props) => {
 
@@ -25,17 +25,16 @@ const PropertyForm = (props) => {
     const sellerErr = useRef(null)
 
     useEffect(()=>{
-        fetch('http://localhost:8081/seller').then(res=>res.json().then(setSellers))
+        fetch(URLPATHS.SELLERS).then(res=>res.json().then(setSellers))
         
-        if(props.id != 'new'){
+        if(props.id != PATH_IDS.NEW){
             fetchProperty() 
         }
     },[])
 
     async function fetchProperty(){
-        const res = await fetch(`http://localhost:8081/property/${props.id}`)
+        const res = await fetch(`${URLPATHS.PROPERTY}/${props.id}`)
         const data = await res.json()
-        console.log(data)
         addressInput.current.value = data.address
         postcodeInput.current.value = data.postcode
         typeInput.current.value = data.type
@@ -57,9 +56,9 @@ const PropertyForm = (props) => {
             bathroom: bathroomsInput.current.value,
             garden: gardensInput.current.value,
             sellerId: sellerInput.current.value,
-            status: 'FOR SALE'
+            status: SALESTATUS.FORSALE
         }
-        if(props.id != 'new'){
+        if(props.id != PATH_IDS.NEW){
             property.id = props.id
         }
 
@@ -134,7 +133,7 @@ const PropertyForm = (props) => {
         }
         console.log(typeInput.current.value)
 
-        if(typeInput.current.value == 'not-selected'){
+        if(typeInput.current.value == SELECTVALUE.NOT_SELECTED){
             typeInput.current.className = 'form-select is-invalid'
             typeErr.current.className = 'invalid-feedback'
             typeErr.current.innerHTML = 'Please Select a Property type from the list'
@@ -145,7 +144,7 @@ const PropertyForm = (props) => {
             typeErr.current.innerHTML = ''
         }
 
-        if(sellerInput.current.value == 'not-selected'){
+        if(sellerInput.current.value == SELECTVALUE.NOT_SELECTED){
             sellerInput.current.className = 'form-select is-invalid'
             sellerErr.current.className = 'invalid-feedback'
             sellerErr.current.innerHTML = 'Please Select a Seller from the list'
@@ -213,7 +212,7 @@ const PropertyForm = (props) => {
             </div>
         </div>
         <div className="row">
-            {props.id == 'new' ? 
+            {props.id == PATH_IDS.NEW ? 
                 <button className="btn btn-primary mt-3 col-md-3 ms-auto me-2" onClick={(e)=>{saveDetails(e)}}>Create Property</button>
                 :
                 <button className="btn btn-primary mt-3 col-md-3 ms-auto me-2" onClick={(e)=>{saveDetails(e)}}>Save Changes</button>}
