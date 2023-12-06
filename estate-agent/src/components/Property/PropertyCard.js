@@ -8,7 +8,7 @@ import { SALESTATUS } from '../utils';
 const PropertyCard = (props) => {
 
     const cardStyle = {
-        width: '20rem',
+        width: '18rem',
         boxShadow: '7px 8px 19px -2px rgba(0,0,0,0.49)',
     }
 
@@ -23,14 +23,14 @@ const PropertyCard = (props) => {
     let id = useId()
     return ( 
         <>
-        <div className="card m-3 text-center" style={cardStyle} key={id}>
-            <img className="card-img-top" style={imgStyle} src={props.property.image == null ? require('../../img/img-missing.avif') : require(`../../img/${props.property.image}`)} alt="Property Image"/>
+        <div className="card m-3 text-center  p-0" style={cardStyle} key={id}>
+            <img className="card-img-top p-0" style={imgStyle} src={props.property.image == null ? require('../../img/img-missing.avif') : require(`../../img/${props.property.image}`)} alt="Property Image"/>
             <div className="card-body">
                 <h5 className="card-title">{props.property.address}</h5>
                 <p className="card-text">{props.property.type}.</p>
             </div>
             
-            <ul className="list-group list-group-flush">
+            <ul className="list-group list-group-flush p-2">
                 <li className="list-group-item d-flex justify-content-center" key={id+1}>
                     <span className='p-1 mx-2'><FontAwesomeIcon icon={faBed} className='me-2'/>{props.property.bedroom}</span>
                     <span className='p-1 mx-2'><FontAwesomeIcon icon={faBath} className='me-2'/>{props.property.bathroom}</span>
