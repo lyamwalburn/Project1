@@ -67,24 +67,24 @@ const BookingForm = (props) => {
             dateErr.current.innerHTML = ''
         }
         //date value > todays date
-        console.log(dateInput.current.value)
+
         let todayDate = new Date()
-        let dateString = `${todayDate.getUTCFullYear()}-${todayDate.getUTCMonth()+1}-${todayDate.getUTCDate()}`
-        console.log(dateString)
-        if(dateInput.current.value < dateString){
+        let inputDate = dateInput.current.value.split('-')
+        //check year >= todays year
+        if(inputDate[0] >= todayDate.getUTCFullYear() && inputDate[1] >= todayDate.getUTCMonth()+1
+            && inputDate[2] >=todayDate.getUTCDate()){
+                //date can be booked
+                dateInput.current.className = 'form-control is-valid'
+                dateErr.current.className = ''
+                dateErr.current.innerHTML = ''
+        } else {
             console.log('date is in the past')
             isValid = false
             dateInput.current.className = 'form-control is-invalid'
             dateErr.current.className = 'invalid-feedback'
             dateErr.current.innerHTML = 'Date must not be in the past'
         }
-        else {
-            dateInput.current.className = 'form-control is-valid'
-            dateErr.current.className = ''
-            dateErr.current.innerHTML = ''
-        }
-
-
+        
 
         return isValid
     }
@@ -153,6 +153,9 @@ const BookingForm = (props) => {
                             if(tempBookings.length > 0){
                                 //buyer has a booking in this timeslot cannot book
                                 console.log('error buyer already has a booking at this time')
+                                generalErr.current.className = 'invalid-feedback'
+                                generalErr.current.innerHTML = 'Sorry this buyer already has an appointment at this time.'
+                                return
                             } else {
                                 console.log('buyer has no booking this timeslot')
                                 createBooking(newBooking)
@@ -170,6 +173,10 @@ const BookingForm = (props) => {
             }
             else {
                 console.log('cannot book property')
+                timeslotInput.current.className = 'form-select is-invalid'
+                timeErr.current.className = 'invalid-feedback'
+                timeErr.current.innerHTML = 'This timeslot has already been filled try another timeslot.'
+                return
             }
         }
     
@@ -207,14 +214,14 @@ const BookingForm = (props) => {
 
     return (
         <div className="container">
-            <select ref={buyerInput} className="form-select mb-2">
+            <select ref={buyerInput} className="form-select mb-2" onChange={()=>{buyerInput.current.className = 'form-select'}}>
                 <option defaultValue='not-selected' value='not-selected'>Buyer....</option>
                 {props.buyers.map(buyer => (
                     <option value={buyer.id} key={buyer.id}>{`${buyer.firstName} ${buyer.surname}`}</option>
                 ))}
             </select>
             <span ref={buyerErr}></span>
-            <select ref={timeslotInput} className="form-select mb-2">
+            <select ref={timeslotInput} className="form-select mb-2" onChange={()=>{timeslotInput.current.className = 'form-select'}}>
                 <option defaultValue='not-selected' value='not-selected'>Timeslot....</option>
                 {timeSlots.map((slot)=>(
                     <option value={slot.id} key={slot.id*4}>{slot.time}</option>
@@ -223,7 +230,6 @@ const BookingForm = (props) => {
             <span ref={timeErr}></span>
             <input className="mb-2 form-control" type="date" ref={dateInput}/>
             <span ref={dateErr}></span>
-            <span ref={generalErr}></span>
             <button className="btn btn-primary col-12" onClick={()=>{ tryCreateBooking()}}>Make Booking</button>
         </div>
 
