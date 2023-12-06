@@ -21,9 +21,6 @@ function App() {
       <div className='bg-light pb-0 mb-0'>
       <BrowserRouter>
         <NavBar/>
-          <header>
-              <h1>Estate Agency</h1>
-          </header>
           <QuickLinks/>
         <Routes>
           <Route path='/' element={<PropertySearch/>}></Route>
