@@ -1,25 +1,23 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import UserTable from "../User/UserTable";
-import { useNavigate } from "react-router-dom";
+import { ROUTES, URLPATHS } from "../utils";
+
 
 const Sellers = () => {
 
     const [sellers,setSellers] = useState([])
-    const URL = 'http://localhost:8081/seller'
-
-    const navigate = useNavigate()
 
     useEffect(()=>{
         fetchSellers()
     },[])
 
     const fetchSellers = ()=>{
-        fetch(URL).then(res=>res.json().then(setSellers))
+        fetch(URLPATHS.SELLERS).then(res=>res.json().then(setSellers))
     }
 
     const deleteSeller = (id)=>{
-        fetch(`${URL}/${id}`,{
+        fetch(`${URLPATHS.SELLERS}/${id}`,{
             method:"delete"
         }).then(fetchSellers)
     }
@@ -27,7 +25,7 @@ const Sellers = () => {
     return ( 
         <>
         <UserTable users={sellers} removeUser={deleteSeller} 
-            propertiesLink='/properties/' editLink='/sellers/' type='seller'/>
+            propertiesLink={`${ROUTES.PROPERTIES}/`} editLink={`${ROUTES.SELLERS}/`} type='seller'/>
         </>
     );
 }
