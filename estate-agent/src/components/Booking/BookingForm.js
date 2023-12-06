@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { URLPATHS, timeSlots } from "../utils";
-import { useNavigate } from "react-router-dom";
+
 
 const BookingForm = (props) => {
 
@@ -8,11 +8,20 @@ const BookingForm = (props) => {
     const timeslotInput = useRef(null)
     const dateInput = useRef(null)
 
+    const buyerErr = useRef(null)
+    const timeErr = useRef(null)
+    const dateErr = useRef(null)
+    const generalErr = useRef(null)
+
     const [bookings,setBookings]=useState([]) //TODO send bookings via props
 
     useEffect(()=>{
-        fetch(URLPATHS.BOOKING).then(res=>res.json().then(setBookings))
+        fetchBookings()
     },[])
+
+    const fetchBookings = ()=>{
+        fetch(URLPATHS.BOOKING).then(res=>res.json().then(setBookings))
+    }
 
 
     const getBuyerByIdJSON = async (id) =>{
@@ -21,15 +30,44 @@ const BookingForm = (props) => {
         return data
     }
 
-    const validateBooking = (booking)=>{
+    const validateBooking = ()=>{
         let isValid = true
 
         //buyerid != not-selected
+        if(buyerInput.current.value == 'not-selected'){
+            isValid = false
+            buyerInput.current.className = 'form-select is-invalid'
+            buyerErr.current.className = 'invalid-feedback'
+            buyerErr.current.innerHTML = 'Please choose a buyer from the list'
+        } else {
+            buyerInput.current.className = 'form-select is-valid'
+            buyerErr.current.className = ''
+            buyerErr.current.innerHTML = ''
+        }
         //timeslot != not-selected
-
-        //date has value
+        if(timeslotInput.current.value == 'not-selected'){
+            isValid = false
+            timeslotInput.current.className = 'form-select is-invalid'
+            timeErr.current.className = 'invalid-feedback'
+            timeErr.current.innerHTML = 'Please choose a timeslot from the list'
+        } else {
+            timeslotInput.current.className = 'form-control is-valid'
+            timeErr.current.className = ''
+            timeErr.current.innerHTML = ''
+        }
+        //date has no value
+        if(dateInput.current.value == ''){
+            isValid = false
+            dateInput.current.className = 'form-control is-invalid'
+            dateErr.current.className = 'invalid-feedback'
+            dateErr.current.innerHTML = 'Please pick a date for booking'
+        } else {
+            dateInput.current.className = 'form-control is-valid'
+            dateErr.current.className = ''
+            dateErr.current.innerHTML = ''
+        }
         //date value > todays date
-        
+
 
 
         return isValid
@@ -43,9 +81,15 @@ const BookingForm = (props) => {
             body:JSON.stringify(booking)
         })
         props.refreshBookings()
+        fetchBookings() 
     }
 
     const tryCreateBooking = ()=>{
+
+        if(!validateBooking()){
+            return
+        }
+
         let newBooking = {
             buyerId: buyerInput.current.value,
             propertyId: props.property.id,
@@ -136,18 +180,22 @@ const BookingForm = (props) => {
     return (
         <div className="container">
             <select ref={buyerInput} className="form-select mb-2">
-                <option defaultValue value='not-selected'>Buyer....</option>
+                <option defaultValue='not-selected' value='not-selected'>Buyer....</option>
                 {props.buyers.map(buyer => (
                     <option value={buyer.id} key={buyer.id}>{`${buyer.firstName} ${buyer.surname}`}</option>
                 ))}
             </select>
+            <span ref={buyerErr}></span>
             <select ref={timeslotInput} className="form-select mb-2">
-                <option defaultValue value='not-selected'>Timeslot....</option>
+                <option defaultValue='not-selected' value='not-selected'>Timeslot....</option>
                 {timeSlots.map((slot)=>(
                     <option value={slot.id} key={slot.id*4}>{slot.time}</option>
                 ))}
             </select>
-            <input className="mb-2 form-control" type="date" ref={dateInput}/>
+            <span ref={timeErr}></span>
+            <input className="mb-2 form-control" type="date" ref={dateInput} onChange={()=>{console.log(dateInput.current.value)}}/>
+            <span ref={dateErr}></span>
+            <span ref={generalErr}></span>
             <button className="btn btn-primary col-12" onClick={()=>{ tryCreateBooking()}}>Make Booking</button>
         </div>
 
