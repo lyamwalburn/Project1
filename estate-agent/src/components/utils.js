@@ -6,6 +6,13 @@ export const URLPATHS = {
     BOOKING: 'http://localhost:8081/booking'
   }
 
+export const ROUTES = {
+    SELLERS: '/sellers',
+    BUYERS: '/buyers',
+    PROPERTIES: '/properties',
+    PROPERTIES_UPSERT: '/properties/upsert',
+}
+
  export const SALESTATUS = {
     FORSALE: 'FOR SALE',
     SOLD: 'SOLD'
@@ -13,6 +20,10 @@ export const URLPATHS = {
 
 export const SELECTVALUE = {
     NOT_SELECTED: 'not-selected',
+}
+
+export const PATH_IDS = {
+    NEW : 'new',
 }
 
 export const PROPERTY_TYPES = {

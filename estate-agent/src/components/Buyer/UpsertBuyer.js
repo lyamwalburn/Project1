@@ -1,13 +1,12 @@
 import { Link, useParams } from "react-router-dom"
 import UserForm from "../User/UserForm"
+import { PATH_IDS, URLPATHS } from "../utils"
 const UpsertBuyer = () => {
-
-    const URL = 'http://localhost:8081/buyer'
 
     const {buyerId} = useParams()
 
     const createBuyer = (newBuyer)=>{
-        fetch(URL,{
+        fetch(URLPATHS.BUYERS,{
                 method:"POST",
                 headers:{"Content-Type": "application/json"},
                 body:JSON.stringify(newBuyer)
@@ -16,7 +15,7 @@ const UpsertBuyer = () => {
 
     const EditBuyer = (buyer)=>{
         console.log(buyer)
-        fetch(`${URL}/${buyer.id}`,{
+        fetch(`${URLPATHS.BUYERS}/${buyer.id}`,{
             method:"PUT",
             headers:{"Content-Type": "application/json"},
             body:JSON.stringify(buyer)
@@ -27,13 +26,13 @@ const UpsertBuyer = () => {
     return ( 
         <>
          
-            {buyerId == 'new' ?
+            {buyerId == PATH_IDS.NEW ?
                 <>
                 <UserForm create={createBuyer} type='buyer' route='/buyers' id={buyerId} title='Create Buyer'/>
                 </>
             :
             <>
-                <UserForm create={EditBuyer} type='buyer' route='/buyers' id={buyerId} url={URL} title='Edit Buyer'/>
+                <UserForm create={EditBuyer} type='buyer' route='/buyers' id={buyerId} url={URLPATHS.BUYERS} title='Edit Buyer'/>
                 </>
             }
        

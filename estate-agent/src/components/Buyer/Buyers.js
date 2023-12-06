@@ -10,15 +10,13 @@ const Buyers = () => {
     const [buyers,setBuyers] = useState([])
     const [bookings,setBookings] = useState([])
 
-    const URL = 'http://localhost:8081/buyer'
-
     useEffect(()=>{
         fetchBuyers()
         fetchBookings()
     },[])
 
     const fetchBuyers = ()=>{
-        fetch(URL).then(res=>res.json().then(setBuyers))
+        fetch(URLPATHS.BUYERS).then(res=>res.json().then(setBuyers))
     }
 
     const fetchBookings = ()=>{
