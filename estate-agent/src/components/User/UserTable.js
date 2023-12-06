@@ -27,7 +27,7 @@ const UserTable = (props) => {
         </thead>
         <tbody>
     {props.users.map(user=>(
-        <tr key={id+user.id} className="text-center">
+        <tr key={id+user.id} className="text-center align-middle">
             <td key={id+1}>{user.id}</td>
             <td key={id+2}>{`${user.firstName} ${user.surname}`}</td>
             <td key={id+3}>{user.address}</td>
