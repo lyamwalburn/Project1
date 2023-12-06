@@ -1,16 +1,11 @@
 import { useState, useEffect, useRef } from "react";
 import PropertyCard from "./PropertyCard";
 import { useParams, useNavigate } from "react-router-dom";
-import {URLPATHS} from '../utils'
+import {URLPATHS, SALESTATUS, SELECTVALUE} from '../utils'
 import BookingForm from "../Booking/BookingForm";
 import BookingsTable from "../Booking/BookingsTable";
 
 const ManageProperty = (props) => {
-
-    const SALESTATUS = {
-        FORSALE: 'FOR SALE',
-        SOLD: 'SOLD'
-    }
 
     const {propertyId} = useParams()
 
@@ -84,7 +79,7 @@ const ManageProperty = (props) => {
     }
 
     const validateBuyer = ()=>{
-        if(buyerInput.current.value == 'not-selected'){
+        if(buyerInput.current.value == SELECTVALUE.NOT_SELECTED){
             buyerInput.current.className = 'form-select is-invalid'
             buyerErr.current.className = 'invalid-feedback'
             buyerErr.current.innerHTML = 'Please Select a Seller from the list'
@@ -152,7 +147,7 @@ const ManageProperty = (props) => {
                         {property.status == SALESTATUS.FORSALE ? 
                             <>
                             <select ref={buyerInput} className="form-select">
-                                <option defaultValue value='not-selected'>Buyer</option>
+                                <option defaultValue={SELECTVALUE.NOT_SELECTED} value={SELECTVALUE.NOT_SELECTED}>Buyer</option>
                                 {buyers.map(buyer=>(
                                 <option value={buyer.id} key={buyer.id}>{`${buyer.firstName} ${buyer.surname}`}</option>
                                 ))}
