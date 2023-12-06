@@ -11,6 +11,10 @@ export const URLPATHS = {
     SOLD: 'SOLD'
 }
 
+export const SELECTVALUE = {
+    NOT_SELECTED: 'not-selected',
+}
+
 export const PROPERTY_TYPES = {
     DETACHED: 'DETACHED',
     SEMI_DETACHED: 'SEMI-DETACHED',

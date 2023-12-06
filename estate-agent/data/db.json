@@ -225,6 +225,13 @@
       "timeslot": "3",
       "date": "2023-12-09",
       "id": 1
+    },
+    {
+      "buyerId": "3",
+      "propertyId": 2,
+      "timeslot": "6",
+      "date": "2023-12-09",
+      "id": 2
     }
   ]
 }

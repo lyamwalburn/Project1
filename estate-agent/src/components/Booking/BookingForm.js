@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { URLPATHS, timeSlots } from "../utils";
+import { SELECTVALUE, URLPATHS, timeSlots } from "../utils";
 
 
 const BookingForm = (props) => {
@@ -34,7 +34,7 @@ const BookingForm = (props) => {
         let isValid = true
 
         //buyerid != not-selected
-        if(buyerInput.current.value == 'not-selected'){
+        if(buyerInput.current.value == SELECTVALUE.NOT_SELECTED){
             isValid = false
             buyerInput.current.className = 'form-select is-invalid mb-2'
             buyerErr.current.className = 'invalid-feedback'
@@ -45,7 +45,7 @@ const BookingForm = (props) => {
             buyerErr.current.innerHTML = ''
         }
         //timeslot != not-selected
-        if(timeslotInput.current.value == 'not-selected'){
+        if(timeslotInput.current.value == SELECTVALUE.NOT_SELECTED){
             isValid = false
             timeslotInput.current.className = 'form-select is-invalid mb-2'
             timeErr.current.className = 'invalid-feedback'
@@ -102,8 +102,8 @@ const BookingForm = (props) => {
     }
 
     const resetBookingInputs = ()=>{
-        buyerInput.current.value = 'not-selected'
-        timeslotInput.current.value = 'not-selected'
+        buyerInput.current.value = SELECTVALUE.NOT_SELECTED
+        timeslotInput.current.value = SELECTVALUE.NOT_SELECTED
         dateInput.current.value = ''
         dateInput.current.className = 'form-control mb-2'
         timeslotInput.current.className = 'form-select mb-2'
@@ -215,14 +215,14 @@ const BookingForm = (props) => {
     return (
         <div className="container">
             <select ref={buyerInput} className="form-select mb-2" onChange={()=>{buyerInput.current.className = 'form-select mb-2'}}>
-                <option defaultValue='not-selected' value='not-selected'>Buyer....</option>
+                <option defaultValue={SELECTVALUE.NOT_SELECTED} value={SELECTVALUE.NOT_SELECTED}>Buyer....</option>
                 {props.buyers.map(buyer => (
                     <option value={buyer.id} key={buyer.id}>{`${buyer.firstName} ${buyer.surname}`}</option>
                 ))}
             </select>
             <span ref={buyerErr}></span>
             <select ref={timeslotInput} className="form-select mb-2" onChange={()=>{timeslotInput.current.className = 'form-select mb-2'}}>
-                <option defaultValue='not-selected' value='not-selected'>Timeslot....</option>
+                <option defaultValue={SELECTVALUE.NOT_SELECTED} value={SELECTVALUE.NOT_SELECTED}>Timeslot....</option>
                 {timeSlots.map((slot)=>(
                     <option value={slot.id} key={slot.id*4}>{slot.time}</option>
                 ))}

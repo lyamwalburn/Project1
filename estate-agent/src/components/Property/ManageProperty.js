@@ -98,11 +98,11 @@ const ManageProperty = (props) => {
     }
 
     return ( 
-        <div className="container mt-4">
+        <div className="container mt-4 ">
             <div className="grid">
-                <div className="row justify-content-center">
+                <div className="row justify-content-center pb-5">
                 <PropertyCard className='col-md-4' property={property} manage={true}/>
-                <div className="accordion col-md-7" id="accordionExample">
+                <div className="accordion col-md-7 mt-2" id="accordionExample">
                     <div className="accordion-item mt-2">
                         <h2 className="accordion-header" id="headingOne">
                         <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
