@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import UserTable from "../User/UserTable";
-import { URLPATHS } from "../utils";
+import { ROUTES, URLPATHS, USER_TYPE } from "../utils";
 
 
 const Buyers = () => {
@@ -45,7 +45,7 @@ const Buyers = () => {
     return ( 
         <>
         <UserTable users={buyers} removeUser={deleteBuyer}
-         propertiesLink='/properties/buyer/' editLink='/buyers/' type='buyer'/>
+         propertiesLink='/properties/buyer/' editLink={`${ROUTES.BUYERS}/'`} type={USER_TYPE.BUYER}/>
          </>
     );
 }

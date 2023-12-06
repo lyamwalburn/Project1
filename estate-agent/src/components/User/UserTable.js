@@ -1,5 +1,6 @@
 import { useId, useState } from "react";
 import { Link } from "react-router-dom";
+import { USER_TYPE } from "../utils";
 const UserTable = (props) => {
 
     const [userToDelete,setuserToDelete] = useState()
@@ -8,7 +9,7 @@ const UserTable = (props) => {
 
     return ( 
     <div className="container px-4 py-5 bg-light text-dark">
-        {props.type == 'seller' ?
+        {props.type == USER_TYPE.SELLER ?
         <h2 className="mb-4">All Sellers</h2> :
         <h2 className="mb-4">All Buyers</h2>
         }

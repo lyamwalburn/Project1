@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import UserTable from "../User/UserTable";
-import { ROUTES, URLPATHS } from "../utils";
+import { ROUTES, URLPATHS, USER_TYPE } from "../utils";
 
 
 const Sellers = () => {
@@ -25,7 +25,7 @@ const Sellers = () => {
     return ( 
         <>
         <UserTable users={sellers} removeUser={deleteSeller} 
-            propertiesLink={`${ROUTES.PROPERTIES}/`} editLink={`${ROUTES.SELLERS}/`} type='seller'/>
+            propertiesLink={`${ROUTES.PROPERTIES}/`} editLink={`${ROUTES.SELLERS}/`} type={USER_TYPE.SELLER}/>
         </>
     );
 }
