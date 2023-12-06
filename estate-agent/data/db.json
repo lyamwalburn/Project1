@@ -188,5 +188,13 @@
       "id": 3
     }
   ],
-  "booking": []
+  "booking": [
+    {
+      "buyerId": "1",
+      "propertyId": 2,
+      "timeslot": "3",
+      "date": "2023-12-23",
+      "id": 1
+    }
+  ]
 }

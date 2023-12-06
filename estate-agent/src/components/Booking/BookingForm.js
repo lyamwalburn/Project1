@@ -67,6 +67,22 @@ const BookingForm = (props) => {
             dateErr.current.innerHTML = ''
         }
         //date value > todays date
+        console.log(dateInput.current.value)
+        let todayDate = new Date()
+        let dateString = `${todayDate.getUTCFullYear()}-${todayDate.getUTCMonth()+1}-${todayDate.getUTCDate()}`
+        console.log(dateString)
+        if(dateInput.current.value < dateString){
+            console.log('date is in the past')
+            isValid = false
+            dateInput.current.className = 'form-control is-invalid'
+            dateErr.current.className = 'invalid-feedback'
+            dateErr.current.innerHTML = 'Date must not be in the past'
+        }
+        else {
+            dateInput.current.className = 'form-control is-valid'
+            dateErr.current.className = ''
+            dateErr.current.innerHTML = ''
+        }
 
 
 
@@ -82,7 +98,19 @@ const BookingForm = (props) => {
         })
         props.refreshBookings()
         fetchBookings() 
+        resetBookingInputs()
     }
+
+    const resetBookingInputs = ()=>{
+        buyerInput.current.value = 'not-selected'
+        timeslotInput.current.value = 'not-selected'
+        dateInput.current.value = ''
+        dateInput.current.className = 'form-control'
+        timeslotInput.current.className = 'form-select'
+        buyerInput.current.className = 'form-select'
+    }
+    
+    
 
     const tryCreateBooking = ()=>{
 
@@ -193,7 +221,7 @@ const BookingForm = (props) => {
                 ))}
             </select>
             <span ref={timeErr}></span>
-            <input className="mb-2 form-control" type="date" ref={dateInput} onChange={()=>{console.log(dateInput.current.value)}}/>
+            <input className="mb-2 form-control" type="date" ref={dateInput}/>
             <span ref={dateErr}></span>
             <span ref={generalErr}></span>
             <button className="btn btn-primary col-12" onClick={()=>{ tryCreateBooking()}}>Make Booking</button>
