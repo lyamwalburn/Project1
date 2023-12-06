@@ -1,10 +1,10 @@
 import { useId, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { USER_TYPE } from "../utils";
 const UserTable = (props) => {
 
     const [userToDelete,setuserToDelete] = useState()
-
+    const navigate = useNavigate()
     let id = useId()
 
     return ( 
@@ -33,14 +33,14 @@ const UserTable = (props) => {
             <td key={id+3}>{user.address}</td>
             <td key={id+4}>{user.postcode}</td>
             <td key={id+5}>{user.phone}</td>
-            <td key={id+6}><Link to={`${props.propertiesLink}${user.id}`}>
-                            <button className="btn btn-primary col-md-3 me-1 mb-1">Properties</button>
-                            </Link>
-                            <Link to={`${props.editLink}${user.id}`}>
-                                <button className="btn btn-warning text-light col-md-3 me-1 mb-1">Edit</button>
-                            </Link>
+            <td key={id+6} className="col-sm-4 mx-auto">
+                <div className="row d-flex justify-content-center">
+                            <button className="btn btn-primary col-lg-3 m-1 " onClick={()=>{navigate(`${props.propertiesLink}${user.id}`)}}>Properties</button>
+                            <button className="btn btn-warning m-1 col-lg-3" onClick={()=>{navigate(`${props.editLink}${user.id}`)}}>Edit</button>
+                             
             {/* <td><input type="button" value='Delete' onClick={()=>{props.removeUser(user.id)}} /></td> */}
-                            <button type="button" className="btn btn-danger col-md-3" data-bs-toggle="modal" data-bs-target="#deleteModal" onClick={()=>setuserToDelete(user.id)}>Delete</button>
+                            <button type="button" className="btn btn-danger col-lg-3 m-1" data-bs-toggle="modal" data-bs-target="#deleteModal" onClick={()=>setuserToDelete(user.id)}>Delete</button>
+                            </div>
             </td>
         </tr>
     ))}
