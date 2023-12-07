@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBath, faBed, faTree, faPenToSquare, faUser } from '@fortawesome/free-solid-svg-icons'
 import { useId } from 'react';
@@ -7,6 +7,7 @@ import { SALESTATUS } from '../utils';
 
 const PropertyCard = (props) => {
 
+    const navigate = useNavigate()
     const cardStyle = {
         width: '18rem',
         boxShadow: '7px 8px 19px -2px rgba(0,0,0,0.49)',
