@@ -57,6 +57,7 @@ const ManageProperty = (props) => {
         if(newProp.status == SALESTATUS.SOLD){
            await removeBookings(newProp.id)
         }
+
         if(property.status == SALESTATUS.SOLD || validateBuyer()){
         
             await fetch(`${URLPATHS.PROPERTY}/${property.id}`,{
@@ -76,7 +77,7 @@ const ManageProperty = (props) => {
 
     const removeBookings = async (id)=>{
         let toCancel = bookings.filter(p=> p.propertyId == id)
-        await toCancel.forEach(booking =>{
+         toCancel.forEach(booking =>{
             fetch(`${URLPATHS.BOOKING}/${booking.id}`,{
                 method:"delete"
             }).then(console.log('deleted'))
