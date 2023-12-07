@@ -75,6 +75,7 @@ const ManageProperty = (props) => {
         }
     }
 
+
     const removeBookings = async (id)=>{
         let toCancel = bookings.filter(p=> p.propertyId == id)
          toCancel.forEach(booking =>{

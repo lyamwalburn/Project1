@@ -105,10 +105,10 @@
       "bathroom": "1",
       "garden": "0",
       "sellerId": "3",
-      "status": "FOR SALE",
+      "status": "SOLD",
       "id": 2,
       "image": "property2.jpeg",
-      "buyerId": null
+      "buyerId": "3"
     },
     {
       "address": "2 Welsh Street, Ebbw Vale",
@@ -200,6 +200,18 @@
       "sellerId": "11",
       "status": "FOR SALE",
       "id": 9
+    },
+    {
+      "address": "asdac",
+      "postcode": "asdc",
+      "type": "TERRACED",
+      "price": "234",
+      "bedroom": "223",
+      "bathroom": "2",
+      "garden": "0",
+      "sellerId": "4",
+      "status": "FOR SALE",
+      "id": 10
     }
   ],
   "buyer": [
@@ -245,13 +257,6 @@
     }
   ],
   "booking": [
-    {
-      "buyerId": "3",
-      "propertyId": 3,
-      "timeslot": "4",
-      "date": "2023-12-07",
-      "id": 3
-    },
     {
       "buyerId": "2",
       "propertyId": 5,
