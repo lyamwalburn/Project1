@@ -1,6 +1,6 @@
 const Footer = () => {
     return ( 
-        <div className="mx-0 pb-5">
+        <div className="mx-0 pb-5 mt-5">
           <footer
                   className="text-center text-lg-start text-white bg-dark pb-5 pt-3"
                   
@@ -52,7 +52,7 @@ const Footer = () => {
               </div>
             </section>
             <div
-                 className="text-center p-3"
+                 className="text-center p-3 pb-5"
                 
                  >
               2023 B&G Estates &nbsp;

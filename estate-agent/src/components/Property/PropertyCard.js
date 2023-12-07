@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBath, faBed, faTree } from '@fortawesome/free-solid-svg-icons'
+import { faBath, faBed, faTree, faPenToSquare, faUser } from '@fortawesome/free-solid-svg-icons'
 import { useId } from 'react';
 import { SALESTATUS } from '../utils';
 
@@ -16,6 +16,11 @@ const PropertyCard = (props) => {
         height: '12rem',
     }
 
+    const soldStyle = {
+        filter: 'grayscale(100%)',
+        height: '12rem',
+    }
+
     const linkStyle = {
         textDecoration: 'none',
     }
@@ -24,7 +29,7 @@ const PropertyCard = (props) => {
     return ( 
         <>
         <div className="card m-3 text-center  p-0" style={cardStyle} key={id}>
-            <img className="card-img-top p-0" style={imgStyle} src={props.property.image == null ? require('../../img/img-missing.avif') : require(`../../img/${props.property.image}`)} alt="Property Image"/>
+            <img className="card-img-top p-0" style={props.property.status == SALESTATUS.FORSALE ? imgStyle : soldStyle} src={props.property.image == null ? require('../../img/img-missing.avif') : require(`../../img/${props.property.image}`)} alt="Property Image"/>
             <div className="card-body">
                 <h5 className="card-title">{props.property.address}</h5>
                 <p className="card-text">{props.property.type}.</p>
@@ -49,10 +54,10 @@ const PropertyCard = (props) => {
             </ul>
             <div className="card-body">
                 <Link to={`/sellers/${props.property.sellerId}`} className='card-link' >
-                    <button className='btn btn-primary col-md-4'>Seller</button>
+                    <button className='btn btn-primary col-md-4'><FontAwesomeIcon icon={faUser} /></button>
                 </Link>
                 <Link to={`/properties/upsert/${props.property.id}`} className='card-link'>
-                    <button className='btn btn-warning text-light col-md-4'>Edit</button>
+                    <button className='btn btn-warning col-md-4'><FontAwesomeIcon icon={faPenToSquare} /></button>
                 </Link>
             </div>
         </div>

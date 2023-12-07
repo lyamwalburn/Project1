@@ -161,7 +161,9 @@ const PropertyForm = (props) => {
 
 
     return ( 
-        <form className="col-md-10 m-auto mt-4 px-5 needs-validated">
+        <div className="container my-5 pb-4">
+        <h2 className="ms-4">{props.title}</h2>
+        <form className="col-md-12 m-auto my-5 p-5 needs-validated">
         <div className="row">
             <div className="col-md-7 mt-2">
                 <input type="text" className="form-control" placeholder="Address" ref={addressInput}/>
@@ -211,13 +213,14 @@ const PropertyForm = (props) => {
                 <span ref={sellerErr}></span>
             </div>
         </div>
-        <div className="row">
+        <div className="row mt-3">
             {props.id == PATH_IDS.NEW ? 
                 <button className="btn btn-primary mt-3 col-md-3 ms-auto me-2" onClick={(e)=>{saveDetails(e)}}>Create Property</button>
                 :
                 <button className="btn btn-primary mt-3 col-md-3 ms-auto me-2" onClick={(e)=>{saveDetails(e)}}>Save Changes</button>}
         </div>
     </form> 
+    </div>
      );
 }
  

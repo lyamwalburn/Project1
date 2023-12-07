@@ -4,8 +4,8 @@
       "firstName": "John",
       "surname": "Doe",
       "address": "123 main street",
-      "postcode": "undefined",
-      "phone": "undefined",
+      "postcode": "GW 87T",
+      "phone": "948212",
       "id": 1
     },
     {
@@ -90,9 +90,9 @@
       "bathroom": "1",
       "garden": "0",
       "sellerId": "1",
-      "status": "FOR SALE",
+      "status": "SOLD",
       "id": 1,
-      "buyerId": null,
+      "buyerId": "3",
       "image": "property1.jpeg"
     },
     {
@@ -174,6 +174,30 @@
       "status": "FOR SALE",
       "id": 7,
       "image": "property7.jpeg"
+    },
+    {
+      "address": "97 Perth Road",
+      "postcode": "DD1 8TU",
+      "type": "APARTMENT",
+      "price": "80000",
+      "bedroom": "1",
+      "bathroom": "1",
+      "garden": "0",
+      "sellerId": "5",
+      "status": "FOR SALE",
+      "id": 8
+    },
+    {
+      "address": "23 Sibbald Place",
+      "postcode": "DD3 6TH",
+      "type": "APARTMENT",
+      "price": "110000",
+      "bedroom": "2",
+      "bathroom": "1",
+      "garden": "0",
+      "sellerId": "11",
+      "status": "FOR SALE",
+      "id": 9
     }
   ],
   "buyer": [

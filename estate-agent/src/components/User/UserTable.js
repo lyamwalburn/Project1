@@ -1,6 +1,8 @@
 import { useId, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { USER_TYPE } from "../utils";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPenToSquare, faTrash, faHouse } from "@fortawesome/free-solid-svg-icons";
 const UserTable = (props) => {
 
     const [userToDelete,setuserToDelete] = useState()
@@ -35,11 +37,11 @@ const UserTable = (props) => {
             <td key={id+5}>{user.phone}</td>
             <td key={id+6} className="col-sm-4 mx-auto">
                 <div className="row d-flex justify-content-center">
-                            <button className="btn btn-primary col-lg-3 m-1 " onClick={()=>{navigate(`${props.propertiesLink}${user.id}`)}}>Properties</button>
-                            <button className="btn btn-warning m-1 col-lg-3" onClick={()=>{navigate(`${props.editLink}${user.id}`)}}>Edit</button>
+                            <button className="btn btn-primary col-lg-2 m-1 " onClick={()=>{navigate(`${props.propertiesLink}${user.id}`)}}><FontAwesomeIcon icon={faHouse} className="pe-1"/></button>
+                            <button className="btn btn-warning m-1 col-lg-2" onClick={()=>{navigate(`${props.editLink}${user.id}`)}}><FontAwesomeIcon className='pe-1'icon={faPenToSquare} /></button>
                              
             {/* <td><input type="button" value='Delete' onClick={()=>{props.removeUser(user.id)}} /></td> */}
-                            <button type="button" className="btn btn-danger col-lg-3 m-1" data-bs-toggle="modal" data-bs-target="#deleteModal" onClick={()=>setuserToDelete(user.id)}>Delete</button>
+                            <button type="button" className="btn btn-danger col-lg-2 m-1" data-bs-toggle="modal" data-bs-target="#deleteModal" onClick={()=>setuserToDelete(user.id)}><FontAwesomeIcon icon={faTrash} className="pe-1" /></button>
                             </div>
             </td>
         </tr>

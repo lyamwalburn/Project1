@@ -29,9 +29,9 @@ const UpsertProperty = () => {
 
     return ( <>
         {propertyId == PATH_IDS.NEW ?
-            <PropertyForm saveProperty={createProperty} id={propertyId}/>
+            <PropertyForm saveProperty={createProperty} id={propertyId} title="Create Property"/>
         :
-            <PropertyForm saveProperty={EditProperty} id={propertyId}/>
+            <PropertyForm saveProperty={EditProperty} id={propertyId} title="Edit Property"/>
         }
         </>
     );

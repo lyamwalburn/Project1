@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import {SALESTATUS, URLPATHS, PROPERTY_TYPES} from '../utils'
 import PropertyCard from './PropertyCard';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMagnifyingGlass, faRotateLeft } from '@fortawesome/free-solid-svg-icons';
 
 const PropertySearch = () => {
 
@@ -153,8 +154,8 @@ const PropertySearch = () => {
 
                 </div>
                 <div className='row d-flex justify-content-between'>
-                    <button onClick={()=>{clearFilters()}} className='btn btn-danger mt-3 col-md-3 px-5'>Clear Filters</button>
-                    <button onClick={()=>{filteredSearch()}} className='btn btn-primary mt-3 col-md-3 px-5'>Search</button>       
+                    <button onClick={()=>{clearFilters()}} className='btn btn-danger mt-3 col-md-3 px-5'><FontAwesomeIcon icon={faRotateLeft} className='pe-2'/>Clear Filters</button>
+                    <button onClick={()=>{filteredSearch()}} className='btn btn-primary mt-3 col-md-3 px-5'><FontAwesomeIcon icon={faMagnifyingGlass} className='pe-2'/>Search</button>       
                 </div>
             </div>
             </div>

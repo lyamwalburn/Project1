@@ -45,7 +45,7 @@ const Buyers = () => {
     return ( 
         <>
         <UserTable users={buyers} removeUser={deleteBuyer}
-         propertiesLink='/properties/buyer/' editLink={`${ROUTES.BUYERS}/'`} type={USER_TYPE.BUYER}/>
+         propertiesLink='/properties/buyer/' editLink={`${ROUTES.BUYERS}/`} type={USER_TYPE.BUYER}/>
          </>
     );
 }

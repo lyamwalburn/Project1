@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom"
 import UserForm from "../User/UserForm"
-import { PATH_IDS, URLPATHS, USER_TYPE } from "../utils"
+import { PATH_IDS, ROUTES, URLPATHS, USER_TYPE } from "../utils"
 const UpsertBuyer = () => {
 
     const {buyerId} = useParams()
@@ -28,11 +28,11 @@ const UpsertBuyer = () => {
          
             {buyerId == PATH_IDS.NEW ?
                 <>
-                <UserForm create={createBuyer} route='/buyers' id={buyerId} title='Create Buyer'/>
+                <UserForm create={createBuyer} type={USER_TYPE.BUYER} route={ROUTES.BUYERS} id={buyerId} title='Create Buyer'/>
                 </>
             :
             <>
-                <UserForm create={EditBuyer} route='/buyers' id={buyerId} url={URLPATHS.BUYERS} title='Edit Buyer'/>
+                <UserForm create={EditBuyer} type={USER_TYPE.BUYER} route={ROUTES.BUYERS} id={buyerId} url={URLPATHS.BUYERS} title='Edit Buyer'/>
                 </>
             }
        

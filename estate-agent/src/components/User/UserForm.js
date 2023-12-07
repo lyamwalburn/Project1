@@ -147,7 +147,9 @@ const UserForm = (props) => {
                     <span className="" id='phoneErr' ref={phoneErr}></span>
                 </div>
             </div>
-                <Link className=''to={props.route}><input className="btn btn-primary mt-2" type="button" value='Save' onClick={e=>saveUser(e)} /></Link>
+            <div className="row">
+                <button className="btn btn-primary mt-3 col-md-3 ms-auto me-2" type="button" onClick={e=>saveUser(e)}>Save</button>
+            </div>
         </form>
         </div>
     );

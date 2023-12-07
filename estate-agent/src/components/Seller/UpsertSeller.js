@@ -4,7 +4,6 @@ import { PATH_IDS, ROUTES, URLPATHS, USER_TYPE, validName } from "../utils"
 
 const UpsertSeller = () => {
 
-    const URL = 'http://localhost:8081/seller'
 
     const {sellerId} = useParams()
 
