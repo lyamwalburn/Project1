@@ -79,14 +79,6 @@
       "postcode": "ab43",
       "phone": "324132",
       "id": 11
-    },
-    {
-      "firstName": "Zues",
-      "surname": "Cattman",
-      "address": "89 Athens Way",
-      "postcode": "AH8 9TG",
-      "phone": "234132",
-      "id": 12
     }
   ],
   "property": [
@@ -115,7 +107,8 @@
       "sellerId": "3",
       "status": "FOR SALE",
       "id": 2,
-      "image": "property2.jpeg"
+      "image": "property2.jpeg",
+      "buyerId": null
     },
     {
       "address": "2 Welsh Street, Ebbw Vale",
@@ -253,20 +246,6 @@
   ],
   "booking": [
     {
-      "buyerId": "1",
-      "propertyId": 2,
-      "timeslot": "3",
-      "date": "2023-12-09",
-      "id": 1
-    },
-    {
-      "buyerId": "3",
-      "propertyId": 2,
-      "timeslot": "6",
-      "date": "2023-12-09",
-      "id": 2
-    },
-    {
       "buyerId": "3",
       "propertyId": 3,
       "timeslot": "4",
@@ -286,13 +265,6 @@
       "timeslot": "1",
       "date": "2023-12-19",
       "id": 5
-    },
-    {
-      "buyerId": "5",
-      "propertyId": 2,
-      "timeslot": "3",
-      "date": "2023-12-25",
-      "id": 6
     },
     {
       "buyerId": "2",
@@ -335,13 +307,6 @@
       "timeslot": "6",
       "date": "2023-12-22",
       "id": 12
-    },
-    {
-      "buyerId": "2",
-      "propertyId": 2,
-      "timeslot": "2",
-      "date": "2023-12-22",
-      "id": 13
     }
   ]
 }

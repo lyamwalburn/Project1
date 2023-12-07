@@ -15,7 +15,7 @@ const ManageProperty = (props) => {
 
     const navigate = useNavigate()
 
-    const buyerInput = useRef(null)
+    const buyerInput = useRef(SELECTVALUE.NOT_SELECTED)
     const buyerErr = useRef(null)
 
     useEffect(()=>{
@@ -42,7 +42,7 @@ const ManageProperty = (props) => {
         }).then(fetchBookings)
     }
 
-    const saveProperty = (e)=>{
+    const saveProperty = async (e)=>{
         e.preventDefault()
         let newProp = {}
         property.status == SALESTATUS.FORSALE ?
@@ -55,30 +55,35 @@ const ManageProperty = (props) => {
             status: SALESTATUS.FORSALE}
 
         if(newProp.status == SALESTATUS.SOLD){
-            removeBookings(newProp.id)
+           await removeBookings(newProp.id)
         }
         if(property.status == SALESTATUS.SOLD || validateBuyer()){
         
-            fetch(`${URLPATHS.PROPERTY}/${property.id}`,{
+            await fetch(`${URLPATHS.PROPERTY}/${property.id}`,{
                 method:"PUT",
                 headers:{"Content-Type": "application/json"},
                 body:JSON.stringify(newProp)
+            }).then(res=>{
+                if(res.ok){
+                    navigate('/')
+                } else {
+                    console.log(res.statusText)
+                }
             })
-            navigate('/')
+           // navigate('/')
         }
     }
 
-    const removeBookings = (id)=>{
+    const removeBookings = async (id)=>{
         let toCancel = bookings.filter(p=> p.propertyId == id)
-        toCancel.forEach(booking =>{
+        await toCancel.forEach(booking =>{
             fetch(`${URLPATHS.BOOKING}/${booking.id}`,{
                 method:"delete"
-            }).then()
+            }).then(console.log('deleted'))
         })
-        navigate('/')
     }
 
-    const validateBuyer = ()=>{
+    const validateBuyer = async ()=>{
         if(buyerInput.current.value == SELECTVALUE.NOT_SELECTED){
             buyerInput.current.className = 'form-select is-invalid'
             buyerErr.current.className = 'invalid-feedback'
