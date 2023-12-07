@@ -1,0 +1,347 @@
+{
+  "seller": [
+    {
+      "firstName": "John",
+      "surname": "Doe",
+      "address": "123 main street",
+      "postcode": "GW 87T",
+      "phone": "948212",
+      "id": 1
+    },
+    {
+      "firstName": "Anna",
+      "surname": "Smith",
+      "address": "44 Main Road",
+      "postcode": "MR23",
+      "phone": "12334513",
+      "id": 2
+    },
+    {
+      "firstName": "Peter",
+      "surname": "Jones",
+      "address": "17 Cedar Street",
+      "postcode": "CS234",
+      "phone": "34113",
+      "id": 3
+    },
+    {
+      "firstName": "Karen",
+      "surname": "Slater",
+      "address": "Edale Pine Road",
+      "postcode": "PR23",
+      "phone": "3412",
+      "id": 4
+    },
+    {
+      "firstName": "Jade",
+      "surname": "Huang",
+      "address": "13 Elm Street",
+      "postcode": "ES34 4fr",
+      "phone": "343243",
+      "id": 5
+    },
+    {
+      "firstName": "Andy",
+      "surname": "Smith",
+      "address": "Smith Blvd. Merica",
+      "postcode": "2343H",
+      "phone": "9321237",
+      "id": 7
+    },
+    {
+      "firstName": "Stephanie ",
+      "surname": "Hill",
+      "address": "brecon Town, Brecon",
+      "postcode": "BR1 2JE",
+      "phone": "8236236",
+      "id": 8
+    },
+    {
+      "firstName": "Jade",
+      "surname": "Song",
+      "address": "Sichuan, China",
+      "postcode": "1131321",
+      "phone": "1234123",
+      "id": 9
+    },
+    {
+      "firstName": "Nicohola",
+      "surname": "Green",
+      "address": "Fairwater, Cardiff",
+      "postcode": "CF1 1AA",
+      "phone": "1",
+      "id": 10
+    },
+    {
+      "firstName": "Max",
+      "surname": "Taylor",
+      "address": "5 streety streeet",
+      "postcode": "ab43",
+      "phone": "324132",
+      "id": 11
+    },
+    {
+      "firstName": "Zues",
+      "surname": "Cattman",
+      "address": "89 Athens Way",
+      "postcode": "AH8 9TG",
+      "phone": "234132",
+      "id": 12
+    }
+  ],
+  "property": [
+    {
+      "address": "34 OK Place, OK Town",
+      "postcode": "OK1 1OK",
+      "type": "DETACHED",
+      "price": "100000",
+      "bedroom": "3",
+      "bathroom": "1",
+      "garden": "0",
+      "sellerId": "1",
+      "status": "SOLD",
+      "id": 1,
+      "buyerId": "3",
+      "image": "property1.jpeg"
+    },
+    {
+      "address": "Somewhere House, Place",
+      "postcode": "SO1 2ME",
+      "type": "APARTMENT",
+      "price": "200000",
+      "bedroom": "5",
+      "bathroom": "1",
+      "garden": "0",
+      "sellerId": "3",
+      "status": "FOR SALE",
+      "id": 2,
+      "image": "property2.jpeg"
+    },
+    {
+      "address": "2 Welsh Street, Ebbw Vale",
+      "postcode": "TR1 1GA",
+      "type": "DETACHED",
+      "price": "120000",
+      "bedroom": "1",
+      "bathroom": "1",
+      "garden": "1",
+      "sellerId": "3",
+      "status": "FOR SALE",
+      "id": 3,
+      "buyerId": null,
+      "image": "property3.jpeg"
+    },
+    {
+      "address": "8 Hilltop, Ebbw Vale",
+      "postcode": "EB1 2VA",
+      "type": "DETACHED",
+      "price": 99000,
+      "bedroom": 3,
+      "bathroom": 3,
+      "garden": 1,
+      "sellerId": 4,
+      "status": "FOR SALE",
+      "id": 4,
+      "buyerId": null,
+      "image": "property4.jpeg"
+    },
+    {
+      "address": "5 polwarth road",
+      "postcode": "ab118by",
+      "type": "SEMI-DETACHED",
+      "price": "180000",
+      "bedroom": "3",
+      "bathroom": "3",
+      "garden": "2",
+      "sellerId": "11",
+      "status": "FOR SALE",
+      "id": 5,
+      "image": "property5.jpeg"
+    },
+    {
+      "address": "22 riverview ellon",
+      "postcode": "ab42 8lp",
+      "type": "DETACHED",
+      "price": "200000",
+      "bedroom": "4",
+      "bathroom": "2",
+      "garden": "2",
+      "sellerId": "10",
+      "status": "FOR SALE",
+      "id": 6,
+      "image": "property6.jpeg"
+    },
+    {
+      "address": "99 perth streety",
+      "postcode": "ph45",
+      "type": "TERRACED",
+      "price": "200000",
+      "bedroom": "9",
+      "bathroom": "1",
+      "garden": "5",
+      "sellerId": "12",
+      "status": "FOR SALE",
+      "id": 7,
+      "image": "property7.jpeg"
+    },
+    {
+      "address": "97 Perth Road",
+      "postcode": "DD1 8TU",
+      "type": "APARTMENT",
+      "price": "80000",
+      "bedroom": "1",
+      "bathroom": "1",
+      "garden": "0",
+      "sellerId": "5",
+      "status": "FOR SALE",
+      "id": 8
+    },
+    {
+      "address": "23 Sibbald Place",
+      "postcode": "DD3 6TH",
+      "type": "APARTMENT",
+      "price": "110000",
+      "bedroom": "2",
+      "bathroom": "1",
+      "garden": "0",
+      "sellerId": "11",
+      "status": "FOR SALE",
+      "id": 9
+    }
+  ],
+  "buyer": [
+    {
+      "firstName": "Cookie",
+      "surname": "Cat",
+      "address": "42 Pen-y-lan Road, Cardiff",
+      "postcode": "CA1 8RR",
+      "phone": "123",
+      "id": 1
+    },
+    {
+      "firstName": "Nilla",
+      "surname": "Cat",
+      "address": "100 Magor Road, Newport",
+      "postcode": "NP1 2LL",
+      "phone": "1234123",
+      "id": 2
+    },
+    {
+      "firstName": "Monty",
+      "surname": "Dog",
+      "address": "Very Rich Street, London",
+      "postcode": "W1",
+      "phone": "12341534",
+      "id": 3
+    },
+    {
+      "firstName": "Lyam",
+      "surname": "Walburn",
+      "address": "5 aberdeen lane",
+      "postcode": "ab11 h78",
+      "phone": "1234567",
+      "id": 4
+    },
+    {
+      "firstName": "Maisie",
+      "surname": "Smithson",
+      "address": "23 River Place",
+      "postcode": "dd7 8sl",
+      "phone": "9237812",
+      "id": 5
+    }
+  ],
+  "booking": [
+    {
+      "buyerId": "1",
+      "propertyId": 2,
+      "timeslot": "3",
+      "date": "2023-12-09",
+      "id": 1
+    },
+    {
+      "buyerId": "3",
+      "propertyId": 2,
+      "timeslot": "6",
+      "date": "2023-12-09",
+      "id": 2
+    },
+    {
+      "buyerId": "3",
+      "propertyId": 3,
+      "timeslot": "4",
+      "date": "2023-12-07",
+      "id": 3
+    },
+    {
+      "buyerId": "2",
+      "propertyId": 5,
+      "timeslot": "7",
+      "date": "2023-12-23",
+      "id": 4
+    },
+    {
+      "buyerId": "1",
+      "propertyId": 5,
+      "timeslot": "1",
+      "date": "2023-12-19",
+      "id": 5
+    },
+    {
+      "buyerId": "5",
+      "propertyId": 2,
+      "timeslot": "3",
+      "date": "2023-12-25",
+      "id": 6
+    },
+    {
+      "buyerId": "2",
+      "propertyId": 4,
+      "timeslot": "7",
+      "date": "2023-12-22",
+      "id": 7
+    },
+    {
+      "buyerId": "2",
+      "propertyId": 6,
+      "timeslot": "8",
+      "date": "2023-12-22",
+      "id": 8
+    },
+    {
+      "buyerId": "5",
+      "propertyId": 6,
+      "timeslot": "8",
+      "date": "2023-12-15",
+      "id": 9
+    },
+    {
+      "buyerId": "1",
+      "propertyId": 7,
+      "timeslot": "5",
+      "date": "2023-12-22",
+      "id": 10
+    },
+    {
+      "buyerId": "2",
+      "propertyId": 8,
+      "timeslot": "4",
+      "date": "2023-12-22",
+      "id": 11
+    },
+    {
+      "buyerId": "2",
+      "propertyId": 9,
+      "timeslot": "6",
+      "date": "2023-12-22",
+      "id": 12
+    },
+    {
+      "buyerId": "2",
+      "propertyId": 2,
+      "timeslot": "2",
+      "date": "2023-12-22",
+      "id": 13
+    }
+  ]
+}
