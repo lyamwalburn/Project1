@@ -7,7 +7,7 @@ When starting project for the first time run,
 
 # Starting the application
 
-### `npx json-server --watch data\db.json --port 8081` - runs the json-server for mock backend
+### `npx json-server data\db.json --port 8081` - runs the json-server for mock backend
 ### `npm start` - runs the react app
 
 # Estate-Agent
