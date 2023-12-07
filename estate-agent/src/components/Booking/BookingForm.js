@@ -153,8 +153,9 @@ const BookingForm = (props) => {
                             if(tempBookings.length > 0){
                                 //buyer has a booking in this timeslot cannot book
                                 console.log('error buyer already has a booking at this time')
-                                generalErr.current.className = 'invalid-feedback mb-2'
-                                generalErr.current.innerHTML = 'Sorry this buyer already has an appointment at this time.'
+                                timeslotInput.current.className = 'form-select is-invalid mb-2'
+                                dateErr.current.className = 'invalid-feedback mb-2'
+                                dateErr.current.innerHTML = 'Sorry this buyer already has an appointment at this time.'
                                 return
                             } else {
                                 console.log('buyer has no booking this timeslot')

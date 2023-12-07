@@ -9,34 +9,43 @@
       "id": 1
     },
     {
-      "id": 2,
       "firstName": "Anna",
-      "surname": "Smith"
+      "surname": "Smith",
+      "address": "44 Main Road",
+      "postcode": "MR23",
+      "phone": "12334513",
+      "id": 2
     },
     {
-      "id": 3,
       "firstName": "Peter",
-      "surname": "Jones"
+      "surname": "Jones",
+      "address": "17 Cedar Street",
+      "postcode": "CS234",
+      "phone": "34113",
+      "id": 3
     },
     {
-      "id": 4,
       "firstName": "Karen",
-      "surname": "Slater"
+      "surname": "Slater",
+      "address": "Edale Pine Road",
+      "postcode": "PR23",
+      "phone": "3412",
+      "id": 4
     },
     {
-      "id": 5,
       "firstName": "Jade",
       "surname": "Huang",
-      "address": "China",
-      "postcode": "",
-      "phone": ""
+      "address": "13 Elm Street",
+      "postcode": "ES34 4fr",
+      "phone": "343243",
+      "id": 5
     },
     {
       "firstName": "Andy",
       "surname": "Smith",
-      "address": "",
-      "postcode": "",
-      "phone": "",
+      "address": "Smith Blvd. Merica",
+      "postcode": "2343H",
+      "phone": "9321237",
       "id": 7
     },
     {
@@ -44,7 +53,7 @@
       "surname": "Hill",
       "address": "brecon Town, Brecon",
       "postcode": "BR1 2JE",
-      "phone": "",
+      "phone": "8236236",
       "id": 8
     },
     {
@@ -52,7 +61,7 @@
       "surname": "Song",
       "address": "Sichuan, China",
       "postcode": "1131321",
-      "phone": "",
+      "phone": "1234123",
       "id": 9
     },
     {
@@ -210,19 +219,19 @@
       "id": 1
     },
     {
-      "id": 2,
       "firstName": "Nilla",
       "surname": "Cat",
       "address": "100 Magor Road, Newport",
       "postcode": "NP1 2LL",
-      "phone": ""
+      "phone": "1234123",
+      "id": 2
     },
     {
       "firstName": "Monty",
       "surname": "Dog",
       "address": "Very Rich Street, London",
       "postcode": "W1",
-      "phone": "",
+      "phone": "12341534",
       "id": 3
     },
     {
@@ -263,6 +272,76 @@
       "timeslot": "4",
       "date": "2023-12-07",
       "id": 3
+    },
+    {
+      "buyerId": "2",
+      "propertyId": 5,
+      "timeslot": "7",
+      "date": "2023-12-23",
+      "id": 4
+    },
+    {
+      "buyerId": "1",
+      "propertyId": 5,
+      "timeslot": "1",
+      "date": "2023-12-19",
+      "id": 5
+    },
+    {
+      "buyerId": "5",
+      "propertyId": 2,
+      "timeslot": "3",
+      "date": "2023-12-25",
+      "id": 6
+    },
+    {
+      "buyerId": "2",
+      "propertyId": 4,
+      "timeslot": "7",
+      "date": "2023-12-22",
+      "id": 7
+    },
+    {
+      "buyerId": "2",
+      "propertyId": 6,
+      "timeslot": "8",
+      "date": "2023-12-22",
+      "id": 8
+    },
+    {
+      "buyerId": "5",
+      "propertyId": 6,
+      "timeslot": "8",
+      "date": "2023-12-15",
+      "id": 9
+    },
+    {
+      "buyerId": "1",
+      "propertyId": 7,
+      "timeslot": "5",
+      "date": "2023-12-22",
+      "id": 10
+    },
+    {
+      "buyerId": "2",
+      "propertyId": 8,
+      "timeslot": "4",
+      "date": "2023-12-22",
+      "id": 11
+    },
+    {
+      "buyerId": "2",
+      "propertyId": 9,
+      "timeslot": "6",
+      "date": "2023-12-22",
+      "id": 12
+    },
+    {
+      "buyerId": "2",
+      "propertyId": 2,
+      "timeslot": "2",
+      "date": "2023-12-22",
+      "id": 13
     }
   ]
 }

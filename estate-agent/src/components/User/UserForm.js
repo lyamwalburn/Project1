@@ -119,8 +119,8 @@ const UserForm = (props) => {
 
     return (  
         <div className="container mt-0 bg-light px-4 py-5 mb-5">
-        <h2 className="ms-4">{props.title}</h2>
-        <form className="col-md-10 m-auto my-5 needs-validated" noValidate id='userForm'>
+        <h2 className="ms-4 mt-5">{props.title}</h2>
+        <form className="col-md-10 m-auto my-5 needs-validated pb-5 pt-3" noValidate id='userForm'>
             <div className="row">
                 <div className="form-group col-md-6 mt-2">
                     <input type="text" ref={firstNameInput} className="form-control" placeholder="Firstname:"></input>
