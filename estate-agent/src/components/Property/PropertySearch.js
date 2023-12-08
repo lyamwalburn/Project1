@@ -3,6 +3,7 @@ import {SALESTATUS, URLPATHS, PROPERTY_TYPES} from '../utils'
 import PropertyCard from './PropertyCard';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faRotateLeft } from '@fortawesome/free-solid-svg-icons';
+import NoResults from '../General/NoResults';
 
 const PropertySearch = () => {
 
@@ -39,7 +40,7 @@ const PropertySearch = () => {
 
 
         //status
-        searchResults = searchResults.filter(property => property.status == SALESTATUS.FORSALE)
+       // searchResults = searchResults.filter(property => property.status == SALESTATUS.FORSALE)
 
         //price
         if(document.getElementById('radioUnder').checked){
@@ -163,9 +164,11 @@ const PropertySearch = () => {
             <div className="container mt-0 bg-white p-5">
                 <div className="grid">
                     <div className="row justify-content-center text-center">
-                { filteredProperties.map(property=>(
+                {filteredProperties.length > 0 ? filteredProperties.map(property=>(
                         <PropertyCard property={property} key={property.id} manage={false}/>
-                    ))} 
+                    )) :
+                      <NoResults />  
+                    } 
                     </div>
                 </div>
             </div>

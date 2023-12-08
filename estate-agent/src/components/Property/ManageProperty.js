@@ -111,7 +111,7 @@ const ManageProperty = (props) => {
     }
 
 
-    const validateBuyer = async ()=>{
+    const validateBuyer = ()=>{
         if(buyerInput.current.value == SELECTVALUE.NOT_SELECTED){
             buyerInput.current.className = 'form-select is-invalid'
             buyerErr.current.className = 'invalid-feedback'
