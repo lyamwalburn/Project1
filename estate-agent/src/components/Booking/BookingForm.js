@@ -71,7 +71,7 @@ const BookingForm = (props) => {
         let todayDate = new Date()
         let inputDate = dateInput.current.value.split('-')
         //check year >= todays year
-        if(inputDate[0] >= todayDate.getUTCFullYear() && inputDate[1] >= todayDate.getUTCMonth()+1
+        if(inputDate[0] >= todayDate.getUTCFullYear() && (inputDate[1] >= todayDate.getUTCMonth()+1 || inputDate[0] > todayDate.getUTCFullYear())
             && inputDate[2] >=todayDate.getUTCDate()){
                 //date can be booked
                 dateInput.current.className = 'form-control is-valid mb-2'

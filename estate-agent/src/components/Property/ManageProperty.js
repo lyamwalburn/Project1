@@ -55,9 +55,16 @@ const ManageProperty = (props) => {
             status: SALESTATUS.FORSALE}
 
         if(newProp.status == SALESTATUS.SOLD){
-           await removeBookings(newProp.id)
+          // await removeBookings(newProp.id)
+          await deleteAll(newProp.id).then(()=>{updateProperty(newProp)})
+        } else {
+            updateProperty(newProp)
         }
 
+        
+    }
+
+    const updateProperty = async (newProp)=>{
         if(property.status == SALESTATUS.SOLD || validateBuyer()){
         
             await fetch(`${URLPATHS.PROPERTY}/${property.id}`,{
@@ -76,7 +83,7 @@ const ManageProperty = (props) => {
     }
 
     const removeBookings = async (id)=>{
-        let toCancel = bookings.filter(p=> p.propertyId == id)
+        let toCancel = bookings.filter(b=> b.propertyId == id)
          toCancel.forEach(booking =>{
             fetch(`${URLPATHS.BOOKING}/${booking.id}`,{
                 method:"delete"
@@ -84,7 +91,27 @@ const ManageProperty = (props) => {
         })
     }
 
-    const validateBuyer = async ()=>{
+    
+    //deletes all the bookings for a given property id
+    const deleteAll= async (id)=>{
+        const headers = {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+            }
+            
+            let delArray = bookings.filter(p=> p.propertyId == id)
+            let delFetch = delArray.map(booking => {
+            return fetch(URLPATHS.BOOKING +'/'+ booking.id, {
+            method: 'DELETE',
+            headers: headers,
+            });
+            });
+            
+            return await Promise.all([delFetch])
+    }
+
+
+    const validateBuyer = ()=>{
         if(buyerInput.current.value == SELECTVALUE.NOT_SELECTED){
             buyerInput.current.className = 'form-select is-invalid'
             buyerErr.current.className = 'invalid-feedback'

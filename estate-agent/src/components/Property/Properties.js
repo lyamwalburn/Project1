@@ -35,6 +35,7 @@ const Properties = () => {
             <div className="container mt-4">
                 <div className="grid">
                     <div className="row d-flex justify-content-center text-center">
+                        <h2 className="text-start">Properties</h2>
                         {sellerId != null ? properties.filter((p)=> p.sellerId == sellerId).length > 0 ? properties.filter((p)=> p.sellerId == sellerId).map((property,i)=>(
                             <PropertyCard property={property} key={id+i}/>
                             )):
@@ -47,7 +48,6 @@ const Properties = () => {
                         : properties.filter(p=> p.status == SALESTATUS.SOLD).length > 0 ?
                             properties.filter(p=> p.status == SALESTATUS.SOLD).map((property,i)=>(
                             <>
-                                <h2 className="text-start">Sold Properties</h2>
                                 <PropertyCard property={property} key={id+i}/>
                             </>
                             
