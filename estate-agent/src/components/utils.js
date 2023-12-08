@@ -42,7 +42,7 @@ export const USER_TYPE = {
 
 export const validName = new RegExp('^[A-Z][A-Za-z]+')
 
-export const validNumbers = new RegExp('^[0-9]*$')
+export const validNumbers = new RegExp('^[0-9]+$')
 
 export const timeSlots = [
     {
