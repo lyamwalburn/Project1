@@ -16,18 +16,26 @@ const Properties = () => {
 
     useEffect(()=>{
         fetchProperties()
-        console.log(`seller id = ${sellerId}`)
-        console.log(`buyer id = ${buyerId}`)
+       // console.log(`seller id = ${sellerId}`)
+       // console.log(`buyer id = ${buyerId}`)
     },[])
 
     const fetchProperties = ()=>{
-        fetch(URLPATHS.PROPERTY).then(res=>res.json().then(setProperties))
+        fetch(URLPATHS.PROPERTY, {
+            mode: 'cors',
+            method: 'GET',
+            headers: {'Content-Type':'application/json'}
+          })
+        .then(res=>res.json().then(setProperties))
     }
 
     const deleteProperty = (id)=>{
-        fetch(`${URLPATHS.PROPERTY}/${id}`,{
-            method:"delete"
-        }).then(fetchProperties)
+        fetch(`${URLPATHS.PROPERTY}/${id}`, {
+            mode: 'cors',
+            method: 'DELETE',
+            headers: {'Content-Type':'application/json'}
+          })
+        .then(fetchProperties)
     }
 
     return ( 

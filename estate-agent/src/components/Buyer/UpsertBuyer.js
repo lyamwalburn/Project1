@@ -6,20 +6,22 @@ const UpsertBuyer = () => {
     const {buyerId} = useParams()
 
     const createBuyer = (newBuyer)=>{
-        fetch(URLPATHS.BUYERS,{
-                method:"POST",
-                headers:{"Content-Type": "application/json"},
-                body:JSON.stringify(newBuyer)
-            })
+        fetch(URLPATHS.BUYERS, {
+            mode: 'cors',
+            method: 'POST',
+            headers: {'Content-Type':'application/json'},
+            body:JSON.stringify(newBuyer)
+          })
     }
 
     const EditBuyer = (buyer)=>{
         console.log(buyer)
-        fetch(`${URLPATHS.BUYERS}/${buyer.id}`,{
-            method:"PUT",
-            headers:{"Content-Type": "application/json"},
+        fetch(`${URLPATHS.BUYERS}/${buyer.id}`, {
+            mode: 'cors',
+            method: 'PUT',
+            headers: {'Content-Type':'application/json'},
             body:JSON.stringify(buyer)
-        })
+          })
     }
 
 

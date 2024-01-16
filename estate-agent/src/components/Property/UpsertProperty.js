@@ -9,7 +9,9 @@ const UpsertProperty = () => {
     const navigate = useNavigate()
 
     const createProperty = (newProperty)=>{
+
         fetch(URLPATHS.PROPERTY,{
+                mode: 'cors',
                 method:"POST",
                 headers:{"Content-Type": "application/json"},
                 body:JSON.stringify(newProperty)
@@ -20,6 +22,7 @@ const UpsertProperty = () => {
     const EditProperty = (property)=>{
         console.log(property)
         fetch(`${URLPATHS.PROPERTY}/${property.id}`,{
+            mode: 'cors',
             method:"PUT",
             headers:{"Content-Type": "application/json"},
             body:JSON.stringify(property)

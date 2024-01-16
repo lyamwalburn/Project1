@@ -48,8 +48,6 @@ As React is a new framework for myself I struggled to begin with to structure co
 The bookings system has also caused issues and while it currently works in its current state I do not feel that the logic has been coded in the best way. This was a stretch goal that I started later on in the weeks development and where I to repeat the project or a similar project I would take mroe time or move the more complex feature into the next sprint so it could have more focus from the begining in the initial plan as various other tasks got pushed to the side in favour of trying to simplify the code for this strech goal. Although having the project break and need to find a resolution definatley helped improve my understanding of both react and how I could improve my workflow moving forward.
 
 
-
-
 # Future development 
 
 Moving forward there are still several features I would have liked to add to this application such as 

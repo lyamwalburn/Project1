@@ -9,20 +9,23 @@ const UpsertSeller = () => {
 
     const createSeller = (newSeller)=>{
 
-        fetch(URLPATHS.SELLERS,{
-                method:"POST",
-                headers:{"Content-Type": "application/json"},
-                body:JSON.stringify(newSeller)
-            })
+        fetch(URLPATHS.SELLERS, {
+            mode: 'cors',
+            method: 'POST',
+            headers: {'Content-Type':'application/json'},
+            body:JSON.stringify(newSeller)
+          })
     }
 
-    const EditSeller = (buyer)=>{
-        console.log(buyer)
-        fetch(`${URLPATHS.SELLERS}/${buyer.id}`,{
-            method:"PUT",
-            headers:{"Content-Type": "application/json"},
-            body:JSON.stringify(buyer)
-        })
+    const EditSeller = (seller)=>{
+        console.log(seller)
+
+        fetch(`${URLPATHS.SELLERS}/${seller.id}`, {
+            mode: 'cors',
+            method: 'PUT',
+            headers: {'Content-Type':'application/json'},
+            body:JSON.stringify(seller)
+          })
     }
 
 

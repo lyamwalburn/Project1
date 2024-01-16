@@ -20,12 +20,21 @@ const BookingForm = (props) => {
     },[])
 
     const fetchBookings = ()=>{
-        fetch(URLPATHS.BOOKING).then(res=>res.json().then(setBookings))
+        fetch(URLPATHS.BOOKING, {
+            mode: 'cors',
+            method: 'GET',
+            headers: {'Content-Type':'application/json'}
+          })
+        .then(res=>res.json().then(setBookings))
     }
 
 
     const getBuyerByIdJSON = async (id) =>{
-        const res = await fetch(`${URLPATHS.BUYERS}/${id}`)
+        const res = await fetch(`${URLPATHS.BUYERS}/${id}`, {
+                                mode: 'cors',
+                                method: 'GET',
+                                headers: {'Content-Type':'application/json'}
+        })
         const data = await res.json()
         return data
     }
@@ -92,6 +101,7 @@ const BookingForm = (props) => {
     const createBooking = (booking)=>{
         console.log(booking)
         fetch(URLPATHS.BOOKING,{
+            mode: 'cors',
             method:"POST",
             headers:{"Content-Type": "application/json"},
             body:JSON.stringify(booking)

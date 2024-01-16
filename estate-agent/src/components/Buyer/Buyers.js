@@ -16,19 +16,33 @@ const Buyers = () => {
     },[])
 
     const fetchBuyers = ()=>{
-        fetch(URLPATHS.BUYERS).then(res=>res.json().then(setBuyers))
+        fetch(URLPATHS.BUYERS, {
+            mode: 'cors',
+            method: 'GET',
+            headers: {'Content-Type':'application/json'}
+          })
+        .then(res=>res.json().then(setBuyers))
     }
 
     const fetchBookings = ()=>{
-        fetch(URLPATHS.BOOKING).then(res=>res.json().then(setBookings))
+        fetch(URLPATHS.BOOKING, {
+            mode: 'cors',
+            method: 'GET',
+            headers: {'Content-Type':'application/json'}
+          })
+        .then(res=>res.json().then(setBookings))
     }
 
     const removeBookings = async (id)=>{
         let toCancel = bookings.filter(p=> p.buyerId == id)
         toCancel.forEach(booking =>{
-            fetch(`${URLPATHS.BOOKING}/${booking.id}`,{
-                method:"delete"
-            }).then()
+
+            fetch(`${URLPATHS.BOOKING}/${booking.id}`, {
+                mode: 'cors',
+                method: 'Delete',
+                headers: {'Content-Type':'application/json'}
+              })
+            .then()
         })
     }
 
@@ -37,9 +51,12 @@ const Buyers = () => {
         //check for any bookings this buyer has and delete them
         await removeBookings(id)
 
-        fetch(`${URL}/${id}`,{
-            method:"delete"
-        }).then(fetchBuyers)
+        fetch(`${URL}/${id}`, {
+            mode: 'cors',
+            method: 'Delete',
+            headers: {'Content-Type':'application/json'}
+          })
+        .then(fetchBuyers)
     }
 
     return ( 

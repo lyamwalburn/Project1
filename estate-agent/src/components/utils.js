@@ -1,9 +1,9 @@
 export const URLPATHS = {
-    BASE: 'http://localhost:8081',
-    SELLERS: 'http://localhost:8081/seller',
-    BUYERS: 'http://localhost:8081/buyer',
-    PROPERTY: 'http://localhost:8081/property',
-    BOOKING: 'http://localhost:8081/booking'
+    BASE: 'https://localhost:7203',
+    SELLERS: 'https://localhost:7203/Seller',
+    BUYERS: 'https://localhost:7203/Buyer',
+    PROPERTY: 'https://localhost:7203/Property',
+    BOOKING: 'https://localhost:7203/Booking'
   }
 
 export const ROUTES = {

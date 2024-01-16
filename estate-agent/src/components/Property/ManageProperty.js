@@ -25,21 +25,42 @@ const ManageProperty = (props) => {
     },[])
 
     const fetchProperty = async ()=>{
-       await fetch(`${URLPATHS.PROPERTY}/${propertyId}`).then(res=>res.json().then(setProperty))
+       await fetch(`${URLPATHS.PROPERTY}/${propertyId}`, {
+        mode: 'cors',
+        method: 'GET',
+        headers: {'Content-Type':'application/json'}
+      })
+       
+       .then(res=>res.json().then(setProperty))
     }
 
     const fetchBookings = async ()=>{
-        await fetch(`${URLPATHS.BOOKING}`).then(res=>res.json().then(setBookings))
+        await fetch(`${URLPATHS.BOOKING}`, {
+            mode: 'cors',
+            method: 'GET',
+            headers: {'Content-Type':'application/json'}
+          })
+           
+        .then(res=>res.json().then(setBookings))
     }
 
     const fetchBuyers = async () =>{
-        await fetch(`${URLPATHS.BUYERS}`).then(res=>res.json().then(setBuyers))
+        await fetch(`${URLPATHS.BUYERS}`, {
+            mode: 'cors',
+            method: 'GET',
+            headers: {'Content-Type':'application/json'}
+          })
+           
+        .then(res=>res.json().then(setBuyers))
     }
 
     const deleteBooking = (id) =>{
-        fetch(`${URLPATHS.BOOKING}/${id}`,{
-            method:"delete"
-        }).then(fetchBookings)
+        fetch(`${URLPATHS.BOOKING}/${id}`, {
+            mode: 'cors',
+            method: 'DELETE',
+            headers: {'Content-Type':'application/json'}
+          })    
+       .then(fetchBookings)
     }
 
     const saveProperty = async (e)=>{

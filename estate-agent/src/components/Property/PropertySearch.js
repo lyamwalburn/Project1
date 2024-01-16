@@ -19,7 +19,12 @@ const PropertySearch = () => {
     const [filteredProperties,setFilteredProperties] = useState([])
 
     useEffect(()=>{
-        fetch(URLPATHS.PROPERTY).then(res=>res.json().then(getdata))
+        fetch(URLPATHS.PROPERTY, {
+            mode: 'cors',
+            method: 'Get',
+            headers: {'Content-Type':'application/json'}
+          })
+        .then(res=>res.json().then(getdata))
         priceRef.current.value = 100000
         priceSlider.current.value = 100000
     },[])

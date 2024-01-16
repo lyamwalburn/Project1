@@ -25,7 +25,12 @@ const PropertyForm = (props) => {
     const sellerErr = useRef(null)
 
     useEffect(()=>{
-        fetch(URLPATHS.SELLERS).then(res=>res.json().then(setSellers))
+        fetch(URLPATHS.SELLERS, {
+            mode: 'cors',
+            method: 'GET',
+            headers: {'Content-Type':'application/json'}
+          })
+        .then(res=>res.json().then(setSellers))
         
         if(props.id != PATH_IDS.NEW){
             fetchProperty() 
@@ -33,7 +38,12 @@ const PropertyForm = (props) => {
     },[])
 
     async function fetchProperty(){
-        const res = await fetch(`${URLPATHS.PROPERTY}/${props.id}`)
+        
+        const res = await fetch(`${URLPATHS.PROPERTY}/${props.id}`, {
+            mode: 'cors',
+            method: 'GET',
+            headers: {'Content-Type':'application/json'}
+          })
         const data = await res.json()
         addressInput.current.value = data.address
         postcodeInput.current.value = data.postcode
