@@ -9,7 +9,7 @@ const UpsertProperty = () => {
     const navigate = useNavigate()
 
     const createProperty = (newProperty)=>{
-
+        console.log(newProperty)
         fetch(URLPATHS.PROPERTY,{
                 mode: 'cors',
                 method:"POST",
