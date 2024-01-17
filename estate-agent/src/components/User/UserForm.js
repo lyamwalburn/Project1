@@ -46,10 +46,12 @@ const UserForm = (props) => {
         console.log('logging an error in userform')
         console.log(res.errors.FirstName)
         displayErrorOnFormField(firstNameInput,firstNameErr,res.errors.FirstName)
-
+        displayErrorOnFormField(surnameInput,surnameErr,res.errors.Surname)
+        displayErrorOnFormField(phoneInput,phoneErr,res.errors.Phone)
     }
 
     const displayErrorOnFormField = (formInput,formError,errorText)=>{
+        console.log(errorText)
         formInput.current.className = 'form-control is-invalid'
         formError.current.className = 'invalid-feedback'
         formError.current.innerHTML = errorText
