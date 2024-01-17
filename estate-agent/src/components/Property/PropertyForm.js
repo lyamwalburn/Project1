@@ -73,13 +73,13 @@ const PropertyForm = (props) => {
             property.id = props.id
         }
 
-       if( validateProperty(property)){
+       //if( validatePropertyFE(property)){
             props.saveProperty(property)
-       }
+       //}
     }
 
 
-    const validateProperty = (property) =>{
+    const validatePropertyFE = (property) =>{
 
         let isValid = true
         if(property.address.length <= 0){

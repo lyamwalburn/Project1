@@ -39,7 +39,7 @@ const BookingForm = (props) => {
         return data
     }
 
-    const validateBooking = ()=>{
+    const validateBookingFE = ()=>{
         let isValid = true
 
         //buyerid != not-selected
@@ -98,8 +98,15 @@ const BookingForm = (props) => {
         return isValid
     }
 
-    const createBooking = (booking)=>{
-        console.log(booking)
+    const createBooking = (/*booking*/)=>{
+        //console.log(booking)
+        let booking = {
+            buyerId: buyerInput.current.value,
+            propertyId: props.property.id,
+            timeslot: timeslotInput.current.value,
+            date: dateInput.current.value
+        }
+
         fetch(URLPATHS.BOOKING,{
             mode: 'cors',
             method:"POST",
@@ -124,9 +131,9 @@ const BookingForm = (props) => {
 
     const tryCreateBooking = ()=>{
 
-        if(!validateBooking()){
-            return
-        }
+        // if(!validateBooking()){
+        //     return
+        // }
 
         let newBooking = {
             buyerId: buyerInput.current.value,
@@ -241,7 +248,7 @@ const BookingForm = (props) => {
             <span ref={timeErr}></span>
             <input className="mb-2 form-control" type="date" ref={dateInput}/>
             <span ref={dateErr}></span>
-            <button className="btn btn-primary col-12" onClick={()=>{ tryCreateBooking()}}>Make Booking</button>
+            <button className="btn btn-primary col-12" onClick={()=>{ createBooking()}}>Make Booking</button>
         </div>
 
      );

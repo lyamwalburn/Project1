@@ -34,14 +34,14 @@ const UserForm = (props) => {
             user.id = props.id
         }
 
-        if(validateUser(user)){
+        //if(validateUserFE(user)){
             props.create(user)
             //navigate(props.route)
-        }
+        //}
 
     }
 
-    const validateUser = (user)=>{
+    const validateUserFE = (user)=>{
         let isValid = true
 
         if(!validName.test(user.firstName)){
