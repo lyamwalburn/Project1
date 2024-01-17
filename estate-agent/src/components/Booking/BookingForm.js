@@ -100,11 +100,17 @@ const BookingForm = (props) => {
 
     const createBooking = (/*booking*/)=>{
         //console.log(booking)
+
+        const bookingDateTime = new Date()
+        let inputDate = dateInput.current.value.split('-')
+        bookingDateTime.setUTCFullYear(inputDate[0],inputDate[1]-1,inputDate[2])
+        bookingDateTime.setHours(timeslotInput.current.value)
+        bookingDateTime.setMinutes(0,0)
+        console.log(bookingDateTime)
         let booking = {
             buyerId: buyerInput.current.value,
             propertyId: props.property.id,
-            timeslot: timeslotInput.current.value,
-            date: dateInput.current.value
+            time: bookingDateTime
         }
 
         fetch(URLPATHS.BOOKING,{
@@ -115,7 +121,7 @@ const BookingForm = (props) => {
         })
         props.refreshBookings()
         fetchBookings() 
-        resetBookingInputs()
+        resetBookingInputs() 
     }
 
     const resetBookingInputs = ()=>{
@@ -242,7 +248,7 @@ const BookingForm = (props) => {
             <select ref={timeslotInput} className="form-select mb-2" onChange={()=>{timeslotInput.current.className = 'form-select mb-2'}}>
                 <option defaultValue={SELECTVALUE.NOT_SELECTED} value={SELECTVALUE.NOT_SELECTED}>Timeslot....</option>
                 {timeSlots.map((slot)=>(
-                    <option value={slot.id} key={slot.id*4}>{slot.time}</option>
+                    <option value={slot.time} key={slot.id*4}>{slot.value}</option>
                 ))}
             </select>
             <span ref={timeErr}></span>
