@@ -75,13 +75,14 @@ const ManageProperty = (props) => {
             buyerId: null,
             status: SALESTATUS.FORSALE}
 
+            /* logic mvoed to backend
         if(newProp.status == SALESTATUS.SOLD){
           // await removeBookings(newProp.id)
           await deleteAll(newProp.id).then(()=>{updateProperty(newProp)})
         } else {
+            */
             updateProperty(newProp)
-        }
-
+        //}
         
     }
 

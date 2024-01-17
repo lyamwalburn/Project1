@@ -1,20 +1,23 @@
 import { useNavigate, useParams } from "react-router-dom"
 import UserForm from "../User/UserForm"
 import { PATH_IDS, ROUTES, URLPATHS, USER_TYPE, validName } from "../utils"
+import { useState } from "react"
 
 const UpsertSeller = () => {
 
 
     const {sellerId} = useParams()
     const navigate = useNavigate()
-    const createSeller = (newSeller)=>{
-
+    const [errors,setErrors] = useState([])
+    let errorCB
+    const createSeller = (newSeller,errorReportCB)=>{
+        errorCB = errorReportCB
         fetch(URLPATHS.SELLERS, {
             mode: 'cors',
             method: 'POST',
             headers: {'Content-Type':'application/json'},
             body:JSON.stringify(newSeller)
-          })
+          }).then(res=>res.json().then(handleResponse))
     }
 
     const EditSeller = (seller)=>{
@@ -26,6 +29,15 @@ const UpsertSeller = () => {
             headers: {'Content-Type':'application/json'},
             body:JSON.stringify(seller)
           }).then(res=>res.json().then(redirectIf200(res)))
+    }
+
+    const handleResponse = (res)=>{
+        console.log(res)
+        switch(res.status){
+            case 400 : console.log('400 response upsertseller'); errorCB(res); break;
+            case 200 : redirectIf200(res); break;
+            default: console.log(res);
+        }
     }
 
     
@@ -41,7 +53,7 @@ const UpsertSeller = () => {
          
             {sellerId == PATH_IDS.NEW ?
                 <>
-                <UserForm create={createSeller} type={USER_TYPE.SELLER} route={ROUTES.SELLERS} id={sellerId} title='Create Seller' />
+                <UserForm create={createSeller} type={USER_TYPE.SELLER} route={ROUTES.SELLERS} id={sellerId} title='Create Seller' errors={errors}/>
                 </>
             :
                 <>

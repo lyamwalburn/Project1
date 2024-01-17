@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import {Link, useNavigate} from 'react-router-dom'
 import { PATH_IDS, validName, validNumbers } from "../utils";
 
@@ -18,7 +18,7 @@ const UserForm = (props) => {
     const postcodeErr= useRef(null)
     const phoneErr= useRef(null)
 
-
+    
     const saveUser = (e)=>{
 
         e.preventDefault()
@@ -35,10 +35,24 @@ const UserForm = (props) => {
         }
 
         //if(validateUserFE(user)){
-            props.create(user)
+
+           props.create(user,errorReportCB)
             //navigate(props.route)
         //}
 
+    }
+
+    const errorReportCB = (res) =>{
+        console.log('logging an error in userform')
+        console.log(res.errors.FirstName)
+        displayErrorOnFormField(firstNameInput,firstNameErr,res.errors.FirstName)
+
+    }
+
+    const displayErrorOnFormField = (formInput,formError,errorText)=>{
+        formInput.current.className = 'form-control is-invalid'
+        formError.current.className = 'invalid-feedback'
+        formError.current.innerHTML = errorText
     }
 
     const validateUserFE = (user)=>{
