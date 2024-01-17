@@ -15,7 +15,8 @@ export const ROUTES = {
 
  export const SALESTATUS = {
     FORSALE: 'FOR SALE',
-    SOLD: 'SOLD'
+    SOLD: 'SOLD',
+    WITHDRAWN: 'WITHDRAWN'
 }
 
 export const SELECTVALUE = {
