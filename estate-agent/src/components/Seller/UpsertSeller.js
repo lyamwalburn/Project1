@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import UserForm from "../User/UserForm"
 import { PATH_IDS, ROUTES, URLPATHS, USER_TYPE, validName } from "../utils"
 
@@ -6,7 +6,7 @@ const UpsertSeller = () => {
 
 
     const {sellerId} = useParams()
-
+    const navigate = useNavigate()
     const createSeller = (newSeller)=>{
 
         fetch(URLPATHS.SELLERS, {
@@ -25,9 +25,16 @@ const UpsertSeller = () => {
             method: 'PUT',
             headers: {'Content-Type':'application/json'},
             body:JSON.stringify(seller)
-          })
+          }).then(res=>res.json().then(redirectIf200(res)))
     }
 
+    
+    const redirectIf200 = (res)=>{
+        console.log(res)
+        if(res.status == 200){
+            navigate('/sellers')
+        }     
+    }
 
     return ( 
         <>

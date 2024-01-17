@@ -10,24 +10,44 @@ const UpsertProperty = () => {
 
     const createProperty = (newProperty)=>{
         console.log(newProperty)
-        fetch(URLPATHS.PROPERTY,{
+        try{
+            fetch(URLPATHS.PROPERTY,{
                 mode: 'cors',
                 method:"POST",
                 headers:{"Content-Type": "application/json"},
                 body:JSON.stringify(newProperty)
-            })
-            navigate('/')
+            }).then(res=>res.json().then(
+                redirectIf200(res)
+            ))
+        } catch (err){
+            console.log(err)
+        }
+        
+            //navigate('/')
     }
 
     const EditProperty = (property)=>{
         console.log(property)
+        try{
         fetch(`${URLPATHS.PROPERTY}/${property.id}`,{
             mode: 'cors',
             method:"PUT",
             headers:{"Content-Type": "application/json"},
             body:JSON.stringify(property)
-        })
-        navigate('/')
+        }).then(res=>res.json().then(
+            redirectIf200(res)
+        ))
+        } catch (err){
+            console.log(err)
+        }
+    }
+
+    
+    const redirectIf200 = (res)=>{
+        console.log(res)
+        if(res.status == 200){
+            navigate('/')
+        }     
     }
 
     return ( <>

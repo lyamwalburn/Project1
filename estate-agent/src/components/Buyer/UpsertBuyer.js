@@ -1,8 +1,8 @@
-import { Link, useParams } from "react-router-dom"
+import { Link, redirect, useParams,useNavigate } from "react-router-dom"
 import UserForm from "../User/UserForm"
 import { PATH_IDS, ROUTES, URLPATHS, USER_TYPE } from "../utils"
 const UpsertBuyer = () => {
-
+    const navigate = useNavigate()
     const {buyerId} = useParams()
 
     const createBuyer = (newBuyer)=>{
@@ -16,14 +16,25 @@ const UpsertBuyer = () => {
 
     const EditBuyer = (buyer)=>{
         console.log(buyer)
+        try{
         fetch(`${URLPATHS.BUYERS}/${buyer.id}`, {
             mode: 'cors',
             method: 'PUT',
             headers: {'Content-Type':'application/json'},
             body:JSON.stringify(buyer)
-          })
+          }).then(res=>res.json().then(redirectIf200(res)))
+        }
+        catch (err){
+            console.err(err)
+        }
     }
 
+    const redirectIf200 = (res)=>{
+        console.log(res)
+        if(res.status == 200){
+            navigate('/buyers')
+        }     
+    }
 
     return ( 
         <>

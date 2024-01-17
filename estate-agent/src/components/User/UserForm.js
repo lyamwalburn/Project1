@@ -27,7 +27,7 @@ const UserForm = (props) => {
             firstName: firstNameInput.current.value,
             surname: surnameInput.current.value,
             address: addressInput.current.value,
-            postcode: postcodeInput.current.value,
+            postCode: postcodeInput.current.value,
             phone: phoneInput.current.value
         }
         if(props.id != PATH_IDS.NEW){
@@ -36,7 +36,7 @@ const UserForm = (props) => {
 
         if(validateUser(user)){
             props.create(user)
-            navigate(props.route)
+            //navigate(props.route)
         }
 
     }
@@ -74,7 +74,7 @@ const UserForm = (props) => {
             addressErr.current.className = ''
             addressErr.current.innerHTML = ''
         }
-        if(user.postcode.length <= 0){
+        if(user.postCode.length <= 0){
             postcodeInput.current.className = 'form-control is-invalid'
             postcodeErr.current.className = 'invalid-feedback'
             postcodeErr.current.innerHTML = 'Please enter a postal code'

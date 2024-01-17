@@ -21,7 +21,7 @@ const PropertySearch = () => {
     useEffect(()=>{
         fetch(URLPATHS.PROPERTY, {
             mode: 'cors',
-            method: 'Get',
+            method: 'GET',
             headers: {'Content-Type':'application/json'}
           })
         .then(res=>res.json().then(getdata))
@@ -43,7 +43,7 @@ const PropertySearch = () => {
     const filteredSearch = ()=>{
         let searchResults = [...properties]
 
-
+        console.log(searchResults)
         //status
        // searchResults = searchResults.filter(property => property.status == SALESTATUS.FORSALE)
 
@@ -55,19 +55,19 @@ const PropertySearch = () => {
         }
 
         //bedrooms
-        searchResults = searchResults.filter(property => property.bedroom >= bedroomInput.current.value)
+        searchResults = searchResults.filter(property => property.numberOfBedrooms >= bedroomInput.current.value)
 
 
         //bathrooms
-        searchResults = searchResults.filter(property => property.bathroom >= bathroomInput.current.value)
+        searchResults = searchResults.filter(property => property.numberOfBathrooms >= bathroomInput.current.value)
 
         //garden
         if(document.getElementById('radioGardenAny').checked){
-            searchResults = searchResults.filter(property => property.garden >= 0) //no preference on garden
+             searchResults = searchResults//show both with and without garden
         } else if(document.getElementById('radioGardenTrue').checked){
-            searchResults = searchResults.filter(property => property.garden > 0) //has a garden
+            searchResults = searchResults.filter(property => property.garden == true) //has a garden
         } else {
-            searchResults = searchResults.filter(property => property.garden == 0) //no garden
+            searchResults = searchResults.filter(property => property.garden == false) //no garden
         }
 
         //type
@@ -75,7 +75,9 @@ const PropertySearch = () => {
             searchResults = searchResults.filter(property => property.type == typeInput.current.value)
         }
 
+        //let fp = searchResults.slice();
         setFilteredProperties(searchResults)
+        //console.log(fp)
     }
 
     const clearFilters = ()=>{

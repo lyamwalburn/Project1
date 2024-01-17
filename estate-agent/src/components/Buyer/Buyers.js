@@ -6,7 +6,7 @@ import { ROUTES, URLPATHS, USER_TYPE } from "../utils";
 
 
 const Buyers = () => {
-
+    
     const [buyers,setBuyers] = useState([])
     const [bookings,setBookings] = useState([])
 
@@ -16,6 +16,7 @@ const Buyers = () => {
     },[])
 
     const fetchBuyers = ()=>{
+        console.log('fetching buyers')
         fetch(URLPATHS.BUYERS, {
             mode: 'cors',
             method: 'GET',
