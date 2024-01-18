@@ -20,12 +20,18 @@ const BookingForm = (props) => {
     },[])
 
     const fetchBookings = ()=>{
+        const token = sessionStorage.getItem("jwt")
+        try{
         fetch(URLPATHS.BOOKING, {
             mode: 'cors',
             method: 'GET',
-            headers: {'Content-Type':'application/json'}
+            headers: {'Content-Type':'application/json',
+            'Authorization': `Bearer ${token}`}
           })
         .then(res=>res.json().then(setBookings))
+        } catch(error){
+            //handle error
+        }
     }
 
 
@@ -116,13 +122,18 @@ const BookingForm = (props) => {
             console.log(buyerInput.current.value)
             booking["buyerId"] = buyerInput.current.value
         }
-
+        const token = sessionStorage.getItem("jwt")
+        try{
         fetch(URLPATHS.BOOKING,{
             mode: 'cors',
             method:"POST",
-            headers:{"Content-Type": "application/json"},
+            headers: {'Content-Type':'application/json',
+            'Authorization': `Bearer ${token}`},
             body:JSON.stringify(booking)
         }).then(res=>res.json().then(handleResponse))
+        } catch(error){
+            //handle errors
+        }
     }
 
     const errorReportCB = (res) =>{

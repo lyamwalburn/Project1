@@ -10,15 +10,18 @@ const UpsertProperty = () => {
     let errorCB
     const createProperty = (newProperty,errorReportCB)=>{
         errorCB = errorReportCB
+        const token = sessionStorage.getItem("jwt")
         try{
             fetch(URLPATHS.PROPERTY,{
                 mode: 'cors',
                 method:"POST",
-                headers:{"Content-Type": "application/json"},
+                headers: {'Content-Type':'application/json',
+                'Authorization': `Bearer ${token}`},
                 body:JSON.stringify(newProperty)
             }).then(res=>res.json().then(handleResponse))
         } catch (err){
             console.log(err)
+            //handle error
         }
         
             //navigate('/')
@@ -26,15 +29,18 @@ const UpsertProperty = () => {
 
     const EditProperty = (property,errorReportCB)=>{
         errorCB = errorReportCB
+        const token = sessionStorage.getItem("jwt")
         try{
         fetch(`${URLPATHS.PROPERTY}/${property.id}`,{
             mode: 'cors',
             method:"PUT",
-            headers:{"Content-Type": "application/json"},
+            headers: {'Content-Type':'application/json',
+            'Authorization': `Bearer ${token}`},
             body:JSON.stringify(property)
         }).then(res=>res.json().then(handleResponse))
         } catch (err){
             console.log(err)
+            //handle error
         }
     }
 

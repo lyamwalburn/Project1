@@ -25,6 +25,7 @@ const NavBar = () => {
           <Link to='/buyers' className="nav-item nav-link">Buyers</Link>
           <Link to='/properties' className="nav-item nav-link">Sold Properties</Link>
           <Link to='/properties/withdrawn' className="nav-item nav-link">Withdrawn Properties</Link>
+          <Link to='/signin' className="nav-item nav-link">Sign In</Link>
           </div>
         </div>
       </nav>

@@ -14,21 +14,33 @@ const Sellers = () => {
     },[])
 
     const fetchSellers = ()=>{
+        const token = sessionStorage.getItem("jwt")
+        try{
         fetch(URLPATHS.SELLERS, {
             mode: 'cors',
             method: 'GET',
-            headers: {'Content-Type':'application/json'}
+            headers: {'Content-Type':'application/json',
+                            'Authorization': `Bearer ${token}`}
           })
         .then(res=>res.json().then(setSellers))
+        } catch (error){
+            //handle errors
+        }
     }
 
     const deleteSeller = (id)=>{
+        const token = sessionStorage.getItem("jwt")
+        try{
         fetch(`${URLPATHS.SELLERS}/${id}`, {
             mode: 'cors',
             method: 'DELETE',
-            headers: {'Content-Type':'application/json'}
+            headers: {'Content-Type':'application/json',
+            'Authorization': `Bearer ${token}`}
           })
         .then(fetchSellers)
+        } catch (error){
+            //handle errors
+        }
     }
 
     return ( 

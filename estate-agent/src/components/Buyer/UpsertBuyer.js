@@ -7,26 +7,36 @@ const UpsertBuyer = () => {
     let errorCB
     const createBuyer = (newBuyer,errorReportCB)=>{
         errorCB = errorReportCB
+        const token = sessionStorage.getItem("jwt")
+        try{
         fetch(URLPATHS.BUYERS, {
             mode: 'cors',
             method: 'POST',
-            headers: {'Content-Type':'application/json'},
+            headers: {'Content-Type':'application/json',
+                            'Authorization': `Bearer ${token}`},
             body:JSON.stringify(newBuyer)
           }).then(res=>res.json().then(handleResponse))
+        } catch(error){
+            //handle errors
+
+        }
     }
 
     const EditBuyer = (buyer,errorReportCB)=>{
        // console.log(buyer)
         errorCB = errorReportCB
+        const token = sessionStorage.getItem("jwt")
         try{
         fetch(`${URLPATHS.BUYERS}/${buyer.id}`, {
             mode: 'cors',
             method: 'PUT',
-            headers: {'Content-Type':'application/json'},
+            headers: {'Content-Type':'application/json',
+            'Authorization': `Bearer ${token}`},
             body:JSON.stringify(buyer)
           }).then(res=>res.json().then(handleResponse))
         }
         catch (err){
+            //handle errors
             console.err(err)
         }
     }

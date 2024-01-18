@@ -12,23 +12,37 @@ const UpsertSeller = () => {
     let errorCB
     const createSeller = (newSeller,errorReportCB)=>{
         errorCB = errorReportCB
-        fetch(URLPATHS.SELLERS, {
-            mode: 'cors',
-            method: 'POST',
-            headers: {'Content-Type':'application/json'},
-            body:JSON.stringify(newSeller)
-          }).then(res=>res.json().then(handleResponse))
+        const token = sessionStorage.getItem("jwt")
+        try{
+            fetch(URLPATHS.SELLERS, {
+                mode: 'cors',
+                method: 'POST',
+                headers: {'Content-Type':'application/json',
+                            'Authorization': `Bearer ${token}`},
+                body:JSON.stringify(newSeller)
+            }).then(res=>res.json().then(handleResponse))
+        } catch (error) {
+            //handle errors
+
+        }
     }
 
     const EditSeller = (seller,errorReportCB)=>{
         console.log(seller)
         errorCB = errorReportCB
-        fetch(`${URLPATHS.SELLERS}/${seller.id}`, {
-            mode: 'cors',
-            method: 'PUT',
-            headers: {'Content-Type':'application/json'},
-            body:JSON.stringify(seller)
-          }).then(res=>res.json().then(handleResponse))
+        const token = sessionStorage.getItem("jwt")
+        try{
+            fetch(`${URLPATHS.SELLERS}/${seller.id}`, {
+                mode: 'cors',
+                method: 'PUT',
+                headers: {'Content-Type':'application/json',
+                            'Authorization': `Bearer ${token}`},
+                body:JSON.stringify(seller)
+            }).then(res=>res.json().then(handleResponse))
+        } catch(error){
+            //handle errors
+            console.log(error)
+        }
     }
 
     const handleResponse = (res)=>{

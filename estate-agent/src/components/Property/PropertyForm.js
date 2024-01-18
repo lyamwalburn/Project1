@@ -25,13 +25,18 @@ const PropertyForm = (props) => {
     const sellerErr = useRef(null)
 
     useEffect(()=>{
+        const token = sessionStorage.getItem("jwt")
+        try{
         fetch(URLPATHS.SELLERS, {
             mode: 'cors',
             method: 'GET',
-            headers: {'Content-Type':'application/json'}
+            headers: {'Content-Type':'application/json',
+            'Authorization': `Bearer ${token}`}
           })
         .then(res=>res.json().then(setSellers))
-        
+        } catch(error){
+            //handle error
+        }
         if(props.id != PATH_IDS.NEW){
             fetchProperty() 
         }
