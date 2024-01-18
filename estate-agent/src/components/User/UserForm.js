@@ -44,7 +44,7 @@ const UserForm = (props) => {
 
     const errorReportCB = (res) =>{
         console.log('logging an error in userform')
-        console.log(res.errors.FirstName)
+        console.log(res)
         Object.hasOwn(res.errors,'FirstName') ?
             displayErrorOnFormField(firstNameInput,firstNameErr,res.errors.FirstName) :
             displayValidOnFormField(firstNameInput,firstNameErr)
@@ -146,7 +146,7 @@ const UserForm = (props) => {
         firstNameInput.current.value = data.firstName
         surnameInput.current.value = data.surname
         addressInput.current.value = data.address
-        postcodeInput.current.value = data.postcode
+        postcodeInput.current.value = data.postCode
         phoneInput.current.value = data.phone
 
     }

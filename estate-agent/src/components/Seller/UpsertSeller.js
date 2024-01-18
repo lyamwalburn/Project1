@@ -20,15 +20,15 @@ const UpsertSeller = () => {
           }).then(res=>res.json().then(handleResponse))
     }
 
-    const EditSeller = (seller)=>{
+    const EditSeller = (seller,errorReportCB)=>{
         console.log(seller)
-
+        errorCB = errorReportCB
         fetch(`${URLPATHS.SELLERS}/${seller.id}`, {
             mode: 'cors',
             method: 'PUT',
             headers: {'Content-Type':'application/json'},
             body:JSON.stringify(seller)
-          }).then(res=>res.json().then(redirectIf200(res)))
+          }).then(res=>res.json().then(handleResponse))
     }
 
     const handleResponse = (res)=>{
@@ -36,7 +36,7 @@ const UpsertSeller = () => {
         switch(res.status){
             case 400 : console.log('400 response upsertseller'); errorCB(res); break;
             case 200 : redirectIf200(res); break;
-            default: console.log(res);
+            default: navigate('/sellers');
         }
     }
 

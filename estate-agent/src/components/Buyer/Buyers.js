@@ -52,7 +52,7 @@ const Buyers = () => {
         //check for any bookings this buyer has and delete them
         await removeBookings(id)
 
-        fetch(`${URL}/${id}`, {
+        fetch(`${URLPATHS.BUYERS}/${id}`, {
             mode: 'cors',
             method: 'Delete',
             headers: {'Content-Type':'application/json'}

@@ -4,37 +4,49 @@ import { PATH_IDS, ROUTES, URLPATHS, USER_TYPE } from "../utils"
 const UpsertBuyer = () => {
     const navigate = useNavigate()
     const {buyerId} = useParams()
-
-    const createBuyer = (newBuyer)=>{
+    let errorCB
+    const createBuyer = (newBuyer,errorReportCB)=>{
+        errorCB = errorReportCB
         fetch(URLPATHS.BUYERS, {
             mode: 'cors',
             method: 'POST',
             headers: {'Content-Type':'application/json'},
             body:JSON.stringify(newBuyer)
-          })
+          }).then(res=>res.json().then(handleResponse))
     }
 
-    const EditBuyer = (buyer)=>{
-        console.log(buyer)
+    const EditBuyer = (buyer,errorReportCB)=>{
+       // console.log(buyer)
+        errorCB = errorReportCB
         try{
         fetch(`${URLPATHS.BUYERS}/${buyer.id}`, {
             mode: 'cors',
             method: 'PUT',
             headers: {'Content-Type':'application/json'},
             body:JSON.stringify(buyer)
-          }).then(res=>res.json().then(redirectIf200(res)))
+          }).then(res=>res.json().then(handleResponse))
         }
         catch (err){
             console.err(err)
         }
     }
+    const handleResponse = (res)=>{
+        console.log(res)
+        switch(res.status){
+            case 400 : console.log('400 response upsertseller'); errorCB(res); break;
+            case 200 : redirectIf200(res); break;
+            default: navigate('/buyers');
+        }
+    }
 
+    
     const redirectIf200 = (res)=>{
         console.log(res)
         if(res.status == 200){
             navigate('/buyers')
-        }     
+        }
     }
+        
 
     return ( 
         <>
