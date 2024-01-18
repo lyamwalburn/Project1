@@ -60,22 +60,70 @@ const PropertyForm = (props) => {
         let property = {
             address: addressInput.current.value,
             postCode: postcodeInput.current.value,
-            type: typeInput.current.value,
+           // type: typeInput.current.value,
             price: parseInt(valueInput.current.value),
             numberOfBedrooms: parseInt(bedroomsInput.current.value),
             numberOfBathrooms: parseInt(bathroomsInput.current.value),
-            garden: (gardensInput.current.value === 'true'),
+           // garden: (gardensInput.current.value === 'true'),
             sellerId: parseInt(sellerInput.current.value),
             status: SALESTATUS.FORSALE,
             buyerId: null
         }
+        if(gardensInput.current.value != 'Garden'){
+            property["garden"] = (gardensInput.current.value === 'true')
+        }
+        if(typeInput.current.value != 'not selected'){
+            property["type"] = typeInput.current.value
+        }
         if(props.id != PATH_IDS.NEW){
             property.id = props.id
         }
-
+        console.log(property)
        //if( validatePropertyFE(property)){
-            props.saveProperty(property)
+            props.saveProperty(property,errorReportCB)
        //}
+    }
+
+    const errorReportCB = (res) =>{
+        console.log('logging an error in propertyform')
+        console.log(res)
+        Object.hasOwn(res.errors,'Address') ?
+            displayErrorOnFormField(addressInput,addressErr,res.errors.Address) :
+            displayValidOnFormField(addressInput,addressErr)
+        Object.hasOwn(res.errors,'NumberOfBathrooms') ?
+            displayErrorOnFormField(bathroomsInput,bathroomsErr,res.errors.NumberOfBathrooms) :
+            displayValidOnFormField(bathroomsInput,bathroomsErr)
+        Object.hasOwn(res.errors,'NumberOfBedrooms') ?
+            displayErrorOnFormField(bedroomsInput,bedroomsErr,res.errors.NumberOfBedrooms) :
+            displayValidOnFormField(bedroomsInput,bedroomsErr)
+        Object.hasOwn(res.errors,'PostCode') ?
+            displayErrorOnFormField(postcodeInput,postcodeErr,res.errors.PostCode) :
+            displayValidOnFormField(postcodeInput,postcodeErr)
+        Object.hasOwn(res.errors,'Price') ?
+            displayErrorOnFormField(valueInput,valueErr,res.errors.Price) :
+            displayValidOnFormField(valueInput,valueErr)
+        Object.hasOwn(res.errors,'SellerId') ?
+            displayErrorOnFormField(sellerInput,sellerErr,res.errors.SellerId) :
+            displayValidOnFormField(sellerInput,sellerErr)
+        Object.hasOwn(res.errors,'Garden') ?
+            displayErrorOnFormField(gardensInput,gardensErr,res.errors.Garden) :
+            displayValidOnFormField(gardensInput,gardensErr)
+        Object.hasOwn(res.errors,'Type') ?
+            displayErrorOnFormField(typeInput,typeErr,res.errors.Type) :
+            displayValidOnFormField(typeInput,typeErr)
+    }
+
+    const displayErrorOnFormField = (formInput,formError,errorText)=>{
+        console.log(errorText)
+        formInput.current.className = 'form-control is-invalid'
+        formError.current.className = 'invalid-feedback'
+        formError.current.innerHTML = errorText
+    }
+
+    const displayValidOnFormField = (formInput, formError)=>{
+        formInput.current.className = 'form-control is-valid'
+        formError.current.className = ''
+        formError.current.innerHTML = ''
     }
 
 
@@ -195,7 +243,11 @@ const PropertyForm = (props) => {
                 <span ref={bathroomsErr}></span>
             </div>
             <div className="col-md-4 mt-3">
-                <input type="text" className="form-control" placeholder="Gardens" ref={gardensInput}/>
+                <select ref={gardensInput} className="form-select">
+                    <option defaultValue={null} value={null}>Garden</option>
+                    <option value={'true'}>Yes</option>
+                    <option value={'false'}>No</option>
+                </select>
                 <span ref={gardensErr}></span>
             </div>
         </div>

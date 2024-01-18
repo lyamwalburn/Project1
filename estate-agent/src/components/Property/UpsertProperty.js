@@ -7,18 +7,16 @@ const UpsertProperty = () => {
 
     const {propertyId} = useParams()
     const navigate = useNavigate()
-
-    const createProperty = (newProperty)=>{
-        console.log(newProperty)
+    let errorCB
+    const createProperty = (newProperty,errorReportCB)=>{
+        errorCB = errorReportCB
         try{
             fetch(URLPATHS.PROPERTY,{
                 mode: 'cors',
                 method:"POST",
                 headers:{"Content-Type": "application/json"},
                 body:JSON.stringify(newProperty)
-            }).then(res=>res.json().then(
-                redirectIf200(res)
-            ))
+            }).then(res=>res.json().then(handleResponse))
         } catch (err){
             console.log(err)
         }
@@ -26,19 +24,26 @@ const UpsertProperty = () => {
             //navigate('/')
     }
 
-    const EditProperty = (property)=>{
-        console.log(property)
+    const EditProperty = (property,errorReportCB)=>{
+        errorCB = errorReportCB
         try{
         fetch(`${URLPATHS.PROPERTY}/${property.id}`,{
             mode: 'cors',
             method:"PUT",
             headers:{"Content-Type": "application/json"},
             body:JSON.stringify(property)
-        }).then(res=>res.json().then(
-            redirectIf200(res)
-        ))
+        }).then(res=>res.json().then(handleResponse))
         } catch (err){
             console.log(err)
+        }
+    }
+
+    const handleResponse = (res)=>{
+        console.log(res)
+        switch(res.status){
+            case 400 : console.log('400 response upsertProperty'); errorCB(res); break;
+            case 200 : redirectIf200(res); break;
+            default: navigate('/');
         }
     }
 
