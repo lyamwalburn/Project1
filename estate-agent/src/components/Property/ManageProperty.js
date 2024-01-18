@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import PropertyCard from "./PropertyCard";
 import { useParams, useNavigate } from "react-router-dom";
-import {URLPATHS, SALESTATUS, SELECTVALUE} from '../utils'
+import {URLPATHS, SALESTATUS, SELECTVALUE, ROUTES} from '../utils'
 import BookingForm from "../Booking/BookingForm";
 import BookingsTable from "../Booking/BookingsTable";
 
@@ -86,6 +86,56 @@ const ManageProperty = (props) => {
         
     }
 
+    const sellProperty = (e)=>{
+        e.preventDefault()
+        let soldProperty = {...property,
+            buyerId: buyerInput.current.value
+        }
+        fetch(`${URLPATHS.PROPERTY}${ROUTES.PROPERTY_SELL}${property.id}`,{
+            method:"PATCH",
+            headers:{"Content-Type": "application/json"},
+            body:JSON.stringify(soldProperty)
+        }).then(res=>{
+            if(res.ok){
+                navigate('/')
+            } else {
+                console.log(res.statusText)
+            }
+        })
+    }
+
+    const relistProperty = (e) => {
+        e.preventDefault()
+        console.log(`${URLPATHS.PROPERTY}${ROUTES.PROPERTY_RELIST}${property.id}`)
+        fetch(`${URLPATHS.PROPERTY}${ROUTES.PROPERTY_RELIST}${property.id}`,{
+            method:"PATCH",
+            headers:{"Content-Type": "application/json"},
+            body:JSON.stringify({id: property.id})
+        }).then(res=>{
+            if(res.ok){
+                navigate('/')
+            } else {
+                console.log(res.statusText)
+            }
+        })
+    }
+
+    const withdrawProperty = (e) => {
+        e.preventDefault()
+        console.log(`${URLPATHS.PROPERTY}${ROUTES.PROPERTY_WITHDRAW}${property.id}`)
+        fetch(`${URLPATHS.PROPERTY}${ROUTES.PROPERTY_WITHDRAW}${property.id}`,{
+            method:"PATCH",
+            headers:{"Content-Type": "application/json"},
+            body:JSON.stringify({id: property.id})
+        }).then(res=>{
+            if(res.ok){
+                navigate('/')
+            } else {
+                console.log(res.statusText)
+            }
+        })
+    }
+
     const updateProperty = async (newProp)=>{
         if(property.status == SALESTATUS.SOLD || validateBuyer()){
         
@@ -164,7 +214,7 @@ const ManageProperty = (props) => {
                         {property.status == SALESTATUS.FORSALE ? 
                             <BookingForm buyers={buyers} property={property} refreshBookings={fetchBookings}/>
                             :
-                            <p>Cannot make booking for sold property.</p>
+                            <p>Cannot make booking for this property.</p>
                         }
                         </div>
                         </div>
@@ -180,7 +230,7 @@ const ManageProperty = (props) => {
                         {property.status == SALESTATUS.FORSALE ? 
                             <BookingsTable buyers={buyers} property={property} bookings={bookings} deleteBooking={deleteBooking}/>
                         :
-                            <p>Sold properties cannot have bookings.</p>
+                            <p>This prperty cannot have bookings.</p>
                         }
                         </div>
                         </div>
@@ -208,13 +258,28 @@ const ManageProperty = (props) => {
                                 ))}
                             </select>
                             <span ref={buyerErr}></span>
-                            <button className="mt-2 btn btn-primary" onClick={(e)=>saveProperty(e)}>Purchase</button>
+                            <button className="mt-2 btn btn-primary" onClick={(e)=>sellProperty(e)}>Purchase</button>
                             </>
                             :
-                                <button className="mt-2 btn btn-primary" onClick={(e)=>saveProperty(e)}>Re-list</button>
+                                <button className="mt-2 btn btn-primary" onClick={(e)=>relistProperty(e)}>Re-list</button>
                             }
                         </div>
                         </div>
+                        {property.status == SALESTATUS.FORSALE  || property.status == SALESTATUS.SOLD? 
+                        <>
+                        <h2 className="accordion-header" id="headingFour">
+                        <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                            Withdraw Property
+                        </button>
+                        </h2>
+                        <div id="collapseFour" className="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                        <div className="accordion-body">
+                            <button className="mt-2 btn btn-primary" onClick={(e)=>withdrawProperty(e)}>Withdraw Property</button>
+                        </div>
+                        </div>
+                        </>
+                        : <></>
+                        }
                     </div>
                     </div>
                 </div>

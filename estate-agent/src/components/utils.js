@@ -11,6 +11,9 @@ export const ROUTES = {
     BUYERS: '/buyers',
     PROPERTIES: '/properties',
     PROPERTIES_UPSERT: '/properties/upsert',
+    PROPERTY_SELL: '/sell/',
+    PROPERTY_RELIST: '/relist/',
+    PROPERTY_WITHDRAW: '/withdraw/'
 }
 
  export const SALESTATUS = {
@@ -29,7 +32,7 @@ export const PATH_IDS = {
 
 export const PROPERTY_TYPES = {
     DETACHED: 'DETACHED',
-    SEMI_DETACHED: 'SEMI-DETACHED',
+    SEMI_DETACHED: 'SEMI',
     APARTMENT: 'APARTMENT',
     ALL: 'ALL'
 }

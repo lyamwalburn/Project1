@@ -47,9 +47,13 @@ const PropertyCard = (props) => {
                 <Link to={`/properties/manage/${props.property.id}`} className='card-link' style={linkStyle}>
                     <li className="list-group-item bg-success text-light fw-bold rounded" key={id+3}>{props.property.status}</li>
                 </Link>
-                :
+                : props.property.status == SALESTATUS.SOLD ?
                 <Link to={`/properties/manage/${props.property.id}`} className='card-link' style={linkStyle}>
                     <li className="list-group-item bg-danger text-light fw-bold rounded" key={id+3}>{props.property.status}</li>
+                </Link>
+                :
+                <Link to={`/properties/manage/${props.property.id}`} className='card-link' style={linkStyle}>
+                    <li className="list-group-item bg-secondary text-light fw-bold rounded" key={id+3}>{props.property.status}</li>
                 </Link>
                 }
             </ul>
