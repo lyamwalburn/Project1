@@ -33,7 +33,7 @@ const UserTable = (props) => {
             <td key={id+1}>{user.id}</td>
             <td key={id+2}>{`${user.firstName} ${user.surname}`}</td>
             <td key={id+3}>{user.address}</td>
-            <td key={id+4}>{user.postcode}</td>
+            <td key={id+4}>{user.postCode}</td>
             <td key={id+5}>{user.phone}</td>
             <td key={id+6} className="col-sm-4 mx-auto">
                 <div className="row d-flex justify-content-center">

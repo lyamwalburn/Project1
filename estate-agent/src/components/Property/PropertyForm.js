@@ -25,7 +25,12 @@ const PropertyForm = (props) => {
     const sellerErr = useRef(null)
 
     useEffect(()=>{
-        fetch(URLPATHS.SELLERS).then(res=>res.json().then(setSellers))
+        fetch(URLPATHS.SELLERS, {
+            mode: 'cors',
+            method: 'GET',
+            headers: {'Content-Type':'application/json'}
+          })
+        .then(res=>res.json().then(setSellers))
         
         if(props.id != PATH_IDS.NEW){
             fetchProperty() 
@@ -33,14 +38,19 @@ const PropertyForm = (props) => {
     },[])
 
     async function fetchProperty(){
-        const res = await fetch(`${URLPATHS.PROPERTY}/${props.id}`)
+        
+        const res = await fetch(`${URLPATHS.PROPERTY}/${props.id}`, {
+            mode: 'cors',
+            method: 'GET',
+            headers: {'Content-Type':'application/json'}
+          })
         const data = await res.json()
         addressInput.current.value = data.address
-        postcodeInput.current.value = data.postcode
+        postcodeInput.current.value = data.postCode
         typeInput.current.value = data.type
         valueInput.current.value = data.price
-        bedroomsInput.current.value = data.bedroom
-        bathroomsInput.current.value = data.bathroom
+        bedroomsInput.current.value = data.numberOfBedrooms
+        bathroomsInput.current.value = data.numberOfBathrooms
         gardensInput.current.value = data.garden
         sellerInput.current.value = data.sellerId
     }
@@ -49,26 +59,75 @@ const PropertyForm = (props) => {
         e.preventDefault()
         let property = {
             address: addressInput.current.value,
-            postcode: postcodeInput.current.value,
-            type: typeInput.current.value,
-            price: valueInput.current.value,
-            bedroom: bedroomsInput.current.value,
-            bathroom: bathroomsInput.current.value,
-            garden: gardensInput.current.value,
-            sellerId: sellerInput.current.value,
-            status: SALESTATUS.FORSALE
+            postCode: postcodeInput.current.value,
+           // type: typeInput.current.value,
+            price: parseInt(valueInput.current.value),
+            numberOfBedrooms: parseInt(bedroomsInput.current.value),
+            numberOfBathrooms: parseInt(bathroomsInput.current.value),
+           // garden: (gardensInput.current.value === 'true'),
+            sellerId: parseInt(sellerInput.current.value),
+            status: SALESTATUS.FORSALE,
+            buyerId: null
+        }
+        if(gardensInput.current.value != 'Garden'){
+            property["garden"] = (gardensInput.current.value === 'true')
+        }
+        if(typeInput.current.value != 'not selected'){
+            property["type"] = typeInput.current.value
         }
         if(props.id != PATH_IDS.NEW){
             property.id = props.id
         }
+        console.log(property)
+       //if( validatePropertyFE(property)){
+            props.saveProperty(property,errorReportCB)
+       //}
+    }
 
-       if( validateProperty(property)){
-            props.saveProperty(property)
-       }
+    const errorReportCB = (res) =>{
+        console.log('logging an error in propertyform')
+        console.log(res)
+        Object.hasOwn(res.errors,'Address') ?
+            displayErrorOnFormField(addressInput,addressErr,res.errors.Address) :
+            displayValidOnFormField(addressInput,addressErr)
+        Object.hasOwn(res.errors,'NumberOfBathrooms') ?
+            displayErrorOnFormField(bathroomsInput,bathroomsErr,res.errors.NumberOfBathrooms) :
+            displayValidOnFormField(bathroomsInput,bathroomsErr)
+        Object.hasOwn(res.errors,'NumberOfBedrooms') ?
+            displayErrorOnFormField(bedroomsInput,bedroomsErr,res.errors.NumberOfBedrooms) :
+            displayValidOnFormField(bedroomsInput,bedroomsErr)
+        Object.hasOwn(res.errors,'PostCode') ?
+            displayErrorOnFormField(postcodeInput,postcodeErr,res.errors.PostCode) :
+            displayValidOnFormField(postcodeInput,postcodeErr)
+        Object.hasOwn(res.errors,'Price') ?
+            displayErrorOnFormField(valueInput,valueErr,res.errors.Price) :
+            displayValidOnFormField(valueInput,valueErr)
+        Object.hasOwn(res.errors,'SellerId') ?
+            displayErrorOnFormField(sellerInput,sellerErr,res.errors.SellerId) :
+            displayValidOnFormField(sellerInput,sellerErr)
+        Object.hasOwn(res.errors,'Garden') ?
+            displayErrorOnFormField(gardensInput,gardensErr,res.errors.Garden) :
+            displayValidOnFormField(gardensInput,gardensErr)
+        Object.hasOwn(res.errors,'Type') ?
+            displayErrorOnFormField(typeInput,typeErr,res.errors.Type) :
+            displayValidOnFormField(typeInput,typeErr)
+    }
+
+    const displayErrorOnFormField = (formInput,formError,errorText)=>{
+        console.log(errorText)
+        formInput.current.className = 'form-control is-invalid'
+        formError.current.className = 'invalid-feedback'
+        formError.current.innerHTML = errorText
+    }
+
+    const displayValidOnFormField = (formInput, formError)=>{
+        formInput.current.className = 'form-control is-valid'
+        formError.current.className = ''
+        formError.current.innerHTML = ''
     }
 
 
-    const validateProperty = (property) =>{
+    const validatePropertyFE = (property) =>{
 
         let isValid = true
         if(property.address.length <= 0){
@@ -81,7 +140,7 @@ const PropertyForm = (props) => {
             addressErr.current.className = ''
             addressErr.current.innerHTML = ''
         }
-        if(property.postcode.length <= 0){
+        if(property.postCode.length <= 0){
             postcodeInput.current.className = 'form-control is-invalid'
             postcodeErr.current.className = 'invalid-feedback'
             postcodeErr.current.innerHTML = 'Please enter a postal code'
@@ -91,7 +150,7 @@ const PropertyForm = (props) => {
             postcodeErr.current.className = ''
             postcodeErr.current.innerHTML = ''
         }
-        if(!validNumbers.test(property.bedroom)){
+        if(!validNumbers.test(property.numberOfBedrooms)){
             bedroomsInput.current.className = 'form-control is-invalid'
             bedroomsErr.current.className = 'invalid-feedback'
             bedroomsErr.current.innerHTML = 'Please enter number of bedrooms with digits 0-9'
@@ -101,7 +160,7 @@ const PropertyForm = (props) => {
             bedroomsErr.current.className = ''
             bedroomsErr.current.innerHTML = ''
         }
-        if(!validNumbers.test(property.bathroom)){
+        if(!validNumbers.test(property.numberOfBathrooms)){
             bathroomsInput.current.className = 'form-control is-invalid'
             bathroomsErr.current.className = 'invalid-feedback'
             bathroomsErr.current.innerHTML = 'Please enter number of bathrooms with digits 0-9'
@@ -111,16 +170,16 @@ const PropertyForm = (props) => {
             bathroomsErr.current.className = ''
             bathroomsErr.current.innerHTML = ''
         }
-        if(!validNumbers.test(property.garden)){
-            gardensInput.current.className = 'form-control is-invalid'
-            gardensErr.current.className = 'invalid-feedback'
-            gardensErr.current.innerHTML = 'Please enter number of gardens with digits 0-9'
-            isValid = false
-        } else {
-            gardensInput.current.className = 'form-control is-valid'
-            gardensErr.current.className = ''
-            gardensErr.current.innerHTML = ''
-        }
+        // if(!validNumbers.test(property.garden)){
+        //     gardensInput.current.className = 'form-control is-invalid'
+        //     gardensErr.current.className = 'invalid-feedback'
+        //     gardensErr.current.innerHTML = 'Please enter number of gardens with digits 0-9'
+        //     isValid = false
+        // } else {
+        //     gardensInput.current.className = 'form-control is-valid'
+        //     gardensErr.current.className = ''
+        //     gardensErr.current.innerHTML = ''
+        // }
         if(!validNumbers.test(property.price)){
             valueInput.current.className = 'form-control is-invalid'
             valueErr.current.className = 'invalid-feedback'
@@ -184,7 +243,11 @@ const PropertyForm = (props) => {
                 <span ref={bathroomsErr}></span>
             </div>
             <div className="col-md-4 mt-3">
-                <input type="text" className="form-control" placeholder="Gardens" ref={gardensInput}/>
+                <select ref={gardensInput} className="form-select">
+                    <option defaultValue={null} value={null}>Garden</option>
+                    <option value={'true'}>Yes</option>
+                    <option value={'false'}>No</option>
+                </select>
                 <span ref={gardensErr}></span>
             </div>
         </div>
@@ -195,9 +258,9 @@ const PropertyForm = (props) => {
             </div>
             <div className="form-group col-md-4 mt-3">
                 <select ref={typeInput} className="form-select">
-                    <option defaultValue value={'not-selected'}>Property type...</option>
+                    <option defaultValue value={'not selected'}>Property type...</option>
                     <option value={'DETACHED'}>DETACHED</option>
-                    <option value={'SEMI-DETACHED'}>SEMI-DETACHED</option>
+                    <option value={'SEMI'}>SEMI DETACHED</option>
                     <option value={'TERRACED'}>TERRRACED</option>
                     <option value={'APARTMENT'}>APARTMENT</option>
                 </select>

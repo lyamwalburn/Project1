@@ -6,7 +6,7 @@ import PropertyCard from "./PropertyCard";
 import { SALESTATUS, URLPATHS } from "../utils";
 import NoResults from "../General/NoResults";
 
-const Properties = () => {
+const Properties = (props) => {
 
     let id = useId()
 
@@ -15,19 +15,28 @@ const Properties = () => {
     const {sellerId,buyerId} = useParams()
 
     useEffect(()=>{
+        console.log(props.withdrawn)
         fetchProperties()
-        console.log(`seller id = ${sellerId}`)
-        console.log(`buyer id = ${buyerId}`)
+       // console.log(`seller id = ${sellerId}`)
+       // console.log(`buyer id = ${buyerId}`)
     },[])
 
     const fetchProperties = ()=>{
-        fetch(URLPATHS.PROPERTY).then(res=>res.json().then(setProperties))
+        fetch(URLPATHS.PROPERTY, {
+            mode: 'cors',
+            method: 'GET',
+            headers: {'Content-Type':'application/json'}
+          })
+        .then(res=>res.json().then(setProperties))
     }
 
     const deleteProperty = (id)=>{
-        fetch(`${URLPATHS.PROPERTY}/${id}`,{
-            method:"delete"
-        }).then(fetchProperties)
+        fetch(`${URLPATHS.PROPERTY}/${id}`, {
+            mode: 'cors',
+            method: 'DELETE',
+            headers: {'Content-Type':'application/json'}
+          })
+        .then(fetchProperties)
     }
 
     return ( 
@@ -43,18 +52,24 @@ const Properties = () => {
                          :
                         buyerId != null ? properties.filter(p=>p.buyerId == buyerId).length > 0 ? properties.filter(p=>p.buyerId == buyerId).map((property,i)=>(
                             <PropertyCard property={property} key={id+i}/>
+                        )) : <NoResults /> :
+                        props.withdrawn == true ? properties.filter(p=> p.status == SALESTATUS.WITHDRAWN).length > 0 ?
+                        properties.filter(p=> p.status == SALESTATUS.WITHDRAWN).map((property,i)=>(
+                        <>
+                            <PropertyCard property={property} key={id+i}/>
+                        </>
                         )) : <NoResults />
                         
-                        : properties.filter(p=> p.status == SALESTATUS.SOLD).length > 0 ?
-                            properties.filter(p=> p.status == SALESTATUS.SOLD).map((property,i)=>(
-                            <>
-                                <PropertyCard property={property} key={id+i}/>
-                            </>
-                            
+                         : properties.filter(p=> p.status == SALESTATUS.SOLD).length > 0 ?
+                        properties.filter(p=> p.status == SALESTATUS.SOLD).map((property,i)=>(
+                        <>
+                           <PropertyCard property={property} key={id+i}/>
+                        </>
+                        
                         )) :
                             <NoResults />
 
-                        } 
+                        }
                     </div>
                 </div>
             </div>

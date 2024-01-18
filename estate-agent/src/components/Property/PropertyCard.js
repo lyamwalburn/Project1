@@ -38,18 +38,22 @@ const PropertyCard = (props) => {
             
             <ul className="list-group list-group-flush p-2">
                 <li className="list-group-item d-flex justify-content-center" key={id+1}>
-                    <span className='p-1 mx-2'><FontAwesomeIcon icon={faBed} className='me-2'/>{props.property.bedroom}</span>
-                    <span className='p-1 mx-2'><FontAwesomeIcon icon={faBath} className='me-2'/>{props.property.bathroom}</span>
-                    <span className='p-1 mx-2'><FontAwesomeIcon icon={faTree} className='me-2'/>{props.property.garden}</span>
+                    <span className='p-1 mx-2'><FontAwesomeIcon icon={faBed} className='me-2'/>{props.property.numberOfBedrooms}</span>
+                    <span className='p-1 mx-2'><FontAwesomeIcon icon={faBath} className='me-2'/>{props.property.numberOfBathrooms}</span>
+                    {props.property.garden ? <span className='p-1 mx-2'><FontAwesomeIcon icon={faTree} className='me-2'/></span> : <></>}
                 </li>
                 <li className="list-group-item" key={id+2}><b>{`£${Number(props.property.price).toLocaleString('en')}`}</b></li>
                 {props.property.status == SALESTATUS.FORSALE ? 
                 <Link to={`/properties/manage/${props.property.id}`} className='card-link' style={linkStyle}>
                     <li className="list-group-item bg-success text-light fw-bold rounded" key={id+3}>{props.property.status}</li>
                 </Link>
-                :
+                : props.property.status == SALESTATUS.SOLD ?
                 <Link to={`/properties/manage/${props.property.id}`} className='card-link' style={linkStyle}>
                     <li className="list-group-item bg-danger text-light fw-bold rounded" key={id+3}>{props.property.status}</li>
+                </Link>
+                :
+                <Link to={`/properties/manage/${props.property.id}`} className='card-link' style={linkStyle}>
+                    <li className="list-group-item bg-secondary text-light fw-bold rounded" key={id+3}>{props.property.status}</li>
                 </Link>
                 }
             </ul>

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import {Link, useNavigate} from 'react-router-dom'
 import { PATH_IDS, validName, validNumbers } from "../utils";
 
@@ -18,7 +18,7 @@ const UserForm = (props) => {
     const postcodeErr= useRef(null)
     const phoneErr= useRef(null)
 
-
+    
     const saveUser = (e)=>{
 
         e.preventDefault()
@@ -27,21 +27,55 @@ const UserForm = (props) => {
             firstName: firstNameInput.current.value,
             surname: surnameInput.current.value,
             address: addressInput.current.value,
-            postcode: postcodeInput.current.value,
+            postCode: postcodeInput.current.value,
             phone: phoneInput.current.value
         }
         if(props.id != PATH_IDS.NEW){
             user.id = props.id
         }
 
-        if(validateUser(user)){
-            props.create(user)
-            navigate(props.route)
-        }
+        //if(validateUserFE(user)){
+
+           props.create(user,errorReportCB)
+            //navigate(props.route)
+        //}
 
     }
 
-    const validateUser = (user)=>{
+    const errorReportCB = (res) =>{
+        console.log('logging an error in userform')
+        console.log(res)
+        Object.hasOwn(res.errors,'FirstName') ?
+            displayErrorOnFormField(firstNameInput,firstNameErr,res.errors.FirstName) :
+            displayValidOnFormField(firstNameInput,firstNameErr)
+        Object.hasOwn(res.errors,'Surname') ?
+            displayErrorOnFormField(surnameInput,surnameErr,res.errors.Surname) :
+            displayValidOnFormField(surnameInput,surnameErr)
+        Object.hasOwn(res.errors,'Phone') ?
+            displayErrorOnFormField(phoneInput,phoneErr,res.errors.Phone) :
+            displayValidOnFormField(phoneInput,phoneErr)
+        Object.hasOwn(res.errors,'PostCode') ?
+            displayErrorOnFormField(postcodeInput,postcodeErr,res.errors.PostCode) :
+            displayValidOnFormField(postcodeInput,postcodeErr)
+        Object.hasOwn(res.errors,'Address') ?
+            displayErrorOnFormField(addressInput,addressErr,res.errors.Address) :
+            displayValidOnFormField(addressInput,addressErr)
+    }
+
+    const displayErrorOnFormField = (formInput,formError,errorText)=>{
+        console.log(errorText)
+        formInput.current.className = 'form-control is-invalid'
+        formError.current.className = 'invalid-feedback'
+        formError.current.innerHTML = errorText
+    }
+
+    const displayValidOnFormField = (formInput, formError)=>{
+        formInput.current.className = 'form-control is-valid'
+        formError.current.className = ''
+        formError.current.innerHTML = ''
+    }
+
+    const validateUserFE = (user)=>{
         let isValid = true
 
         if(!validName.test(user.firstName)){
@@ -74,7 +108,7 @@ const UserForm = (props) => {
             addressErr.current.className = ''
             addressErr.current.innerHTML = ''
         }
-        if(user.postcode.length <= 0){
+        if(user.postCode.length <= 0){
             postcodeInput.current.className = 'form-control is-invalid'
             postcodeErr.current.className = 'invalid-feedback'
             postcodeErr.current.innerHTML = 'Please enter a postal code'
@@ -112,7 +146,7 @@ const UserForm = (props) => {
         firstNameInput.current.value = data.firstName
         surnameInput.current.value = data.surname
         addressInput.current.value = data.address
-        postcodeInput.current.value = data.postcode
+        postcodeInput.current.value = data.postCode
         phoneInput.current.value = data.phone
 
     }

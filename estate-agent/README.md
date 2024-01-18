@@ -43,10 +43,9 @@ This was coupled with a short daily standup with Toby where we discussed where w
 
 # Challenges
 
-As React is a new framework to myself I struggled to begin with to structure components in a way that was reuseable. This resulted in some chunks of time being spent on refactoring when I found parts of the codebase that were identical or similar enough to turn into a single generic component such as the Usertable and UserForm for registering updating and creating both buyers and sellers. In future I think it would be wise to spend more time during the initial planning phase to highlight what aspects may be similar enough to have on single component that can be used in multiple places rather than revisiting to refactor.
+As React is a new framework for myself I struggled to begin with to structure components in a way that was reuseable. This resulted in some chunks of time being spent on refactoring, when I found parts of the codebase that were identical or similar enough to turn into a single generic component such as the Usertable and UserForm for registering updating and creating both buyers and sellers. In future I think it would be wise to spend more time during the initial planning phase to highlight what aspects may be similar enough to have on single component that can be used in multiple places rather than revisiting to refactor.
 
-The bookings system has also caused issues and while it currently works in its current state I do not feel that the logic has been coded in the best way. This was a stretch goal that I started later on in the weeks development and where I to repeat the project or a similar project I would take mroe time or move the more complex feature into the next sprint so it could have more focus from the begining in the initial plan as various other tasks got pushed to the side in favour of trying to simplify the code for this strech goal.
-
+The bookings system has also caused issues and while it currently works in its current state I do not feel that the logic has been coded in the best way. This was a stretch goal that I started later on in the weeks development and where I to repeat the project or a similar project I would take mroe time or move the more complex feature into the next sprint so it could have more focus from the begining in the initial plan as various other tasks got pushed to the side in favour of trying to simplify the code for this strech goal. Although having the project break and need to find a resolution definatley helped improve my understanding of both react and how I could improve my workflow moving forward.
 
 
 # Future development 
@@ -64,7 +63,7 @@ Moving forward there are still several features I would have liked to add to thi
 - disabled inputs when only viewing a sellers/ buyers information
 
 
-The main lessons to take away from this project moving forward would be to plan out components in a reuseable way from the begining rather than needing to refactor once completed. Time management on more complex features near the end of the sprint as I feel the booking system lead to a get it working by any means approach rather than the best way of creating it.
+The main lessons to take away from this project moving forward would be to plan out components and logic in a reuseable way from the begining rather than needing to refactor once completed. Time management on more complex features near the end of the sprint as I feel the booking system lead to a get it working by any means approach rather than the best way of creating it.
 
 
 

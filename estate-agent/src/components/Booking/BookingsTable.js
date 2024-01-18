@@ -6,12 +6,15 @@ const BookingsTable = (props) => {
     const [bookingToDelete,setBookingToDelete] = useState()
     let id = useId()
     const getBuyerNameString = (booking)=>{
-        let buyer = props.buyers.filter(b=>b.id == booking)[0]
-        return `${buyer.firstName} ${buyer.surname}`
+        if(props.buyers.length > 0){
+            let buyer = props.buyers.filter(b=>b.id == booking)[0]
+            return `${buyer.firstName} ${buyer.surname}`
+        }
     }
 
-    const getTimeslotString = (num)=>{
-        return timeSlots.filter(slot=>slot.id == num)[0].time
+    const getTimeslotString = (dt)=>{
+        let time = new Date(dt)
+        return `${time.getHours()}:00 - ${parseInt(time.getHours()+1)}:00`
     }
 
     return ( 
@@ -27,10 +30,10 @@ const BookingsTable = (props) => {
             </thead>
             <tbody>
                 {props.bookings.filter(b=>b.propertyId == props.property.id).map(booking=>(
-                    <tr key={id}>
-                        <td key={id+booking.id}>{booking.date}</td>
-                        <td key={id+3}>{getTimeslotString(booking.timeslot)}</td>
-                        <td key={id+4}>{getBuyerNameString(booking.buyerId)}</td>
+                    <tr key={booking.time}>
+                        <td key={booking.time+1}>{booking.time.substr(0,10).split('-').reverse().join('-')}</td>
+                        <td key={booking.time+3}>{getTimeslotString(booking.time)}</td>
+                        <td key={booking.time+4}>{getBuyerNameString(booking.buyerId)}</td>
                         <td><button type="button" className="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" onClick={()=>setBookingToDelete(booking.id)}>Cancel Booking</button></td>
                     </tr>     
                 ))}

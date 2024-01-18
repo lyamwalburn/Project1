@@ -10,16 +10,25 @@ const Sellers = () => {
 
     useEffect(()=>{
         fetchSellers()
+        console.log(sellers)
     },[])
 
     const fetchSellers = ()=>{
-        fetch(URLPATHS.SELLERS).then(res=>res.json().then(setSellers))
+        fetch(URLPATHS.SELLERS, {
+            mode: 'cors',
+            method: 'GET',
+            headers: {'Content-Type':'application/json'}
+          })
+        .then(res=>res.json().then(setSellers))
     }
 
     const deleteSeller = (id)=>{
-        fetch(`${URLPATHS.SELLERS}/${id}`,{
-            method:"delete"
-        }).then(fetchSellers)
+        fetch(`${URLPATHS.SELLERS}/${id}`, {
+            mode: 'cors',
+            method: 'DELETE',
+            headers: {'Content-Type':'application/json'}
+          })
+        .then(fetchSellers)
     }
 
     return ( 

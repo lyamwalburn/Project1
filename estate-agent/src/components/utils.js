@@ -1,9 +1,9 @@
 export const URLPATHS = {
-    BASE: 'http://localhost:8081',
-    SELLERS: 'http://localhost:8081/seller',
-    BUYERS: 'http://localhost:8081/buyer',
-    PROPERTY: 'http://localhost:8081/property',
-    BOOKING: 'http://localhost:8081/booking'
+    BASE: 'https://localhost:7203',
+    SELLERS: 'https://localhost:7203/Seller',
+    BUYERS: 'https://localhost:7203/Buyer',
+    PROPERTY: 'https://localhost:7203/Property',
+    BOOKING: 'https://localhost:7203/Booking'
   }
 
 export const ROUTES = {
@@ -11,11 +11,15 @@ export const ROUTES = {
     BUYERS: '/buyers',
     PROPERTIES: '/properties',
     PROPERTIES_UPSERT: '/properties/upsert',
+    PROPERTY_SELL: '/sell/',
+    PROPERTY_RELIST: '/relist/',
+    PROPERTY_WITHDRAW: '/withdraw/'
 }
 
  export const SALESTATUS = {
     FORSALE: 'FOR SALE',
-    SOLD: 'SOLD'
+    SOLD: 'SOLD',
+    WITHDRAWN: 'WITHDRAWN'
 }
 
 export const SELECTVALUE = {
@@ -28,7 +32,7 @@ export const PATH_IDS = {
 
 export const PROPERTY_TYPES = {
     DETACHED: 'DETACHED',
-    SEMI_DETACHED: 'SEMI-DETACHED',
+    SEMI_DETACHED: 'SEMI',
     APARTMENT: 'APARTMENT',
     ALL: 'ALL'
 }
@@ -42,43 +46,52 @@ export const USER_TYPE = {
 
 export const validName = new RegExp('^[A-Z][A-Za-z]+')
 
-export const validNumbers = new RegExp('^[0-9]*$')
+export const validNumbers = new RegExp('^[0-9]+$')
 
 export const timeSlots = [
     {
-        time: '08:00 - 09:00',
-        id:1
+        value: '08:00 - 09:00',
+        id:1,
+        time: 8
     },
     {
-        time: '09:00 - 10:00',
-        id:2
+        value: '09:00 - 10:00',
+        id:2,
+        time: 9
     },
     {
-        time: '10:00 - 11:00',
-        id:3
+        value: '10:00 - 11:00',
+        id:3,
+        time: 10
     },
     {
-        time: '11:00 - 12:00',
-        id:4
+        value: '11:00 - 12:00',
+        id:4,
+        time: 11
     },
     {
-        time: '12:00 - 13:00',
-        id:5
+        value: '12:00 - 13:00',
+        id:5,
+        time: 12
     },
     {
-        time: '13:00 - 14:00',
-        id:6
+        value: '13:00 - 14:00',
+        id:6,
+        time: 13
     },
     {
-        time: '14:00 - 15:00',
-        id:7
+        value: '14:00 - 15:00',
+        id:7,
+        time: 14
     },
     {
-        time: '15:00 - 16:00',
-        id:8
+        value: '15:00 - 16:00',
+        id:8,
+        time: 15
     },
     {
-        time: '16:00 - 17:00',
-        id:9
+        value: '16:00 - 17:00',
+        id:9,
+        time: 16
     }
 ]

@@ -20,17 +20,26 @@ const BookingForm = (props) => {
     },[])
 
     const fetchBookings = ()=>{
-        fetch(URLPATHS.BOOKING).then(res=>res.json().then(setBookings))
+        fetch(URLPATHS.BOOKING, {
+            mode: 'cors',
+            method: 'GET',
+            headers: {'Content-Type':'application/json'}
+          })
+        .then(res=>res.json().then(setBookings))
     }
 
 
     const getBuyerByIdJSON = async (id) =>{
-        const res = await fetch(`${URLPATHS.BUYERS}/${id}`)
+        const res = await fetch(`${URLPATHS.BUYERS}/${id}`, {
+                                mode: 'cors',
+                                method: 'GET',
+                                headers: {'Content-Type':'application/json'}
+        })
         const data = await res.json()
         return data
     }
 
-    const validateBooking = ()=>{
+    const validateBookingFE = ()=>{
         let isValid = true
 
         //buyerid != not-selected
@@ -89,16 +98,61 @@ const BookingForm = (props) => {
         return isValid
     }
 
-    const createBooking = (booking)=>{
-        console.log(booking)
+    const createBooking = (/*booking*/)=>{
+        //console.log(booking)
+        const bookingDateTime = new Date()
+        let inputDate = dateInput.current.value.split('-')
+        bookingDateTime.setUTCFullYear(inputDate[0],inputDate[1]-1,inputDate[2])
+        bookingDateTime.setHours(timeslotInput.current.value)
+        bookingDateTime.setMinutes(0,0)
+        console.log(bookingDateTime)
+        let booking = {
+            buyerId: null,
+            propertyId: props.property.id,
+            time: bookingDateTime
+        }
+
+        if(buyerInput.current.value != SELECTVALUE.NOT_SELECTED){
+            console.log(buyerInput.current.value)
+            booking["buyerId"] = buyerInput.current.value
+        }
+
         fetch(URLPATHS.BOOKING,{
+            mode: 'cors',
             method:"POST",
             headers:{"Content-Type": "application/json"},
             body:JSON.stringify(booking)
-        })
-        props.refreshBookings()
-        fetchBookings() 
-        resetBookingInputs()
+        }).then(res=>res.json().then(handleResponse))
+    }
+
+    const errorReportCB = (res) =>{
+        console.log('logging an error in bookingForm')
+        console.log(res)
+        Object.hasOwn(res.errors,'BuyerId') ?
+            displayErrorOnFormField(buyerInput,buyerErr,res.errors.BuyerId) :
+            displayValidOnFormField(buyerInput,buyerErr)
+        if(Object.hasOwn(res.errors,'Time') )
+        {  
+            displayErrorOnFormField(timeslotInput,dateErr,res.errors.Time) 
+            displayErrorOnFormField(dateInput,dateErr,res.errors.Time) 
+        } else {
+            displayValidOnFormField(timeslotInput,dateErr)
+            displayValidOnFormField(dateInput,dateErr)
+        }
+        
+    }
+
+    const displayErrorOnFormField = (formInput,formError,errorText)=>{
+        console.log(errorText)
+        formInput.current.className = 'form-control is-invalid'
+        formError.current.className = 'invalid-feedback'
+        formError.current.innerHTML = errorText
+    }
+
+    const displayValidOnFormField = (formInput, formError)=>{
+        formInput.current.className = 'form-control is-valid'
+        formError.current.className = ''
+        formError.current.innerHTML = ''
     }
 
     const resetBookingInputs = ()=>{
@@ -108,15 +162,25 @@ const BookingForm = (props) => {
         dateInput.current.className = 'form-control mb-2'
         timeslotInput.current.className = 'form-select mb-2'
         buyerInput.current.className = 'form-select mb-2'
+        props.refreshBookings()
+        fetchBookings() 
     }
     
+    const handleResponse = (res)=>{
+        console.log(res)
+        switch(res.status){
+            case 400 : console.log('400 response bookingform'); errorReportCB(res); break;
+            case 200 : resetBookingInputs() ; break;
+            default: resetBookingInputs() ;
+        }
+    }
     
 
     const tryCreateBooking = ()=>{
 
-        if(!validateBooking()){
-            return
-        }
+        // if(!validateBooking()){
+        //     return
+        // }
 
         let newBooking = {
             buyerId: buyerInput.current.value,
@@ -225,13 +289,12 @@ const BookingForm = (props) => {
             <select ref={timeslotInput} className="form-select mb-2" onChange={()=>{timeslotInput.current.className = 'form-select mb-2'}}>
                 <option defaultValue={SELECTVALUE.NOT_SELECTED} value={SELECTVALUE.NOT_SELECTED}>Timeslot....</option>
                 {timeSlots.map((slot)=>(
-                    <option value={slot.id} key={slot.id*4}>{slot.time}</option>
+                    <option value={slot.time} key={slot.id*4}>{slot.value}</option>
                 ))}
             </select>
-            <span ref={timeErr}></span>
             <input className="mb-2 form-control" type="date" ref={dateInput}/>
             <span ref={dateErr}></span>
-            <button className="btn btn-primary col-12" onClick={()=>{ tryCreateBooking()}}>Make Booking</button>
+            <button className="btn btn-primary col-12" onClick={()=>{ createBooking()}}>Make Booking</button>
         </div>
 
      );

@@ -31,6 +31,7 @@ function App() {
           <Route path='/properties/manage/:propertyId' element={<ManageProperty />}></Route>
           <Route path='/properties/:sellerId' element={<Properties />}></Route>
           <Route path='/properties/buyer/:buyerId' element={<Properties />}></Route>
+          <Route path='/properties/withdrawn' element={<Properties withdrawn={true}/>}></Route>
           <Route path='/buyers' element={<Buyers />}></Route>
           <Route path='/buyers/:buyerId' element={<UpsertBuyer />}></Route>
           <Route path='*' element={<NotFound/>}/>
