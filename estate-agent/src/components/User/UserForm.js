@@ -45,9 +45,21 @@ const UserForm = (props) => {
     const errorReportCB = (res) =>{
         console.log('logging an error in userform')
         console.log(res.errors.FirstName)
-        displayErrorOnFormField(firstNameInput,firstNameErr,res.errors.FirstName)
-        displayErrorOnFormField(surnameInput,surnameErr,res.errors.Surname)
-        displayErrorOnFormField(phoneInput,phoneErr,res.errors.Phone)
+        Object.hasOwn(res.errors,'FirstName') ?
+            displayErrorOnFormField(firstNameInput,firstNameErr,res.errors.FirstName) :
+            displayValidOnFormField(firstNameInput,firstNameErr)
+        Object.hasOwn(res.errors,'Surname') ?
+            displayErrorOnFormField(surnameInput,surnameErr,res.errors.Surname) :
+            displayValidOnFormField(surnameInput,surnameErr)
+        Object.hasOwn(res.errors,'Phone') ?
+            displayErrorOnFormField(phoneInput,phoneErr,res.errors.Phone) :
+            displayValidOnFormField(phoneInput,phoneErr)
+        Object.hasOwn(res.errors,'PostCode') ?
+            displayErrorOnFormField(postcodeInput,postcodeErr,res.errors.PostCode) :
+            displayValidOnFormField(postcodeInput,postcodeErr)
+        Object.hasOwn(res.errors,'Address') ?
+            displayErrorOnFormField(addressInput,addressErr,res.errors.Address) :
+            displayValidOnFormField(addressInput,addressErr)
     }
 
     const displayErrorOnFormField = (formInput,formError,errorText)=>{
@@ -55,6 +67,12 @@ const UserForm = (props) => {
         formInput.current.className = 'form-control is-invalid'
         formError.current.className = 'invalid-feedback'
         formError.current.innerHTML = errorText
+    }
+
+    const displayValidOnFormField = (formInput, formError)=>{
+        formInput.current.className = 'form-control is-valid'
+        formError.current.className = ''
+        formError.current.innerHTML = ''
     }
 
     const validateUserFE = (user)=>{
