@@ -105,6 +105,7 @@ const BookingForm = (props) => {
         bookingDateTime.setUTCFullYear(inputDate[0],inputDate[1]-1,inputDate[2])
         bookingDateTime.setHours(timeslotInput.current.value)
         bookingDateTime.setMinutes(0,0)
+        bookingDateTime.setMilliseconds(0)
         console.log(bookingDateTime)
         let booking = {
             buyerId: null,
@@ -168,6 +169,13 @@ const BookingForm = (props) => {
     
     const handleResponse = (res)=>{
         console.log(res)
+        if(Object.hasOwn(res,'PropertyId') ){
+            displayErrorOnFormField(timeslotInput,dateErr,res.PropertyId[0]) 
+            return
+        }
+        else{
+            displayValidOnFormField(timeslotInput,dateErr)
+        }
         switch(res.status){
             case 400 : console.log('400 response bookingform'); errorReportCB(res); break;
             case 200 : resetBookingInputs() ; break;

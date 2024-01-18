@@ -31,7 +31,7 @@ const PropertySearch = () => {
 
     const getdata = (data) =>{
         setProperties(data)
-        setFilteredProperties(data)
+        setFilteredProperties(data.filter(property => property.status != SALESTATUS.WITHDRAWN))
         //only show properties that are for sale
         //setFilteredProperties(data.filter(property=>property.status == SALESTATUS.FORSALE))
     }
@@ -45,8 +45,8 @@ const PropertySearch = () => {
 
         console.log(searchResults)
         //status
-       // searchResults = searchResults.filter(property => property.status == SALESTATUS.FORSALE)
-
+       //searchResults = searchResults.filter(property => property.status == SALESTATUS.FORSALE)
+        searchResults = searchResults.filter(property => property.status != SALESTATUS.WITHDRAWN)
         //price
         if(document.getElementById('radioUnder').checked){
             searchResults = searchResults.filter(property=>parseInt(property.price) <= parseInt(priceRef.current.value))
