@@ -77,7 +77,7 @@ const ManageProperty = (props) => {
             if(res.status != 200){
                 catchError(res)
             } else {
-                console.log(res)
+                //console.log(res)
                 res.json().then(setBuyers)
             }
         })

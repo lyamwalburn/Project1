@@ -29,6 +29,7 @@ const PropertyCard = (props) => {
     let id = useId()
     return ( 
         <>
+        {console.log(props.property)}
         <div className="card m-3 text-center  p-0" style={cardStyle} key={id}>
             <img className="card-img-top p-0" style={props.property.status == SALESTATUS.FORSALE ? imgStyle : soldStyle} src={props.property.image == null ? require('../../img/img-missing.avif') : require(`../../img/${props.property.image}`)} alt="Property Image"/>
             <div className="card-body">

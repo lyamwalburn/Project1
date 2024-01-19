@@ -53,7 +53,8 @@ const Sellers = () => {
                 catchError(res)
             } else {
                 console.log(res)
-                res.then(fetchSellers)
+               // res.then(fetchSellers)
+               navigate('/sellers')
             }
         })
         .catch(catchError)
