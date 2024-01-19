@@ -13,17 +13,29 @@ const UpsertSeller = () => {
     const createSeller = (newSeller,errorReportCB)=>{
         errorCB = errorReportCB
         const token = sessionStorage.getItem("jwt")
-        try{
+
             fetch(URLPATHS.SELLERS, {
                 mode: 'cors',
                 method: 'POST',
                 headers: {'Content-Type':'application/json',
                             'Authorization': `Bearer ${token}`},
                 body:JSON.stringify(newSeller)
-            }).then(res=>res.json().then(handleResponse))
-        } catch (error) {
-            //handle errors
+            })
+            .then(res => {
+                if(res.status != 200){
+                    catchError(res)
+                } else {
+                    console.log(res)
+                    res.json().then(handleResponse)
+                }
+            })
+            .catch(catchError)
 
+    }
+
+    const catchError = (res)=>{
+        if(res.status == 401){
+            navigate('/signin')
         }
     }
 
@@ -31,18 +43,24 @@ const UpsertSeller = () => {
         console.log(seller)
         errorCB = errorReportCB
         const token = sessionStorage.getItem("jwt")
-        try{
             fetch(`${URLPATHS.SELLERS}/${seller.id}`, {
                 mode: 'cors',
                 method: 'PUT',
                 headers: {'Content-Type':'application/json',
                             'Authorization': `Bearer ${token}`},
                 body:JSON.stringify(seller)
-            }).then(res=>res.json().then(handleResponse))
-        } catch(error){
-            //handle errors
-            console.log(error)
-        }
+            })
+            .then(res => {
+                if(res.status != 200){
+                    catchError(res)
+                } else {
+                    console.log('editseller try handle response')
+                    console.log(res)
+                    res.json().then(handleResponse)
+                }
+            })
+            .catch(catchError)
+
     }
 
     const handleResponse = (res)=>{

@@ -139,16 +139,41 @@ const UserForm = (props) => {
         }
     },[])
 
-    async function fetchUser(){
-        const res = await fetch(`${props.url}/${props.id}`)
-        const data = await res.json()
+    const fetchUser = ()=>{
+        const token = sessionStorage.getItem("jwt")
+        fetch(`${props.url}/${props.id}`, {
+            mode: 'cors',
+            method: 'GET',
+            headers: {'Content-Type':'application/json',
+                            'Authorization': `Bearer ${token}`}
+          })
+        .then(res => {
+            if(res.status != 200){
+                catchError(res)
+            } else {
+                console.log(res)
+                res.json().then(setFields)
+            }
+        })
+        .catch(catchError)
+        
 
+    }
+
+    const setFields = (data)=>{
+       // console.log(data)
         firstNameInput.current.value = data.firstName
         surnameInput.current.value = data.surname
         addressInput.current.value = data.address
         postcodeInput.current.value = data.postCode
         phoneInput.current.value = data.phone
+    }
 
+    
+    const catchError = (res)=>{
+        if(res.status == 401){
+            navigate('/signin')
+        }
     }
 
     return (  

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { PATH_IDS, SALESTATUS, SELECTVALUE, URLPATHS, validNumbers } from "../utils";
+import { useNavigate } from "react-router-dom";
 
 const PropertyForm = (props) => {
 
@@ -24,6 +25,7 @@ const PropertyForm = (props) => {
     const typeErr = useRef(null)
     const sellerErr = useRef(null)
 
+    const navigate = useNavigate()
     useEffect(()=>{
         const token = sessionStorage.getItem("jwt")
         try{
@@ -42,23 +44,46 @@ const PropertyForm = (props) => {
         }
     },[])
 
-    async function fetchProperty(){
-        
-        const res = await fetch(`${URLPATHS.PROPERTY}/${props.id}`, {
+    const fetchProperty = ()=>{
+        const token = sessionStorage.getItem("jwt")
+        fetch(`${URLPATHS.PROPERTY}/${props.id}`, {
             mode: 'cors',
             method: 'GET',
-            headers: {'Content-Type':'application/json'}
+            headers: {'Content-Type':'application/json',
+                            'Authorization': `Bearer ${token}`}
           })
-        const data = await res.json()
-        addressInput.current.value = data.address
-        postcodeInput.current.value = data.postCode
-        typeInput.current.value = data.type
-        valueInput.current.value = data.price
-        bedroomsInput.current.value = data.numberOfBedrooms
-        bathroomsInput.current.value = data.numberOfBathrooms
-        gardensInput.current.value = data.garden
-        sellerInput.current.value = data.sellerId
+        .then(res => {
+            if(res.status != 200){
+                catchError(res)
+            } else {
+                console.log(res)
+                res.json().then(setFields)
+            }
+        })
+        .catch(catchError)
+        
+
     }
+
+    const setFields = (data)=>{
+       // console.log(data)
+       addressInput.current.value = data.address
+       postcodeInput.current.value = data.postCode
+       typeInput.current.value = data.type
+       valueInput.current.value = data.price
+       bedroomsInput.current.value = data.numberOfBedrooms
+       bathroomsInput.current.value = data.numberOfBathrooms
+       gardensInput.current.value = data.garden
+       sellerInput.current.value = data.sellerId
+    }
+
+    
+    const catchError = (res)=>{
+        if(res.status == 401){
+            navigate('/signin')
+        }
+    }
+
 
     const saveDetails = (e) =>{
         e.preventDefault()

@@ -31,16 +31,17 @@ const SignIn = () => {
         e.preventDefault()
         console.log(`logging in with ${usernameInput.current.value} and ${passwordInput.current.value}`)
         let user = {
-            pasword: passwordInput.current.value,
-            username: usernameInput.current.value
+            password: passwordInput.current.value,
+            userName: usernameInput.current.value
         }
         fetchLogin(user)
     }
 
     const tryStoreJWT = (res)=>{
-        if(res.data.autorizationToken){
-            console.log(`token data :${res.data.autorizationToken}`)
-            const jwtToken = res.data.authorizationToken
+        console.log(res)
+        if(res.authorizationToken){
+            console.log(`token data :${res.authorizationToken}`)
+            const jwtToken = res.authorizationToken
             if(jwtToken){
                 sessionStorage.setItem("jwt",jwtToken)
                 navigate('/')       

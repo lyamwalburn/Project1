@@ -24,34 +24,65 @@ const ManageProperty = (props) => {
         fetchBookings()
     },[])
 
-    const fetchProperty = async ()=>{
-       await fetch(`${URLPATHS.PROPERTY}/${propertyId}`, {
-        mode: 'cors',
-        method: 'GET',
-        headers: {'Content-Type':'application/json'}
-      })
-       
-       .then(res=>res.json().then(setProperty))
-    }
 
-    const fetchBookings = async ()=>{
-        await fetch(`${URLPATHS.BOOKING}`, {
+    const fetchProperty = ()=>{
+        const token = sessionStorage.getItem("jwt")
+        fetch(`${URLPATHS.PROPERTY}/${propertyId}`, {
             mode: 'cors',
             method: 'GET',
-            headers: {'Content-Type':'application/json'}
+            headers: {'Content-Type':'application/json',
+                            'Authorization': `Bearer ${token}`}
           })
-           
-        .then(res=>res.json().then(setBookings))
+        .then(res => {
+            if(res.status != 200){
+                catchError(res)
+            } else {
+                console.log(res)
+                res.json().then(setProperty)
+            }
+        })
+        .catch(catchError)
+        
     }
 
-    const fetchBuyers = async () =>{
-        await fetch(`${URLPATHS.BUYERS}`, {
+    const fetchBookings = ()=>{
+        const token = sessionStorage.getItem("jwt")
+        fetch(`${URLPATHS.BOOKING}`, {
             mode: 'cors',
             method: 'GET',
-            headers: {'Content-Type':'application/json'}
+            headers: {'Content-Type':'application/json',
+                            'Authorization': `Bearer ${token}`}
           })
-           
-        .then(res=>res.json().then(setBuyers))
+        .then(res => {
+            if(res.status != 200){
+                catchError(res)
+            } else {
+                console.log(res)
+                res.json().then(setBookings)
+            }
+        })
+        .catch(catchError)
+        
+    }
+
+    const fetchBuyers = ()=>{
+        const token = sessionStorage.getItem("jwt")
+        fetch(`${URLPATHS.BUYERS}`, {
+            mode: 'cors',
+            method: 'GET',
+            headers: {'Content-Type':'application/json',
+                            'Authorization': `Bearer ${token}`}
+          })
+        .then(res => {
+            if(res.status != 200){
+                catchError(res)
+            } else {
+                console.log(res)
+                res.json().then(setBuyers)
+            }
+        })
+        .catch(catchError)
+        
     }
 
     const deleteBooking = (id) =>{
@@ -62,6 +93,15 @@ const ManageProperty = (props) => {
           })    
        .then(fetchBookings)
     }
+
+
+        
+    const catchError = (res)=>{
+        if(res.status == 401){
+            navigate('/signin')
+        }
+    }
+
 
     const saveProperty = async (e)=>{
         e.preventDefault()
