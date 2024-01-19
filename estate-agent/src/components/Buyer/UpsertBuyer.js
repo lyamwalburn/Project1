@@ -53,6 +53,9 @@ const UpsertBuyer = () => {
         if(res.status == 401){
             navigate('/signin')
         }
+        if(res.status == 400){
+            console.log('400 response upsertseller'); res.json().then(errorCB);
+        }
     }
 
     const handleResponse = (res)=>{

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { SELECTVALUE, URLPATHS, timeSlots } from "../utils";
+import { useNavigate } from "react-router-dom";
 
 
 const BookingForm = (props) => {
@@ -12,7 +13,7 @@ const BookingForm = (props) => {
     const timeErr = useRef(null)
     const dateErr = useRef(null)
     const generalErr = useRef(null)
-
+    const navigate = useNavigate()
     const [bookings,setBookings]=useState([]) //TODO send bookings via props
 
     useEffect(()=>{
@@ -111,6 +112,8 @@ const BookingForm = (props) => {
         bookingDateTime.setUTCFullYear(inputDate[0],inputDate[1]-1,inputDate[2])
         bookingDateTime.setHours(timeslotInput.current.value)
         bookingDateTime.setMinutes(0,0)
+        bookingDateTime.setSeconds(0)
+        bookingDateTime.setMilliseconds(0)
         console.log(bookingDateTime)
         let booking = {
             buyerId: null,
@@ -122,23 +125,52 @@ const BookingForm = (props) => {
             console.log(buyerInput.current.value)
             booking["buyerId"] = buyerInput.current.value
         }
+      
+
         const token = sessionStorage.getItem("jwt")
-        try{
-        fetch(URLPATHS.BOOKING,{
-            mode: 'cors',
-            method:"POST",
-            headers: {'Content-Type':'application/json',
-            'Authorization': `Bearer ${token}`},
-            body:JSON.stringify(booking)
-        }).then(res=>res.json().then(handleResponse))
-        } catch(error){
-            //handle errors
+            fetch(URLPATHS.BOOKING, {
+                mode: 'cors',
+                method: 'POST',
+                headers: {'Content-Type':'application/json',
+                            'Authorization': `Bearer ${token}`},
+                body:JSON.stringify(booking)
+            })
+            .then(res => {
+                if(res.status != 200){
+                    catchError(res)
+                } else {
+                    console.log(res)
+                    res.json().then(handleResponse)
+                }
+            })
+            .catch(catchError)
+    }
+    
+    const catchError = (res)=>{
+        if(res.status == 401){
+            navigate('/signin')
         }
+        if(res.status == 400){
+            console.log('400 response upsertseller'); res.json().then(errorReportCB);
+        }
+    }
+
+
+    const conflicts = res =>{
+        if(Object.hasOwn(res,'PropertyId') )
+        {  
+        displayErrorOnFormField(timeslotInput,dateErr,res.errors.Time) 
+        displayErrorOnFormField(dateInput,dateErr,res.errors.Time) 
+    } else {
+        displayValidOnFormField(timeslotInput,dateErr)
+        displayValidOnFormField(dateInput,dateErr)
+    }
     }
 
     const errorReportCB = (res) =>{
         console.log('logging an error in bookingForm')
         console.log(res)
+        if(Object.hasOwn(res,"PropertyId")) return
         Object.hasOwn(res.errors,'BuyerId') ?
             displayErrorOnFormField(buyerInput,buyerErr,res.errors.BuyerId) :
             displayValidOnFormField(buyerInput,buyerErr)
