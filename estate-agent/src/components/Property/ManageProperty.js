@@ -86,12 +86,22 @@ const ManageProperty = (props) => {
     }
 
     const deleteBooking = (id) =>{
+       const token = sessionStorage.getItem("jwt")
         fetch(`${URLPATHS.BOOKING}/${id}`, {
             mode: 'cors',
             method: 'DELETE',
-            headers: {'Content-Type':'application/json'}
-          })    
-       .then(fetchBookings)
+            headers: {'Content-Type':'application/json',
+                            'Authorization': `Bearer ${token}`}
+          })
+        .then(res => {
+            if(res.status != 200){
+                catchError(res)
+            } else {
+                console.log(res)
+                res.then(fetchBookings)
+            }
+        })
+        .catch(catchError)
     }
 
 
@@ -131,49 +141,63 @@ const ManageProperty = (props) => {
         let soldProperty = {...property,
             buyerId: buyerInput.current.value
         }
-        fetch(`${URLPATHS.PROPERTY}${ROUTES.PROPERTY_SELL}${property.id}`,{
-            method:"PATCH",
-            headers:{"Content-Type": "application/json"},
+        const token = sessionStorage.getItem("jwt")
+        fetch(`${URLPATHS.PROPERTY}${ROUTES.PROPERTY_SELL}${property.id}`, {
+            mode: 'cors',
+            method: 'PATCH',
+            headers: {'Content-Type':'application/json',
+                            'Authorization': `Bearer ${token}`},
             body:JSON.stringify(soldProperty)
-        }).then(res=>{
-            if(res.ok){
-                navigate('/')
+          })
+        .then(res => {
+            if(res.status != 200){
+                catchError(res)
             } else {
-                console.log(res.statusText)
+                navigate('/')
             }
         })
+        .catch(catchError)
     }
 
     const relistProperty = (e) => {
         e.preventDefault()
-        console.log(`${URLPATHS.PROPERTY}${ROUTES.PROPERTY_RELIST}${property.id}`)
-        fetch(`${URLPATHS.PROPERTY}${ROUTES.PROPERTY_RELIST}${property.id}`,{
-            method:"PATCH",
-            headers:{"Content-Type": "application/json"},
+
+        const token = sessionStorage.getItem("jwt")
+        fetch(`${URLPATHS.PROPERTY}${ROUTES.PROPERTY_RELIST}${property.id}`, {
+            mode: 'cors',
+            method: 'PATCH',
+            headers: {'Content-Type':'application/json',
+                            'Authorization': `Bearer ${token}`},
             body:JSON.stringify({id: property.id})
-        }).then(res=>{
-            if(res.ok){
-                navigate('/')
+          })
+        .then(res => {
+            if(res.status != 200){
+                catchError(res)
             } else {
-                console.log(res.statusText)
+                navigate('/')
             }
         })
+        .catch(catchError)
     }
 
     const withdrawProperty = (e) => {
         e.preventDefault()
-        console.log(`${URLPATHS.PROPERTY}${ROUTES.PROPERTY_WITHDRAW}${property.id}`)
-        fetch(`${URLPATHS.PROPERTY}${ROUTES.PROPERTY_WITHDRAW}${property.id}`,{
-            method:"PATCH",
-            headers:{"Content-Type": "application/json"},
+        const token = sessionStorage.getItem("jwt")
+        fetch(`${URLPATHS.PROPERTY}${ROUTES.PROPERTY_WITHDRAW}${property.id}`, {
+            mode: 'cors',
+            method: 'PATCH',
+            headers: {'Content-Type':'application/json',
+                            'Authorization': `Bearer ${token}`},
             body:JSON.stringify({id: property.id})
-        }).then(res=>{
-            if(res.ok){
-                navigate('/')
+          })
+        .then(res => {
+            if(res.status != 200){
+                catchError(res)
             } else {
-                console.log(res.statusText)
+                navigate('/')
             }
         })
+        .catch(catchError)
     }
 
     const updateProperty = async (newProp)=>{

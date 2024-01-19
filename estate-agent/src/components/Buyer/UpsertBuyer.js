@@ -8,38 +8,53 @@ const UpsertBuyer = () => {
     const createBuyer = (newBuyer,errorReportCB)=>{
         errorCB = errorReportCB
         const token = sessionStorage.getItem("jwt")
-        try{
-        fetch(URLPATHS.BUYERS, {
-            mode: 'cors',
-            method: 'POST',
-            headers: {'Content-Type':'application/json',
+            fetch(URLPATHS.BUYERS, {
+                mode: 'cors',
+                method: 'POST',
+                headers: {'Content-Type':'application/json',
                             'Authorization': `Bearer ${token}`},
-            body:JSON.stringify(newBuyer)
-          }).then(res=>res.json().then(handleResponse))
-        } catch(error){
-            //handle errors
-
-        }
+                body:JSON.stringify(newBuyer)
+            })
+            .then(res => {
+                if(res.status != 200){
+                    catchError(res)
+                } else {
+                    console.log(res)
+                    res.json().then(handleResponse)
+                }
+            })
+            .catch(catchError)
     }
 
     const EditBuyer = (buyer,errorReportCB)=>{
        // console.log(buyer)
         errorCB = errorReportCB
         const token = sessionStorage.getItem("jwt")
-        try{
         fetch(`${URLPATHS.BUYERS}/${buyer.id}`, {
             mode: 'cors',
             method: 'PUT',
             headers: {'Content-Type':'application/json',
-            'Authorization': `Bearer ${token}`},
+                        'Authorization': `Bearer ${token}`},
             body:JSON.stringify(buyer)
-          }).then(res=>res.json().then(handleResponse))
-        }
-        catch (err){
-            //handle errors
-            console.err(err)
+        })
+        .then(res => {
+            if(res.status != 200){
+                catchError(res)
+            } else {
+                console.log('editseller try handle response')
+                console.log(res)
+                res.json().then(handleResponse)
+            }
+        })
+        .catch(catchError)
+    }
+
+    const catchError = (res)=>{
+        if(res.status == 401){
+            navigate('/signin')
         }
     }
+
     const handleResponse = (res)=>{
         console.log(res)
         switch(res.status){

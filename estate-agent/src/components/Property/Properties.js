@@ -15,7 +15,7 @@ const Properties = (props) => {
     const {sellerId,buyerId} = useParams()
 
     useEffect(()=>{
-        console.log(props.withdrawn)
+        //console.log(props.withdrawn)
         fetchProperties()
        // console.log(`seller id = ${sellerId}`)
        // console.log(`buyer id = ${buyerId}`)

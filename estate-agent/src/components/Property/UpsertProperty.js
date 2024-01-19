@@ -11,36 +11,50 @@ const UpsertProperty = () => {
     const createProperty = (newProperty,errorReportCB)=>{
         errorCB = errorReportCB
         const token = sessionStorage.getItem("jwt")
-        try{
-            fetch(URLPATHS.PROPERTY,{
-                mode: 'cors',
-                method:"POST",
-                headers: {'Content-Type':'application/json',
-                'Authorization': `Bearer ${token}`},
-                body:JSON.stringify(newProperty)
-            }).then(res=>res.json().then(handleResponse))
-        } catch (err){
-            console.log(err)
-            //handle error
-        }
-        
-            //navigate('/')
+
+        fetch(URLPATHS.PROPERTY, {
+            mode: 'cors',
+            method: 'POST',
+            headers: {'Content-Type':'application/json',
+                        'Authorization': `Bearer ${token}`},
+            body:JSON.stringify(newProperty)
+        })
+        .then(res => {
+            if(res.status != 200){
+                catchError(res)
+            } else {
+                console.log(res)
+                res.json().then(handleResponse)
+            }
+        })
+        .catch(catchError)
     }
 
     const EditProperty = (property,errorReportCB)=>{
         errorCB = errorReportCB
         const token = sessionStorage.getItem("jwt")
-        try{
-        fetch(`${URLPATHS.PROPERTY}/${property.id}`,{
+        fetch(`${URLPATHS.PROPERTY}/${property.id}`, {
             mode: 'cors',
-            method:"PUT",
+            method: 'PUT',
             headers: {'Content-Type':'application/json',
-            'Authorization': `Bearer ${token}`},
+                        'Authorization': `Bearer ${token}`},
             body:JSON.stringify(property)
-        }).then(res=>res.json().then(handleResponse))
-        } catch (err){
-            console.log(err)
-            //handle error
+        })
+        .then(res => {
+            if(res.status != 200){
+                catchError(res)
+            } else {
+                console.log('editseller try handle response')
+                console.log(res)
+                res.json().then(handleResponse)
+            }
+        })
+        .catch(catchError)
+    }
+
+    const catchError = (res)=>{
+        if(res.status == 401){
+            navigate('/signin')
         }
     }
 

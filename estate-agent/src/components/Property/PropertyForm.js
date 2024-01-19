@@ -28,17 +28,21 @@ const PropertyForm = (props) => {
     const navigate = useNavigate()
     useEffect(()=>{
         const token = sessionStorage.getItem("jwt")
-        try{
         fetch(URLPATHS.SELLERS, {
             mode: 'cors',
             method: 'GET',
             headers: {'Content-Type':'application/json',
-            'Authorization': `Bearer ${token}`}
+                            'Authorization': `Bearer ${token}`}
           })
-        .then(res=>res.json().then(setSellers))
-        } catch(error){
-            //handle error
-        }
+        .then(res => {
+            if(res.status != 200){
+                catchError(res)
+            } else {
+                console.log(res)
+                res.json().then(setSellers)
+            }
+        })
+        .catch(catchError)
         if(props.id != PATH_IDS.NEW){
             fetchProperty() 
         }

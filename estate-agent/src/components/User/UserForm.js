@@ -141,6 +141,7 @@ const UserForm = (props) => {
 
     const fetchUser = ()=>{
         const token = sessionStorage.getItem("jwt")
+        //console.log(token)
         fetch(`${props.url}/${props.id}`, {
             mode: 'cors',
             method: 'GET',

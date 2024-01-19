@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { useNavigate} from 'react-router-dom'
 import { URLPATHS } from "../utils";
+import PropertySearch from "../Property/PropertySearch";
 
 const SignIn = () => {
 

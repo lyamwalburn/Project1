@@ -15,6 +15,7 @@ import NotFound from './components/General/NotFound';
 import Footer from './components/General/Footer';
 import QuickLinks from './components/General/QuickLinks';
 import SignIn from './components/General/SignIn';
+import { useState } from 'react';
 function App() {
 
   return (
@@ -35,7 +36,7 @@ function App() {
           <Route path='/properties/withdrawn' element={<Properties withdrawn={true}/>}></Route>
           <Route path='/buyers' element={<Buyers />}></Route>
           <Route path='/buyers/:buyerId' element={<UpsertBuyer />}></Route>
-          <Route path='/signin' element={<SignIn />}></Route>
+          <Route path='/signin' element={<SignIn/>}></Route>
           <Route path='*' element={<NotFound/>}/>
         </Routes>
         </BrowserRouter>
